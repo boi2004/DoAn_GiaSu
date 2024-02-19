@@ -12,14 +12,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class MainActivity3 extends AppCompatActivity {
+public class Dangky_Activity extends AppCompatActivity {
     Button btnDk;
     EditText edtSdt, edtMk, edtMkmoi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main3);
+        setContentView(R.layout.activity_dangky);
         addControls();
         addEvents();
 
@@ -54,7 +54,7 @@ public class MainActivity3 extends AppCompatActivity {
                     edtMk.setCompoundDrawables(null,null,null,null);
                     edtMkmoi.setCompoundDrawables(null,null,null,null);
                     edtSdt.setCompoundDrawables(null,null,null,null);
-                    Intent i = new Intent(MainActivity3.this, MainActivity.class);
+                    Intent i = new Intent(Dangky_Activity.this, Dangnhap_Activity.class);
                     startActivity(i);
                 }
             }
@@ -62,10 +62,10 @@ public class MainActivity3 extends AppCompatActivity {
     }
 
     private void addControls() {
-        btnDk = findViewById(R.id.btnDk);
-        edtSdt = findViewById(R.id.edtSdt);
-        edtMkmoi = findViewById(R.id.edtMkmoi);
-        edtMk = findViewById(R.id.edtMk);
+        btnDk = findViewById(R.id.btn_dangky_dangky);
+        edtSdt = findViewById(R.id.edt_Sdt_dangky);
+        edtMkmoi = findViewById(R.id.edt_nhaplaimatkhau_dangky);
+        edtMk = findViewById(R.id.edt_matkhau_dangky);
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

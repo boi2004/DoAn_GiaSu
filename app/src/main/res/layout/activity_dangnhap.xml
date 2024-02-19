@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Dangnhap_Activity">
 
     <TextView
         android:id="@+id/textView3"
@@ -20,7 +20,7 @@
         app:layout_constraintVertical_bias="0.326" />
 
     <TextView
-        android:id="@+id/txtQuenmatkhau"
+        android:id="@+id/txt_Quenmatkhau_dangnhap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Quên mật khẩu"
@@ -34,7 +34,7 @@
         app:layout_constraintVertical_bias="0.619" />
 
     <Button
-        android:id="@+id/btn_Dangnhap"
+        android:id="@+id/btn_Dangnhap_dangnhap"
         android:layout_width="348dp"
         android:layout_height="66dp"
         android:backgroundTint="#43A047"
@@ -60,7 +60,7 @@
         app:srcCompat="@drawable/img_2" />
 
     <TextView
-        android:id="@+id/txt_Dangky"
+        android:id="@+id/txt_Dangky_dangnhap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Đăng ký"
@@ -99,7 +99,7 @@
         app:layout_constraintVertical_bias="0.435">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edt_Sodienthoai"
+            android:id="@+id/edt_Sodienthoai_dangnhap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Số điện thoại" />
@@ -120,7 +120,7 @@
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edt_Matkhau"
+            android:id="@+id/edt_Matkhau_dangnhap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLength="32"

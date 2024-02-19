@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class Dangnhap_Activity extends AppCompatActivity {
     Button btn_Dangnhap;
     EditText edt_Sodienthoai, edt_Matkhau;
     TextView txtQuenmatkhau, txt_Dangky;
@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_dangnhap);
         addControls();
         addEvents();
     }
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 if(!phone.isEmpty() && !password.isEmpty()){
                     edt_Sodienthoai.setCompoundDrawables(null,null,null,null);
                     edt_Matkhau.setCompoundDrawables(null,null,null,null);
-                    Intent i = new Intent(MainActivity.this, MainActivity4.class);
+                    Intent i = new Intent(Dangnhap_Activity.this, MainActivity4.class);
                     startActivity(i);
                 }
 
@@ -51,24 +51,24 @@ public class MainActivity extends AppCompatActivity {
         txtQuenmatkhau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,MainActivity2.class));
+                startActivity(new Intent(Dangnhap_Activity.this, Khoiphucmatkhau_Activity.class));
 
             }
         });
         txt_Dangky.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,MainActivity3.class));
+                startActivity(new Intent(Dangnhap_Activity.this, Dangky_Activity.class));
             }
         });
 
     }
 
     private void addControls() {
-        btn_Dangnhap = findViewById(R.id.btn_Dangnhap);
-        edt_Sodienthoai = findViewById(R.id.edt_Sodienthoai);
-        edt_Matkhau = findViewById(R.id.edt_Matkhau);
-        txtQuenmatkhau = findViewById(R.id.txtQuenmatkhau);
-        txt_Dangky = findViewById(R.id.txt_Dangky);
+        btn_Dangnhap = findViewById(R.id.btn_Dangnhap_dangnhap);
+        edt_Sodienthoai = findViewById(R.id.edt_Sodienthoai_dangnhap);
+        edt_Matkhau = findViewById(R.id.edt_Matkhau_dangnhap);
+        txtQuenmatkhau = findViewById(R.id.txt_Quenmatkhau_dangnhap);
+        txt_Dangky = findViewById(R.id.txt_Dangky_dangnhap);
     }
 }

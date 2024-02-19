@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class MainActivity2 extends AppCompatActivity {
+public class Khoiphucmatkhau_Activity extends AppCompatActivity {
     Button btnKhoiphuc;
     EditText edtSodienthoai, edtMatkhau, edtMatkhaumoi;
 
@@ -20,7 +20,7 @@ public class MainActivity2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_khoiphucmatkhau);
         addControls();
         addEvents();
 
@@ -55,7 +55,7 @@ public class MainActivity2 extends AppCompatActivity {
                     edtMatkhau.setCompoundDrawables(null,null,null,null);
                     edtMatkhaumoi.setCompoundDrawables(null,null,null,null);
                     edtSodienthoai.setCompoundDrawables(null,null,null,null);
-                    Intent i = new Intent(MainActivity2.this, MainActivity4.class);
+                    Intent i = new Intent(Khoiphucmatkhau_Activity.this, MainActivity4.class);
                     startActivity(i);
                 }
             }
@@ -63,10 +63,10 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
     private void addControls() {
-        edtSodienthoai = findViewById(R.id.edtSodienthoai);
+        edtSodienthoai = findViewById(R.id.edt_Sodienthoai_khoiphucmatkhau);
         edtMatkhau = findViewById(R.id.edtMatkhau);
-        edtMatkhaumoi = findViewById(R.id.edtMatkhaumoi);
-        btnKhoiphuc = findViewById(R.id.btnKhoiphuc);
+        edtMatkhaumoi = findViewById(R.id.edt_Nhaplaimatkhaumoii_khoiphucmatkhau);
+        btnKhoiphuc = findViewById(R.id.btn_Khoiphucmatkhau_khoiphucmatkhau);
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
