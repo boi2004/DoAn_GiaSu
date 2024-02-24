@@ -1,3 +1,20 @@
 <resources>
-    <string name="app_name">DoAn_GiaSu</string>
+    <string name="app_name">Edubox</string>
+    <string name="nav_Trangchu">Trang chủ</string>
+    <string name="nav_Thongtincanhan">Thông tin cá nhân</string>
+    <string name="nav_Dieukhoanvachinhsach">Điều khoản và chính sách</string>
+    <string name="nav_Doimatkhau">Đổi mật khẩu</string>
+    <string name="nav_Edubox">Edubox-chanel Videos</string>
+    <string name="nav_Taophongtructuyen">Tạo phòng trực tuyến</string>
+    <string name="nav_Hoatdong">Hoạt động</string>
+    <string name="nav_Danhsachyeucaugiasu">Danh sách yêu cầu gia sư</string>
+    <string name="nav_Danhsachdangkylophoc">Danh sách đăng ký lớp học</string>
+    <string name="nav_Lienhe">Liên hệ</string>
+    <string name="nav_Lienhehuongdan">Liên hệ hướng dẫn</string>
+    <string name="nav_Dãngxuat">Đăng xuất</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
+

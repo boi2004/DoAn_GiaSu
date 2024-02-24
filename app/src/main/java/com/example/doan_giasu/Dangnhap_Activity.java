@@ -42,7 +42,7 @@ public class Dangnhap_Activity extends AppCompatActivity {
                 if(!phone.isEmpty() && !password.isEmpty()){
                     edt_Sodienthoai.setCompoundDrawables(null,null,null,null);
                     edt_Matkhau.setCompoundDrawables(null,null,null,null);
-                    Intent i = new Intent(Dangnhap_Activity.this, MainActivity4.class);
+                    Intent i = new Intent(Dangnhap_Activity.this, MainActivity5.class);
                     startActivity(i);
                 }
 

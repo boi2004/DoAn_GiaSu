@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_Trangchu"
+            android:title="Trang chủ"
+            android:icon="@drawable/ichome"/>
+
+        <item android:id="@+id/nav_Thongtincanhan"
+            android:title="Thông tin cá nhân"
+            android:icon="@drawable/icaccount"/>
+
+        <item android:id="@+id/nav_Dieukhoanvachinhsach"
+            android:title="Điều khoản và chính sách"
+            android:icon="@drawable/book1"/>
+
+        <item android:id="@+id/nav_Doimatkhau"
+            android:title="Đổi mật khẩu"
+            android:icon="@drawable/ickey"/>
+
+        <item android:id="@+id/nav_Edubox"
+            android:title="Edubox-chanel Videos"
+            android:icon="@drawable/icyoutube"/>
+
+        <item android:id="@+id/nav_Taophongtructuyen"
+            android:title="Tạo phòng trực tuyến"
+            android:icon="@drawable/icvideocall"/>
+
+    </group>
+
+    <item android:title="Hoạt động">
+        <menu>
+            <item android:id="@+id/nav_Danhsachyeucaugiasu"
+                android:title="Danh sách yêu cầu gia sư"
+                android:icon="@drawable/iclist"/>
+
+            <item android:id="@+id/nav_Danhsachdangkylophoc"
+                android:title="Danh sách đăng ký lớp học"
+                android:icon="@drawable/iclist"/>
+
+
+        </menu>
+    </item>
+
+    <item android:title="Liên hệ">
+        <menu>
+            <item android:id="@+id/nav_Lienhehuongdan"
+                android:title="Liên hệ hướng dẫn"
+                android:icon="@drawable/icinformation"/>
+
+            <item android:id="@+id/nav_Dãngxuat"
+                android:title="Đăng xuất"
+                android:icon="@drawable/iclogout"/>
+
+
+        </menu>
+    </item>
+
+
+</menu>

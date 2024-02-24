@@ -64,7 +64,7 @@ public class Khoiphucmatkhau_Activity extends AppCompatActivity {
 
     private void addControls() {
         edtSodienthoai = findViewById(R.id.edt_Sodienthoai_khoiphucmatkhau);
-        edtMatkhau = findViewById(R.id.edtMatkhau);
+        edtMatkhau = findViewById(R.id.edt_Matkhaumoi_khoiphucmatkhau);
         edtMatkhaumoi = findViewById(R.id.edt_Nhaplaimatkhaumoii_khoiphucmatkhau);
         btnKhoiphuc = findViewById(R.id.btn_Khoiphucmatkhau_khoiphucmatkhau);
     }
