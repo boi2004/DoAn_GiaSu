@@ -1,7 +1,9 @@
 package com.example.doan_giasu;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -22,6 +24,7 @@ public class Dangnhap_Activity extends AppCompatActivity {
         addControls();
         addEvents();
     }
+
 
     private void addEvents() {
         btn_Dangnhap.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +66,33 @@ public class Dangnhap_Activity extends AppCompatActivity {
         });
 
     }
+    @Override
+    public void onBackPressed() {
+        //Tạo hộp thoại
+        AlertDialog.Builder mydialog = new AlertDialog.Builder(Dangnhap_Activity.this);
+        mydialog.setTitle("EXIT");
+        mydialog.setMessage("Bạn có muốn thoát khỏi ứng dụng");
+        mydialog.setIcon(R.drawable.ic_error);
+        mydialog.setPositiveButton("Yes", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                finish(); //thoát ứng dụng
+            }
+        });
+        mydialog.setNegativeButton("No", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                dialog.cancel();
+            }
+        });
+        mydialog.show().create();
+    };
+
+
 
     private void addControls() {
         btn_Dangnhap = findViewById(R.id.btn_Dangnhap_dangnhap);

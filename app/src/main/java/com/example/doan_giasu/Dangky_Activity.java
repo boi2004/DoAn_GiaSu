@@ -11,10 +11,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
 public class Dangky_Activity extends AppCompatActivity {
-    Button btnDk;
+    Button btnDk,button_quaylai;
     EditText edtSdt, edtMk, edtMkmoi;
+    RadioButton button_GV,button_SV;
+    RadioGroup radioGroup;
+
+
+    private String selectedRole = ""; // Biến để lưu trữ vai trò đã chọn
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +70,29 @@ public class Dangky_Activity extends AppCompatActivity {
                 }
             }
         });
+        button_quaylai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Dangky_Activity.this, Dangnhap_Activity.class));
+            }
+        });
+
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // Xác định ROLE nào được chọn
+                if (checkedId == R.id.radioButton_GV_dangky)
+                {
+                    selectedRole = "GiaoVien";
+                    showToast("Đã chọn vai trò Giáo viên");
+                }
+                else if (checkedId == R.id.radioButton_SV_dangky)
+                {
+                    selectedRole = "SinhVien";
+                    showToast("Đã chọn vai trò Sinh viên");
+                }
+            }
+        });
     }
 
     private void addControls() {
@@ -66,6 +100,10 @@ public class Dangky_Activity extends AppCompatActivity {
         edtSdt = findViewById(R.id.edt_Sdt_dangky);
         edtMkmoi = findViewById(R.id.edt_nhaplaimatkhau_dangky);
         edtMk = findViewById(R.id.edt_matkhau_dangky);
+        button_GV = findViewById(R.id.radioButton_GV_dangky);
+        button_SV = findViewById(R.id.radioButton_SV_dangky);
+        button_quaylai=findViewById(R.id.btn_quaylai_dangky);
+        radioGroup = findViewById(R.id.radioGroup_GV_HV_dangky);
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
