@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.doan_giasu.Fragment.SetFarmMent_Activity;
+
 public class Dangnhap_Activity extends AppCompatActivity {
     Button btn_Dangnhap;
     EditText edt_Sodienthoai, edt_Matkhau;
@@ -45,7 +47,7 @@ public class Dangnhap_Activity extends AppCompatActivity {
                 if(!phone.isEmpty() && !password.isEmpty()){
                     edt_Sodienthoai.setCompoundDrawables(null,null,null,null);
                     edt_Matkhau.setCompoundDrawables(null,null,null,null);
-                    Intent i = new Intent(Dangnhap_Activity.this, MainActivity5.class);
+                    Intent i = new Intent(Dangnhap_Activity.this, SetFarmMent_Activity.class);
                     startActivity(i);
                 }
 

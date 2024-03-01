@@ -1,4 +1,4 @@
-package com.example.doan_giasu;
+package com.example.doan_giasu.Fragment;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -12,11 +12,15 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.doan_giasu.Fragment.HomeFragment;
+import com.example.doan_giasu.Fragment.InformationFragment;
+import com.example.doan_giasu.R;
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity5 extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class SetFarmMent_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final int FRAGMENT_HOME = 0;
     private static final int FRAGMENT_INFOMATION = 1;
+
     private  int mCurrentFragment = FRAGMENT_HOME;
     private DrawerLayout mDrawerLayout;
 
