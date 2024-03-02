@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/tab_newclass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/newclass"
+        android:title="Lớp mới" />
+    <item
+        android:id="@+id/tab_teacher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/us"
+        android:title="Gia sư" />
+    <item
+        android:id="@+id/tab_bell"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/bell"
+        android:title="Thông báo" />
+    <item
+        android:id="@+id/tab_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Tài khoản"
+        android:icon="@drawable/user"
+
+        />
+
+</menu>
