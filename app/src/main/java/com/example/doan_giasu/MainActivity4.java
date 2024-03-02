@@ -4,6 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.doan_giasu.Model.LopHoc;
+
+import java.util.List;
+
 public class MainActivity4 extends AppCompatActivity {
 
     @Override
