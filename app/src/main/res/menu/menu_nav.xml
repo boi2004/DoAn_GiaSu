@@ -29,12 +29,12 @@
 
     <item android:title="Hoạt động">
         <menu>
-            <item android:id="@+id/nav_Danhsachyeucaugiasu"
-                android:title="Danh sách yêu cầu gia sư"
+            <item android:id="@+id/nav_Danhsachlopday"
+                android:title="Danh sách lớp dạy"
                 android:icon="@drawable/iclist"/>
 
-            <item android:id="@+id/nav_Danhsachdangkylophoc"
-                android:title="Danh sách đăng ký lớp học"
+            <item android:id="@+id/nav_Danhsachlophoc"
+                android:title="Danh sách lớp học"
                 android:icon="@drawable/iclist"/>
 
 
@@ -43,15 +43,12 @@
 
     <item android:title="Liên hệ">
         <menu>
-            <item android:id="@+id/nav_Lienhehuongdan"
-                android:title="Liên hệ hướng dẫn"
+            <item android:id="@+id/nav_dieukhoanvadichvu"
+                android:title="Điều khoản và dịch vụ"
                 android:icon="@drawable/icinformation"/>
-
-            <item android:id="@+id/nav_Dãngxuat"
+            <item android:id="@+id/nav_Dangxuat"
                 android:title="Đăng xuất"
                 android:icon="@drawable/iclogout"/>
-
-
         </menu>
     </item>
 
