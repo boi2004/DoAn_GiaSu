@@ -13,7 +13,7 @@
         android:layout_height="67dp"
         android:background="#43A047"
         android:gravity="center"
-        android:text="THÔNG TIN  CÁ NHÂN"
+        android:text="THÔNG TIN CÁ NHÂN"
         android:textColor="#F8F5F5"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextText1"
+        android:id="@+id/edt_TaiKhoan_fragment_Infomation"
         android:layout_width="match_parent"
         android:layout_height="62dp"
         android:layout_marginTop="4dp"
@@ -38,7 +38,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/edt_DiaChi_fragment_Infomation"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="#F8F8F8"
@@ -47,10 +47,12 @@
         android:ems="10"
         android:hint="  Địa Chỉ"
         android:inputType="text"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText4" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_Email_fragment_Infomation" />
 
     <EditText
-        android:id="@+id/editTextText3"
+        android:id="@+id/edt_NamSinh_fragment_Infomation"
         android:layout_width="match_parent"
         android:layout_height="59dp"
         android:background="#FAF6F6"
@@ -59,10 +61,12 @@
         android:ems="10"
         android:hint="  Năm Sinh"
         android:inputType="text"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_DiaChi_fragment_Infomation" />
 
     <EditText
-        android:id="@+id/editTextText4"
+        android:id="@+id/edt_Email_fragment_Infomation"
         android:layout_width="match_parent"
         android:layout_height="57dp"
         android:background="#F9F9F9"
@@ -71,10 +75,12 @@
         android:ems="10"
         android:hint="  Email"
         android:inputType="text"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RadioGroup_GioiTinh_fragment_Infomation" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_LuuThayDoi_fragment_Infomation"
         android:layout_width="match_parent"
         android:layout_height="42dp"
         android:layout_marginBottom="264dp"
@@ -82,27 +88,29 @@
         android:text="Lưu Thay Đổi"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="9dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/RadioGroup_GioiTinh_fragment_Infomation"
         android:layout_width="match_parent"
         android:layout_height="63dp"
 
         android:background="#FAFAFA"
         android:gravity="center|top|left"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText1">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_TaiKhoan_fragment_Infomation">
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:drawableLeft="@drawable/icongender1" />
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/RadioButton_Nam_fragment_Infomation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
@@ -110,14 +118,12 @@
             android:text="Nam" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/RadioButton_Nu_fragment_Infomation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="58dp"
             android:layout_marginTop="10dp"
             android:text="Nữ" />
-
-
     </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
