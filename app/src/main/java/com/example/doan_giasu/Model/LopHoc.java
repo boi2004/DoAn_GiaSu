@@ -3,11 +3,11 @@ package com.example.doan_giasu.Model;
 public class LopHoc {
     private int MaLop;
     private String Title;
-    private float HocPhi;
+    private int HocPhi;
     private String MonHoc;
     private String ThoiGian;
 
-    public LopHoc(int maLop, String title, float hocPhi, String monHoc, String thoiGian, String diaDiem) {
+    public LopHoc(int maLop, String title, int hocPhi, String monHoc, String thoiGian, String diaDiem) {
         MaLop = maLop;
         Title = title;
         HocPhi = hocPhi;
@@ -31,11 +31,11 @@ public class LopHoc {
         Title = title;
     }
 
-    public float getHocPhi() {
+    public int getHocPhi() {
         return HocPhi;
     }
 
-    public void setHocPhi(float hocPhi) {
+    public void setHocPhi(int hocPhi) {
         HocPhi = hocPhi;
     }
 

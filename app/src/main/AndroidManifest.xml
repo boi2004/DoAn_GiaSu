@@ -19,7 +19,7 @@
             android:name=".Role_Activity6"
             android:exported="false" />
         <activity
-            android:name=".Fragment.SetFarmMent_Activity"
+            android:name=".Fragment.SetFragment_Activity"
             android:exported="false" />
         <activity
             android:name=".MainActivity4"

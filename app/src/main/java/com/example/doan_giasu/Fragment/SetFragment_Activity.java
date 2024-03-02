@@ -17,7 +17,7 @@ import com.example.doan_giasu.Dangnhap_Activity;
 import com.example.doan_giasu.R;
 import com.google.android.material.navigation.NavigationView;
 
-public class SetFarmMent_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class SetFragment_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final int FRAGMENT_HOME = 0;
     private static final int FRAGMENT_INFOMATION = 1;
     private static final int FRAGMENT_DANHSACHLOPDAY = 2;
