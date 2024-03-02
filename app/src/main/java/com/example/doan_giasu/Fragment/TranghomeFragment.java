@@ -85,23 +85,19 @@ public class TranghomeFragment extends Fragment {
         mbottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.tab_newclass:
-                        mViewPager.setCurrentItem(0);
-                        break;
-                    case R.id.tab_teacher:
-                        mViewPager.setCurrentItem(1);
-                        break;
-                    case R.id.tab_bell:
-                        mViewPager.setCurrentItem(2);
-                        break;
-                    case R.id.tab_account:
-                        mViewPager.setCurrentItem(3);
-                        break;
+                if (item.getItemId() == R.id.tab_newclass) {
+                    mViewPager.setCurrentItem(0);
+                } else if (item.getItemId() == R.id.tab_teacher) {
+                    mViewPager.setCurrentItem(1);
+                } else if (item.getItemId() == R.id.tab_bell) {
+                    mViewPager.setCurrentItem(2);
+                } else if (item.getItemId() == R.id.tab_account) {
+                    mViewPager.setCurrentItem(3);
                 }
                 return false;
             }
         });
+
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
