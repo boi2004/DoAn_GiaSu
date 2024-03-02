@@ -16,9 +16,6 @@
             android:name=".RecyclerViewLopHocActivity"
             android:exported="false" />
         <activity
-            android:name=".Role_Activity6"
-            android:exported="false" />
-        <activity
             android:name=".Fragment.SetFragment_Activity"
             android:exported="false" />
         <activity

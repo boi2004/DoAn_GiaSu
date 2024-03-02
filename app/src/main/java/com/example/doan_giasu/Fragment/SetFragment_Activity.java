@@ -15,6 +15,7 @@ import android.view.MenuItem;
 
 import com.example.doan_giasu.Dangnhap_Activity;
 import com.example.doan_giasu.R;
+import com.example.doan_giasu.RecyclerViewLopHocActivity;
 import com.google.android.material.navigation.NavigationView;
 
 public class SetFragment_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -48,6 +49,7 @@ public class SetFragment_Activity extends AppCompatActivity implements Navigatio
 
         replaceFragment(new HomeFragment());
         navigationView.getMenu().findItem(R.id.nav_Trangchu).setChecked(true);
+
     }
 
     @Override
@@ -92,7 +94,11 @@ public class SetFragment_Activity extends AppCompatActivity implements Navigatio
             if (mCurrentFragment != FRAGMENT_DANHSACHLOPHOC){
                 replaceFragment(new DanhSachLopHoc_Fragment());
                 mCurrentFragment = FRAGMENT_DANHSACHLOPHOC;
-            }
+            }else if (id == R.id.nav_Taophongtructuyen) {
+                // Khi người dùng chọn một Activity mới, chuyển đến Activity mong muốn
+                Intent intent = new Intent(this, RecyclerViewLopHocActivity.class); // Thay TenActivityMoi bằng tên Activity mới của bạn
+                startActivity(intent);
+
         }else if (id == R.id.nav_Dangxuat){           //FRAMENT Đăng xuất
             performLogout();
         }
