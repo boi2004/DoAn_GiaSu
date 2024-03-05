@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.example.doan_giasu.Fragment.AccountFragment;
 import com.example.doan_giasu.Fragment.NewclassFragment;
 import com.example.doan_giasu.Fragment.TeacherFragment;
 import com.example.doan_giasu.Fragment.ThongbaoFragment;
@@ -25,8 +24,6 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
                 return new TeacherFragment();
             case 2:
                 return new ThongbaoFragment();
-            case 3:
-                return new AccountFragment();
             default:
                 return new NewclassFragment();
         }

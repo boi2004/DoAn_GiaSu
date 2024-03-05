@@ -18,13 +18,5 @@
         android:layout_height="wrap_content"
         android:icon="@drawable/bell"
         android:title="Thông báo" />
-    <item
-        android:id="@+id/tab_account"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:title="Tài khoản"
-        android:icon="@drawable/user"
-
-        />
 
 </menu>
