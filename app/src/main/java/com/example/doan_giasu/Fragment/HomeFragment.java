@@ -91,8 +91,6 @@ public class HomeFragment extends Fragment {
                     mViewPager.setCurrentItem(1);
                 } else if (item.getItemId() == R.id.tab_bell) {
                     mViewPager.setCurrentItem(2);
-                } else if (item.getItemId() == R.id.tab_account) {
-                    mViewPager.setCurrentItem(3);
                 }
                 return false;
             }
@@ -116,9 +114,7 @@ public class HomeFragment extends Fragment {
                     case 2:
                         mbottomNavigationView.getMenu().findItem(R.id.tab_bell).setChecked(true);
                         break;
-                    case 3:
-                        mbottomNavigationView.getMenu().findItem(R.id.tab_account).setChecked(true);
-                        break;
+
                 }
 
             }

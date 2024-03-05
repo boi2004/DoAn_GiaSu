@@ -9,10 +9,6 @@
             android:title="Thông tin cá nhân"
             android:icon="@drawable/icaccount"/>
 
-        <item android:id="@+id/nav_Dieukhoanvachinhsach"
-            android:title="Điều khoản và chính sách"
-            android:icon="@drawable/book1"/>
-
         <item android:id="@+id/nav_Dangkylamgiasu"
             android:title="Đăng ký làm gia sư"
             android:icon="@drawable/iconteacher"/>
@@ -20,14 +16,6 @@
         <item android:id="@+id/nav_Doimatkhau"
             android:title="Đổi mật khẩu"
             android:icon="@drawable/ickey"/>
-
-        <item android:id="@+id/nav_Edubox"
-            android:title="Edubox-chanel Videos"
-            android:icon="@drawable/icyoutube"/>
-
-        <item android:id="@+id/nav_Taophongtructuyen"
-            android:title="Tạo phòng trực tuyến"
-            android:icon="@drawable/icvideocall"/>
 
     </group>
 
