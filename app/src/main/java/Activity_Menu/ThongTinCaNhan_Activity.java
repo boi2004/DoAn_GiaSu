@@ -1,10 +1,13 @@
 package Activity_Menu;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.doan_giasu.R;
@@ -47,12 +50,27 @@ public class ThongTinCaNhan_Activity extends AppCompatActivity {
 
     }
 
+    //Hàm thoát ra trên toolbal
+    public boolean onOptionsItemSelected(@NonNull MenuItem item)
+    {
+        if (item.getItemId() == android.R.id.home){
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
     private void addEvents() {
         // Viết các sự kiện xử lý khi các Button được click
         btnLuuThayDoi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Xử lý sự kiện khi nhấn nút "Lưu"
+            }
+        });
+        btnQuayLai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Xử lý sự kiện khi nhấn nút "Quay Lại"
+                finish();
             }
         });
 }   }

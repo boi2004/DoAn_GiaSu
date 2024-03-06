@@ -121,7 +121,7 @@
         android:id="@+id/btn_QuayLai_fragment_Infomation"
         android:layout_width="320dp"
         android:layout_height="66dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="#43A047"
         android:text="Quay Lại"
         android:textSize="24sp"
@@ -184,9 +184,12 @@
         android:background="@color/green"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
+        app:navigationIcon="@drawable/icon_quaylai"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

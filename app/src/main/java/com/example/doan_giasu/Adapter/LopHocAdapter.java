@@ -13,7 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.doan_giasu.Model.LopHoc;
 import com.example.doan_giasu.R;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class LopHocAdapter extends RecyclerView.Adapter<LopHocAdapter.MyViewHoler> {
     private List<LopHoc> listlophoc;
@@ -39,13 +42,24 @@ public class LopHocAdapter extends RecyclerView.Adapter<LopHocAdapter.MyViewHole
     public void onBindViewHolder(@NonNull MyViewHoler holder, int position) {
         LopHoc lophoc = listlophoc.get(position);
         holder.Title_item.setText(lophoc.getTitle());
-        holder.MaLop_item.setText(lophoc.getMaLop());
+        holder.MaLop_item.setText(String.valueOf(lophoc.getMaLop()));
         holder.Monhoc_item.setText(lophoc.getMonHoc());
-        holder.Tien_item.setText(lophoc.getHocPhi());
+
+        //Lấy giá trị hoc phi tu LopHoc
+        double Tien = lophoc.getHocPhi();
+        //DecimalFormat Format: định dạng số tiền theo mẫu tiền việt
+        DecimalFormat Format = new DecimalFormat("###,###.##");
+        //Sử dụng để format Tien theo mẫu
+        String formatTien = Format.format(Tien);
+        //Thêm ký tự "đ" vào sau số học phí
+        formatTien += "đ";
+        //gán giá trị đã format vào Tien
+        holder.Tien_item.setText(formatTien);
+
         holder.Time_item.setText(lophoc.getThoiGian());
-
-
     }
+
+
 
     class MyViewHoler extends RecyclerView.ViewHolder{
      private TextView Title_item,MaLop_item,Time_item,Monhoc_item,Tien_item;
@@ -63,5 +77,6 @@ public class LopHocAdapter extends RecyclerView.Adapter<LopHocAdapter.MyViewHole
          card_view_item = itemView.findViewById(R.id.card_view_item);
 
      }
+
  }
 }

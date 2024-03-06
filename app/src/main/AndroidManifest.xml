@@ -30,9 +30,6 @@
             android:name="Activity_Menu.ThongTinCaNhan_Activity"
             android:exported="false" />
         <activity
-            android:name=".RecyclerViewLopHocActivity"
-            android:exported="false" />
-        <activity
             android:name=".Fragment.SetFragment_Activity"
             android:exported="false" />
         <activity
