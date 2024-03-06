@@ -17,6 +17,7 @@ import com.example.doan_giasu.Dangnhap_Activity;
 import com.example.doan_giasu.R;
 import com.google.android.material.navigation.NavigationView;
 
+import Activity_Menu.DieuKhoanDichVuActivity;
 import Activity_Menu.DoiMatKhau_Activity;
 import Activity_Menu.ThongTinCaNhan_Activity;
 
@@ -78,8 +79,12 @@ public class SetFragment_Activity extends AppCompatActivity implements Navigatio
             Intent intent = new Intent(this, DoiMatKhau_Activity.class);
             startActivity(intent);
 
-        }else if (id == R.id.nav_Thongtincanhan){           //THÔNG TIN CÁ NHÂN
+        }else if (id == R.id.nav_Thongtincanhan) {           //THÔNG TIN CÁ NHÂN
             Intent intent = new Intent(this, ThongTinCaNhan_Activity.class);
+            startActivity(intent);
+
+        }else if (id == R.id.nav_dieukhoanvadichvu){           //THÔNG TIN CÁ NHÂN
+            Intent intent = new Intent(this, DieuKhoanDichVuActivity.class);
             startActivity(intent);
 
         }else if (id == R.id.nav_dieukhoanvadichvu){        //FRAMENT ĐIỀU KHOẢN VÀ DỊCH VỤ

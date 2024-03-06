@@ -85,6 +85,7 @@
         android:layout_width="348dp"
         android:layout_height="66dp"
         android:backgroundTint="#43A047"
+        android:textStyle="bold"
         android:text="KHÔI PHỤC MẬT KHẨU"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
