@@ -76,6 +76,14 @@ public class NewclassFragment extends Fragment  {
             // Bài trí cột sử dụng GridLayoutManager
             rcv.setLayoutManager(new GridLayoutManager(getActivity(), 1));
 
+            // Thiết lập sự kiện nhấp vào item
+            lopHocAdapter.setOnItemClickListener(new LopHocAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(LopHoc lophoc) {
+                    // Xử lý sự kiện khi nhấp vào item ở đây
+                }
+            });
+
             return view;
         }
-    }
+        }
