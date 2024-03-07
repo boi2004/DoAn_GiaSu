@@ -45,7 +45,7 @@ public class LopHocAdapter extends RecyclerView.Adapter<LopHocAdapter.MyViewHold
 
         // Format và hiển thị số tiền
         DecimalFormat decimalFormat = new DecimalFormat("###,###.##");
-        String formattedHocPhi = decimalFormat.format(lophoc.getHocPhi()) + "đ";
+        String formattedHocPhi = decimalFormat.format(lophoc.getHocPhi()) + " vnđ";
         holder.Tien_item.setText(formattedHocPhi);
 
         holder.Time_item.setText(lophoc.getThoiGian());

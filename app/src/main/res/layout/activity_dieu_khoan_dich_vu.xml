@@ -10,6 +10,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_dieukhoandichvu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/green"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView2"
@@ -115,6 +126,7 @@ Gia sư không được thỏa thuận riêng với học viên về tăng hoặ
 - Các vấn đề phát sinh giữa Gia sư và Công ty ngoài các vấn đề đã được nêu trong các điều khoản trên sẽ được giải quyết thông qua thỏa thuận."
             android:textSize="15sp"
             android:textStyle="bold" />
+
 
 
     </LinearLayout>

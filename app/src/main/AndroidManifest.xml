@@ -16,11 +16,6 @@
             android:name="Activity_Menu.DieuKhoanDichVuActivity"
             android:exported="false" />
         <activity
-            android:name="Activity_Menu.DieuKhoanVaChinhSach_Activity"
-            android:exported="false"
-            android:label="@string/title_activity_dieu_khoan_va_chinh_sach"
-            android:theme="@style/Theme.DoAn_GiaSu" />
-        <activity
             android:name="Activity_Menu.DangKyLamGiaSu_Activity"
             android:exported="false" />
         <activity

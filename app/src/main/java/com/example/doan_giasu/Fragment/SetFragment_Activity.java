@@ -23,20 +23,14 @@ import Activity_Menu.ThongTinCaNhan_Activity;
 
 public class SetFragment_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final int FRAGMENT_HOME = 0;
-    //private static final int FRAGMENT_INFOMATION = 1;
-    private static final int FRAGMENT_DANHSACHLOPDAY = 2;
-    private static final int FRAGMENT_DANHSACHLOPHOC = 3;
-    //private static final int FRAGMENT_CAPNHATMATKHAU = 4;     //Frament đặt lại mật khẩu
     private static final int FRAGMENT_DANGKYLAMGIASU = 5;
-    private static final int FRAGMENT_DIEUKHOANVADICHVU = 6;
-
     private  int mCurrentFragment = FRAGMENT_HOME;
     private DrawerLayout mDrawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main5);
+        setContentView(R.layout.activity_toolbar);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -57,22 +51,10 @@ public class SetFragment_Activity extends AppCompatActivity implements Navigatio
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if(id == R.id.nav_Trangchu){
-            if (mCurrentFragment != FRAGMENT_HOME){             //FRAMENT TRANG CHỦ
-                replaceFragment(new HomeFragment());
-                mCurrentFragment = FRAGMENT_HOME;
-            }
-
-        }else if (id == R.id.nav_Dangkylamgiasu){               //FRAMENT ĐĂNG KÝ LÀM GIA SƯ
+         if (id == R.id.nav_Dangkylamgiasu){               //FRAMENT ĐĂNG KÝ LÀM GIA SƯ
             if (mCurrentFragment != FRAGMENT_DANGKYLAMGIASU){
                 replaceFragment(new DangKyLamGiaSu_Fragment());
                 mCurrentFragment = FRAGMENT_DANGKYLAMGIASU;
-            }
-
-        }else if (id == R.id.nav_Danhsachlopday){              //FRAMENT DANH SÁCH LỚP DẠY
-            if (mCurrentFragment != FRAGMENT_DANHSACHLOPDAY){
-                replaceFragment(new DanhSachLopDay_Fragment());
-                mCurrentFragment = FRAGMENT_DANHSACHLOPDAY;
             }
 
         }else if (id == R.id.nav_Doimatkhau){               //Đổi Lại Mật Khẩu
@@ -83,30 +65,18 @@ public class SetFragment_Activity extends AppCompatActivity implements Navigatio
             Intent intent = new Intent(this, ThongTinCaNhan_Activity.class);
             startActivity(intent);
 
-        }else if (id == R.id.nav_dieukhoanvadichvu){           //THÔNG TIN CÁ NHÂN
+        }else if (id == R.id.nav_dieukhoanvadichvu){           //Điều khoản dịch vụ
             Intent intent = new Intent(this, DieuKhoanDichVuActivity.class);
             startActivity(intent);
 
-        }else if (id == R.id.nav_dieukhoanvadichvu){        //FRAMENT ĐIỀU KHOẢN VÀ DỊCH VỤ
-            if (mCurrentFragment != FRAGMENT_DIEUKHOANVADICHVU){
-                replaceFragment(new Dieukhoanvadichvu_Fragment());
-                mCurrentFragment = FRAGMENT_DIEUKHOANVADICHVU;
-            }
-        }else if (id == R.id.nav_Danhsachlophoc){           //FRAMENT DANH SÁCH LỚP HỌC
-            if (mCurrentFragment != FRAGMENT_DANHSACHLOPHOC){
-                replaceFragment(new DanhSachLopHoc_Fragment());
-                mCurrentFragment = FRAGMENT_DANHSACHLOPHOC;
-            }
+
         }else if (id == R.id.nav_Dangxuat){           //FRAMENT Đăng xuất
-            performLogout();
+            Intent intent = new Intent(this, Dangnhap_Activity.class);      //Hàm đăng xuất để gọi trong dangxuat
+            startActivity(intent);
+            finish();
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
-    }
-    private void performLogout() {
-        Intent intent = new Intent(this, Dangnhap_Activity.class);      //Hàm đăng xuất để gọi trong dangxuat
-        startActivity(intent);
-        finish();
     }
     private void replaceFragment(Fragment fragment){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
