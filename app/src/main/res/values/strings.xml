@@ -14,7 +14,6 @@
     <string name="nav_Dãngxuat">Đăng xuất</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
     <string name="tab_newclass">Lớp mới</string>
     <string name="tab_teacher">Gia sư</string>
     <string name="tab_bell">Thông báo</string>
@@ -27,6 +26,7 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="large_text">Nội dung lớn của bạn ở đây</string>
 
 
 </resources>

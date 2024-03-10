@@ -13,16 +13,16 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.doan_giasu.R;
 
-public class DangKyLamGiaSu_Activity extends AppCompatActivity {
+public class Danhsachlophoc_Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dangkylamgiasu);
-        Toolbar toolbar = findViewById(R.id.toolbar_DangKyLamGiaSu);          //Hàm toolbar (nếu lỗi vào AndroidManifest)
+        setContentView(R.layout.activity_danhsachlophoc);
+        Toolbar toolbar = findViewById(R.id.toolbar_DanhSachLopHoc);          //Hàm toolbar (nếu lỗi vào AndroidManifest)
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Đăng Ký Làm Gia Sư");
+        getSupportActionBar().setTitle("Danh Sách Lớp Học");
         int white = getResources().getColor(android.R.color.white);
         toolbar.setTitleTextColor(white);   //Trong đoạn mã trên, toolbar.setTitleTextColor(white) sẽ đặt màu trắng cho tiêu đề của Toolbar.
     }
