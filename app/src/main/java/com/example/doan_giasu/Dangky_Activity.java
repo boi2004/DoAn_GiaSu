@@ -15,6 +15,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.doan_giasu.Fragment.NewclassFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -48,7 +49,16 @@ public class Dangky_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dangky);
         addControls();
-        addEvents();
+        mAuth = FirebaseAuth.getInstance(); // Khởi tạo FirebaseAuth ở đây
+
+        btnDk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String phone = edtSdt.getText().toString().trim();
+                //veryfy sdt
+                veryfyphonenumber(phone);
+            }
+        });
 
         Toolbar toolbar = findViewById(R.id.toolbar3);
         setSupportActionBar(toolbar);
@@ -60,8 +70,6 @@ public class Dangky_Activity extends AppCompatActivity {
         btnDk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 Drawable icERR =getResources().getDrawable(R.drawable.baseline_error_24);
                 icERR.setBounds(0,0,icERR.getIntrinsicWidth(),icERR.getIntrinsicHeight());
                 String password = edtMk.getText().toString().trim();
@@ -72,7 +80,7 @@ public class Dangky_Activity extends AppCompatActivity {
                     edtSdt.setError("Vui lòng nhập số điện thoại",icERR);
                     return;
                 }
-                else if (phone.length() < 9|| !phone.matches("\\d+")) {
+                else if (phone.length() < 9) {
                     edtSdt.setCompoundDrawables(null,null,icERR,null); //Kiểm tra số điện thoại phải hơn 9 số và không có ký tự hay chữ cái
                     edtSdt.setError("Số điện thoại không hợp lệ", icERR);
                     return;
@@ -109,11 +117,6 @@ public class Dangky_Activity extends AppCompatActivity {
                     startActivity(i);
                     //Return từng cái trên dùng để nếu sai dữ liệu thì nhập lại và không chuyển trang
                 }
-
-                //veryfy sdt
-                veryfyphonenumber(phone);
-
-                mAuth = FirebaseAuth.getInstance();
             }
         });
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -138,13 +141,14 @@ public class Dangky_Activity extends AppCompatActivity {
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(mAuth)
                         .setPhoneNumber(phone)
-                        .setTimeout(60L, TimeUnit.SECONDS)   //
+                        .setTimeout(10L, TimeUnit.SECONDS)   //
                         .setActivity(this)
                         .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                             //
                             //onVerificationCompleted: sau khi verify thành công thì tiếp theo làm những gì.
                             @Override
                             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+
                                 signInWithPhoneAuthCredentinal(phoneAuthCredential);
                             }
 
@@ -152,18 +156,24 @@ public class Dangky_Activity extends AppCompatActivity {
                             //onVerificationCompleted: verify thất bại thì..
                             @Override
                             public void onVerificationFailed(@NonNull FirebaseException e) {
-                                Toast.makeText(Dangky_Activity.this,"Failed",Toast.LENGTH_LONG).show();
+                                //thong bao toast
+                                Toast.makeText(Dangky_Activity.this, "Xác minh thất bại: " + e.getMessage(), Toast.LENGTH_LONG).show();
 
                             }
 
                             @Override
-                            public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                                super.onCodeSent(s, forceResendingToken);
+                            public void onCodeSent(@NonNull String ma, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                                super.onCodeSent(ma, forceResendingToken);
+
+                                goEnterOTPActivity(phone, ma);
                             }
                         })
                         .build();
         PhoneAuthProvider.verifyPhoneNumber(options);
     }
+
+
+
     private void signInWithPhoneAuthCredentinal(PhoneAuthCredential credential){
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -174,7 +184,7 @@ public class Dangky_Activity extends AppCompatActivity {
 
                             FirebaseUser user = task.getResult().getUser();
 
-                            gotoMainActivity(user);
+                            gotoMainActivity(user.getPhoneNumber());
                         } else { // sự kiện nhâp mã thất bại
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             if(task.getException() instanceof FirebaseAuthInvalidCredentialsException){
@@ -186,8 +196,17 @@ public class Dangky_Activity extends AppCompatActivity {
                 });
     }
 
-    private void gotoMainActivity(String user) {
+    private void gotoMainActivity(String phone) {
+        Intent intent = new Intent(this, NewclassFragment.class);
+        intent.putExtra("phone_number", phone);
+        startActivity(intent);
 
+    }
+    private void goEnterOTPActivity(String phone, String ma) {
+        Intent intent = new Intent(this, EnterOTPActivity.class);
+        intent.putExtra("phone_number", phone);
+        intent.putExtra("ma_id", ma);
+        startActivity(intent);
     }
 
     private void addControls() {

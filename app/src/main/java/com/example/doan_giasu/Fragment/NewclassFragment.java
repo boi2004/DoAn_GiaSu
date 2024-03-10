@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.doan_giasu.Adapter.LopHocAdapter;
 import com.example.doan_giasu.Model.LopHoc;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NewclassFragment extends Fragment  {
+    private TextView testphonenumber;
         private RecyclerView rcv;
         private static final String ARG_PARAM1 = "param1";
         private static final String ARG_PARAM2 = "param2";
@@ -48,6 +50,7 @@ public class NewclassFragment extends Fragment  {
                 mParam1 = getArguments().getString(ARG_PARAM1);
                 mParam2 = getArguments().getString(ARG_PARAM2);
             }
+            getDataIntent();
         }
 
         @Override
@@ -86,4 +89,15 @@ public class NewclassFragment extends Fragment  {
 
             return view;
         }
-        }
+    private void getDataIntent(){
+        //vì đang trong fragment nên không tên getIntent như thông thường, cần getActivity() để gọi
+        //đến activity của fragment đó
+        String phone = getActivity().getIntent().getStringExtra("phone_number");
+
+        testphonenumber = getActivity().findViewById(R.id.testphonenumber);
+        testphonenumber.setText(phone);
+
+
+    }
+
+}
