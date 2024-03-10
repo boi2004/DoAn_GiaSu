@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -14,11 +15,27 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
+import com.google.firebase.auth.PhoneAuthProvider;
+
+import java.util.concurrent.TimeUnit;
+
 public class Dangky_Activity extends AppCompatActivity {
-    Button btnDk,button_quaylai;
-    EditText edtSdt, edtMk, edtMkmoi;
+
+    private static final String TAG = Dangky_Activity.class.getName();
+    Button btnDk;
+    EditText edtSdt, edtMk, edtMkmoi,edt_Enter_Otp;
     RadioButton button_GV,button_SV;
     RadioGroup radioGroup;
+    FirebaseAuth mAuth;
 
 
     private String selectedRole = ""; // Biến để lưu trữ vai trò đã chọn
@@ -43,6 +60,8 @@ public class Dangky_Activity extends AppCompatActivity {
         btnDk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 Drawable icERR =getResources().getDrawable(R.drawable.baseline_error_24);
                 icERR.setBounds(0,0,icERR.getIntrinsicWidth(),icERR.getIntrinsicHeight());
                 String password = edtMk.getText().toString().trim();
@@ -90,15 +109,13 @@ public class Dangky_Activity extends AppCompatActivity {
                     startActivity(i);
                     //Return từng cái trên dùng để nếu sai dữ liệu thì nhập lại và không chuyển trang
                 }
-            }
-        });
-        button_quaylai.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Dangky_Activity.this, Dangnhap_Activity.class));
-            }
-        });
 
+                //veryfy sdt
+                veryfyphonenumber(phone);
+
+                mAuth = FirebaseAuth.getInstance();
+            }
+        });
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -117,6 +134,62 @@ public class Dangky_Activity extends AppCompatActivity {
         });
     }
 
+    private void veryfyphonenumber(String phone) {
+        PhoneAuthOptions options =
+                PhoneAuthOptions.newBuilder(mAuth)
+                        .setPhoneNumber(phone)
+                        .setTimeout(60L, TimeUnit.SECONDS)   //
+                        .setActivity(this)
+                        .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                            //
+                            //onVerificationCompleted: sau khi verify thành công thì tiếp theo làm những gì.
+                            @Override
+                            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                                signInWithPhoneAuthCredentinal(phoneAuthCredential);
+                            }
+
+
+                            //onVerificationCompleted: verify thất bại thì..
+                            @Override
+                            public void onVerificationFailed(@NonNull FirebaseException e) {
+                                Toast.makeText(Dangky_Activity.this,"Failed",Toast.LENGTH_LONG).show();
+
+                            }
+
+                            @Override
+                            public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                                super.onCodeSent(s, forceResendingToken);
+                            }
+                        })
+                        .build();
+        PhoneAuthProvider.verifyPhoneNumber(options);
+    }
+    private void signInWithPhoneAuthCredentinal(PhoneAuthCredential credential){
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){ // sự kiện sau khi nhập otp thành công
+                            Log.e(TAG, "signInWithCredential:success");
+
+                            FirebaseUser user = task.getResult().getUser();
+
+                            gotoMainActivity(user);
+                        } else { // sự kiện nhâp mã thất bại
+                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+                            if(task.getException() instanceof FirebaseAuthInvalidCredentialsException){
+                                Toast.makeText(Dangky_Activity.this,
+                                        "Mã không chính xác, vui lòng thử lại.",Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }
+                });
+    }
+
+    private void gotoMainActivity(String user) {
+
+    }
+
     private void addControls() {
         btnDk = findViewById(R.id.btn_dangky_dangky);
         edtSdt = findViewById(R.id.edt_Sdt_dangky);
@@ -124,9 +197,11 @@ public class Dangky_Activity extends AppCompatActivity {
         edtMk = findViewById(R.id.edt_matkhau_dangky);
         button_GV = findViewById(R.id.radioButton_GV_dangky);
         button_SV = findViewById(R.id.radioButton_SV_dangky);
-        button_quaylai=findViewById(R.id.btn_quaylai_dangky);
         radioGroup = findViewById(R.id.radioGroup_GV_HV_dangky);
+        edt_Enter_Otp = findViewById(R.id.edt_Enter_Otp);
     }
+
+    //Sự kiện quay lại khi ấn nút mũi tên trên toolbar
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home){
