@@ -15,17 +15,16 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.example.doan_giasu.Fragment.NewclassFragment;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseException;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.auth.PhoneAuthOptions;
-import com.google.firebase.auth.PhoneAuthProvider;
+//import com.google.android.gms.tasks.OnCompleteListener;
+//import com.google.android.gms.tasks.Task;
+//import com.google.firebase.FirebaseException;
+//import com.google.firebase.auth.AuthResult;
+//import com.google.firebase.auth.FirebaseAuth;
+//import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+//import com.google.firebase.auth.FirebaseUser;
+//import com.google.firebase.auth.PhoneAuthCredential;
+//import com.google.firebase.auth.PhoneAuthOptions;
+//import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
@@ -33,9 +32,10 @@ public class Dangky_Activity extends AppCompatActivity {
 
     private static final String TAG = Dangky_Activity.class.getName();
     Button btnDk;
-    EditText edtSdt, edtMk, edtMkmoi;
+    EditText edtSdt, edtMk, edtMkmoi,edt_Enter_Otp;
     RadioButton button_GV,button_SV;
     RadioGroup radioGroup;
+//    FirebaseAuth mAuth;
 
 
     private String selectedRole = ""; // Biến để lưu trữ vai trò đã chọn
@@ -48,6 +48,7 @@ public class Dangky_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dangky);
         addControls();
+        addEvents();
 
         Toolbar toolbar = findViewById(R.id.toolbar3);
         setSupportActionBar(toolbar);
@@ -59,6 +60,8 @@ public class Dangky_Activity extends AppCompatActivity {
         btnDk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 Drawable icERR =getResources().getDrawable(R.drawable.baseline_error_24);
                 icERR.setBounds(0,0,icERR.getIntrinsicWidth(),icERR.getIntrinsicHeight());
                 String password = edtMk.getText().toString().trim();
@@ -69,7 +72,7 @@ public class Dangky_Activity extends AppCompatActivity {
                     edtSdt.setError("Vui lòng nhập số điện thoại",icERR);
                     return;
                 }
-                else if (phone.length() < 9) {
+                else if (phone.length() < 9|| !phone.matches("\\d+")) {
                     edtSdt.setCompoundDrawables(null,null,icERR,null); //Kiểm tra số điện thoại phải hơn 9 số và không có ký tự hay chữ cái
                     edtSdt.setError("Số điện thoại không hợp lệ", icERR);
                     return;
@@ -106,6 +109,11 @@ public class Dangky_Activity extends AppCompatActivity {
                     startActivity(i);
                     //Return từng cái trên dùng để nếu sai dữ liệu thì nhập lại và không chuyển trang
                 }
+
+                //veryfy sdt
+//                veryfyphonenumber(phone);
+
+//                mAuth = FirebaseAuth.getInstance();
             }
         });
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -126,7 +134,61 @@ public class Dangky_Activity extends AppCompatActivity {
         });
     }
 
+//    private void veryfyphonenumber(String phone) {
+//        PhoneAuthOptions options =
+//                PhoneAuthOptions.newBuilder(mAuth)
+//                        .setPhoneNumber(phone)
+//                        .setTimeout(60L, TimeUnit.SECONDS)   //
+//                        .setActivity(this)
+//                        .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+//                            //
+//                            //onVerificationCompleted: sau khi verify thành công thì tiếp theo làm những gì.
+//                            @Override
+//                            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+//                                signInWithPhoneAuthCredentinal(phoneAuthCredential);
+//                            }
+//
+//
+//                            //onVerificationCompleted: verify thất bại thì..
+//                            @Override
+//                            public void onVerificationFailed(@NonNull FirebaseException e) {
+//                                Toast.makeText(Dangky_Activity.this,"Failed",Toast.LENGTH_LONG).show();
+//
+//                            }
+//
+//                            @Override
+//                            public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+//                                super.onCodeSent(s, forceResendingToken);
+//                            }
+//                        })
+//                        .build();
+//        PhoneAuthProvider.verifyPhoneNumber(options);
+//    }
+//    private void signInWithPhoneAuthCredentinal(PhoneAuthCredential credential){
+//        mAuth.signInWithCredential(credential)
+//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if(task.isSuccessful()){ // sự kiện sau khi nhập otp thành công
+//                            Log.e(TAG, "signInWithCredential:success");
+//
+//                            FirebaseUser user = task.getResult().getUser();
+//
+//                            gotoMainActivity(user);
+//                        } else { // sự kiện nhâp mã thất bại
+//                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+//                            if(task.getException() instanceof FirebaseAuthInvalidCredentialsException){
+//                                Toast.makeText(Dangky_Activity.this,
+//                                        "Mã không chính xác, vui lòng thử lại.",Toast.LENGTH_LONG).show();
+//                            }
+//                        }
+//                    }
+//                });
+//    }
 
+    private void gotoMainActivity(String user) {
+
+    }
 
     private void addControls() {
         btnDk = findViewById(R.id.btn_dangky_dangky);
@@ -136,6 +198,7 @@ public class Dangky_Activity extends AppCompatActivity {
         button_GV = findViewById(R.id.radioButton_GV_dangky);
         button_SV = findViewById(R.id.radioButton_SV_dangky);
         radioGroup = findViewById(R.id.radioGroup_GV_HV_dangky);
+        edt_Enter_Otp = findViewById(R.id.edt_Enter_Otp);
     }
 
     //Sự kiện quay lại khi ấn nút mũi tên trên toolbar

@@ -17,14 +17,15 @@ import com.example.doan_giasu.Dangnhap_Activity;
 import com.example.doan_giasu.R;
 import com.google.android.material.navigation.NavigationView;
 
+import Activity_Menu.DangKyLamGiaSu_Activity;
+import Activity_Menu.Danhsachlopday_Activity;
+import Activity_Menu.Danhsachlophoc_Activity;
 import Activity_Menu.DieuKhoanDichVuActivity;
 import Activity_Menu.DoiMatKhau_Activity;
 import Activity_Menu.ThongTinCaNhan_Activity;
 
 public class SetFragment_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final int FRAGMENT_HOME = 0;
-    private static final int FRAGMENT_DANGKYLAMGIASU = 5;
-    private  int mCurrentFragment = FRAGMENT_HOME;
     private DrawerLayout mDrawerLayout;
 
     @Override
@@ -51,11 +52,9 @@ public class SetFragment_Activity extends AppCompatActivity implements Navigatio
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-         if (id == R.id.nav_Dangkylamgiasu){               //FRAMENT ĐĂNG KÝ LÀM GIA SƯ
-            if (mCurrentFragment != FRAGMENT_DANGKYLAMGIASU){
-                replaceFragment(new DangKyLamGiaSu_Fragment());
-                mCurrentFragment = FRAGMENT_DANGKYLAMGIASU;
-            }
+         if (id == R.id.nav_Dangkylamgiasu){               // ĐĂNG KÝ LÀM GIA SƯ
+             Intent intent = new Intent(this, DangKyLamGiaSu_Activity.class);
+             startActivity(intent);
 
         }else if (id == R.id.nav_Doimatkhau){               //Đổi Lại Mật Khẩu
             Intent intent = new Intent(this, DoiMatKhau_Activity.class);
@@ -70,11 +69,20 @@ public class SetFragment_Activity extends AppCompatActivity implements Navigatio
             startActivity(intent);
 
 
-        }else if (id == R.id.nav_Dangxuat){           //FRAMENT Đăng xuất
-            Intent intent = new Intent(this, Dangnhap_Activity.class);      //Hàm đăng xuất để gọi trong dangxuat
+        }else if (id == R.id.nav_Dangxuat){
+            Intent intent = new Intent(this, Dangnhap_Activity.class);      //Đăng xuất
             startActivity(intent);
             finish();
         }
+         else if (id == R.id.nav_Danhsachlopday){
+             Intent intent = new Intent(this, Danhsachlopday_Activity.class);     //Danh sách lớp học
+             startActivity(intent);
+         }
+         else if (id == R.id.nav_Danhsachlophoc){
+             Intent intent = new Intent(this, Danhsachlophoc_Activity.class);      //Danh sách lớp dạy
+             startActivity(intent);
+         }
+
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }

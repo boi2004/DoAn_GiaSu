@@ -6,11 +6,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.doan_giasu.Adapter.GiaSu;
 import com.example.doan_giasu.R;
+import com.google.firebase.auth.FirebaseAuth;               //FireBase
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 
 public class ThongTinCaNhan_Activity extends AppCompatActivity {
     EditText edtTaiKhoan, edtDiaChi, edtNamSinh, edtEmail, edtSdt;
@@ -30,6 +39,18 @@ public class ThongTinCaNhan_Activity extends AppCompatActivity {
         int white = getResources().getColor(android.R.color.white);
         toolbar.setTitleTextColor(white);   //Trong đoạn mã trên, toolbar.setTitleTextColor(white) sẽ đặt màu trắng cho tiêu đề của Toolbar.
     }
+    private void UppData(GiaSu giaSu){                     //TẠO THÔNG TIN CÁ NHÂN
+        FirebaseDatabase database =FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = database.getReference("Thông tin cá nhân gia sư");              //Truyền thông tin vào firebase
+        String thongtingiasu=String.valueOf(giaSu.getSDT());
+        databaseReference.child(thongtingiasu).setValue(giaSu, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                Toast.makeText(ThongTinCaNhan_Activity.this, "Đã cập nhật thông tin thành công", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
     private void addControls() {
         // Khai báo các EditText
         edtTaiKhoan = findViewById(R.id.edt_TaiKhoan_fragment_Infomation);
@@ -48,6 +69,7 @@ public class ThongTinCaNhan_Activity extends AppCompatActivity {
         btnLuuThayDoi = findViewById(R.id.btn_LuuThayDoi_fragment_Infomation);
         btnQuayLai = findViewById(R.id.btn_QuayLai_fragment_Infomation);
 
+
     }
 
     //Hàm thoát ra trên toolbal
@@ -63,7 +85,15 @@ public class ThongTinCaNhan_Activity extends AppCompatActivity {
         btnLuuThayDoi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Xử lý sự kiện khi nhấn nút "Lưu"
+                //Khai báo Gia sư bên adapter
+                String sdt = edtSdt.getText().toString().trim();
+                String email= edtEmail.getText().toString().trim();
+                String diachi = edtDiaChi.getText().toString().trim();
+                String ten = edtTaiKhoan.getText().toString().trim();
+                String namsinh = edtNamSinh.getText().toString().trim();
+                //String gioitinh = edtSdt().getText().toString().trim();
+                GiaSu giaSu = new GiaSu(ten,email,namsinh,diachi,sdt);
+                UppData(giaSu);
             }
         });
         btnQuayLai.setOnClickListener(new View.OnClickListener() {
