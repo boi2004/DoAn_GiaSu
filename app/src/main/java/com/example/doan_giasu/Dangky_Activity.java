@@ -33,10 +33,9 @@ public class Dangky_Activity extends AppCompatActivity {
 
     private static final String TAG = Dangky_Activity.class.getName();
     Button btnDk;
-    EditText edtSdt, edtMk, edtMkmoi,edt_Enter_Otp;
+    EditText edtSdt, edtMk, edtMkmoi;
     RadioButton button_GV,button_SV;
     RadioGroup radioGroup;
-    FirebaseAuth mAuth;
 
 
     private String selectedRole = ""; // Biến để lưu trữ vai trò đã chọn
@@ -49,16 +48,6 @@ public class Dangky_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dangky);
         addControls();
-        mAuth = FirebaseAuth.getInstance(); // Khởi tạo FirebaseAuth ở đây
-
-        btnDk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String phone = edtSdt.getText().toString().trim();
-                //veryfy sdt
-                veryfyphonenumber(phone);
-            }
-        });
 
         Toolbar toolbar = findViewById(R.id.toolbar3);
         setSupportActionBar(toolbar);
@@ -137,77 +126,7 @@ public class Dangky_Activity extends AppCompatActivity {
         });
     }
 
-    private void veryfyphonenumber(String phone) {
-        PhoneAuthOptions options =
-                PhoneAuthOptions.newBuilder(mAuth)
-                        .setPhoneNumber(phone)
-                        .setTimeout(10L, TimeUnit.SECONDS)   //
-                        .setActivity(this)
-                        .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-                            //
-                            //onVerificationCompleted: sau khi verify thành công thì tiếp theo làm những gì.
-                            @Override
-                            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
 
-                                signInWithPhoneAuthCredentinal(phoneAuthCredential);
-                            }
-
-
-                            //onVerificationCompleted: verify thất bại thì..
-                            @Override
-                            public void onVerificationFailed(@NonNull FirebaseException e) {
-                                //thong bao toast
-                                Toast.makeText(Dangky_Activity.this, "Xác minh thất bại: " + e.getMessage(), Toast.LENGTH_LONG).show();
-
-                            }
-
-                            @Override
-                            public void onCodeSent(@NonNull String ma, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                                super.onCodeSent(ma, forceResendingToken);
-
-                                goEnterOTPActivity(phone, ma);
-                            }
-                        })
-                        .build();
-        PhoneAuthProvider.verifyPhoneNumber(options);
-    }
-
-
-
-    private void signInWithPhoneAuthCredentinal(PhoneAuthCredential credential){
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){ // sự kiện sau khi nhập otp thành công
-                            Log.e(TAG, "signInWithCredential:success");
-
-                            FirebaseUser user = task.getResult().getUser();
-
-                            gotoMainActivity(user.getPhoneNumber());
-                        } else { // sự kiện nhâp mã thất bại
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            if(task.getException() instanceof FirebaseAuthInvalidCredentialsException){
-                                Toast.makeText(Dangky_Activity.this,
-                                        "Mã không chính xác, vui lòng thử lại.",Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    }
-                });
-    }
-
-    private void gotoMainActivity(String phone) {
-        Intent intent = new Intent(this, NewclassFragment.class);
-        intent.putExtra("phone_number", phone);
-        startActivity(intent);
-
-    }
-    private void goEnterOTPActivity(String phone, String ma) {
-        Intent intent = new Intent(this, EnterOTPActivity.class);
-        intent.putExtra("phone_number", phone);
-        intent.putExtra("ma_id", ma);
-        startActivity(intent);
-    }
 
     private void addControls() {
         btnDk = findViewById(R.id.btn_dangky_dangky);
@@ -217,7 +136,6 @@ public class Dangky_Activity extends AppCompatActivity {
         button_GV = findViewById(R.id.radioButton_GV_dangky);
         button_SV = findViewById(R.id.radioButton_SV_dangky);
         radioGroup = findViewById(R.id.radioGroup_GV_HV_dangky);
-        edt_Enter_Otp = findViewById(R.id.edt_Enter_Otp);
     }
 
     //Sự kiện quay lại khi ấn nút mũi tên trên toolbar
