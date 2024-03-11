@@ -10,12 +10,20 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.doan_giasu.Dangnhap_Activity;
 import com.example.doan_giasu.R;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.net.URI;
 
 import Activity_Menu.DangKyLamGiaSu_Activity;
 import Activity_Menu.Danhsachlopday_Activity;
@@ -27,6 +35,8 @@ import Activity_Menu.ThongTinCaNhan_Activity;
 public class SetFragment_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final int FRAGMENT_HOME = 0;
     private DrawerLayout mDrawerLayout;
+    private ImageView imageView;
+    private TextView txvName,txvEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +57,14 @@ public class SetFragment_Activity extends AppCompatActivity implements Navigatio
 
         replaceFragment(new HomeFragment());
         navigationView.getMenu().findItem(R.id.nav_Trangchu).setChecked(true);
+        addControl();
     }
+    public void addControl(){
+        txvEmail=findViewById(R.id.txv_mail_header);
+        imageView =findViewById(R.id.img_avatar_header);
+        txvName=findViewById(R.id.txv_ten_header);
+    }
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -86,9 +103,36 @@ public class SetFragment_Activity extends AppCompatActivity implements Navigatio
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+    private void nextActivity(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();                    //Kiểm tra nếu đăng nhập thì  ở frament new calsas,chưa thì quay về trang đăng nhập
+        if(user==null){
+            //chưa login
+            Intent intent=new Intent(this, Dangnhap_Activity.class);
+            startActivity(intent);
+        }
+        else {
+            Intent intent=new Intent(this, NewclassFragment.class);
+            startActivity(intent);
+        }
+
+    }
     private void replaceFragment(Fragment fragment){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.content_frame, fragment);
         transaction.commit();
+    }
+    private void showUserInformation(){
+        FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();      //Nếu bạn login thì firebase sẽ trả về cho thằng này
+        if(user==null){
+            return;
+        }
+
+        String name = user.getDisplayName();        //Cái này dùng để hiển tên và gmail bên thanh header.
+        String email = user.getEmail();
+        Uri photoUrl = user.getPhotoUrl();
+
+        txvName.setText(name);
+        txvEmail.setText(email);
+        //Glide.with(this).load(photoUrl).error(R.drawable.img_1).into(imageView);        //Tìm hiểu thư mục này vì khoông dùng thư viện glide được,cái này sẽ load ảnh lên.
     }
 }
