@@ -15,16 +15,16 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseException;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.auth.PhoneAuthOptions;
-import com.google.firebase.auth.PhoneAuthProvider;
+//import com.google.android.gms.tasks.OnCompleteListener;
+//import com.google.android.gms.tasks.Task;
+//import com.google.firebase.FirebaseException;
+//import com.google.firebase.auth.AuthResult;
+//import com.google.firebase.auth.FirebaseAuth;
+//import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+//import com.google.firebase.auth.FirebaseUser;
+//import com.google.firebase.auth.PhoneAuthCredential;
+//import com.google.firebase.auth.PhoneAuthOptions;
+//import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
@@ -35,7 +35,7 @@ public class Dangky_Activity extends AppCompatActivity {
     EditText edtSdt, edtMk, edtMkmoi,edt_Enter_Otp;
     RadioButton button_GV,button_SV;
     RadioGroup radioGroup;
-    FirebaseAuth mAuth;
+//    FirebaseAuth mAuth;
 
 
     private String selectedRole = ""; // Biến để lưu trữ vai trò đã chọn
@@ -111,9 +111,9 @@ public class Dangky_Activity extends AppCompatActivity {
                 }
 
                 //veryfy sdt
-                veryfyphonenumber(phone);
+//                veryfyphonenumber(phone);
 
-                mAuth = FirebaseAuth.getInstance();
+//                mAuth = FirebaseAuth.getInstance();
             }
         });
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -134,57 +134,57 @@ public class Dangky_Activity extends AppCompatActivity {
         });
     }
 
-    private void veryfyphonenumber(String phone) {
-        PhoneAuthOptions options =
-                PhoneAuthOptions.newBuilder(mAuth)
-                        .setPhoneNumber(phone)
-                        .setTimeout(60L, TimeUnit.SECONDS)   //
-                        .setActivity(this)
-                        .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-                            //
-                            //onVerificationCompleted: sau khi verify thành công thì tiếp theo làm những gì.
-                            @Override
-                            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                                signInWithPhoneAuthCredentinal(phoneAuthCredential);
-                            }
-
-
-                            //onVerificationCompleted: verify thất bại thì..
-                            @Override
-                            public void onVerificationFailed(@NonNull FirebaseException e) {
-                                Toast.makeText(Dangky_Activity.this,"Failed",Toast.LENGTH_LONG).show();
-
-                            }
-
-                            @Override
-                            public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                                super.onCodeSent(s, forceResendingToken);
-                            }
-                        })
-                        .build();
-        PhoneAuthProvider.verifyPhoneNumber(options);
-    }
-    private void signInWithPhoneAuthCredentinal(PhoneAuthCredential credential){
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){ // sự kiện sau khi nhập otp thành công
-                            Log.e(TAG, "signInWithCredential:success");
-
-                            FirebaseUser user = task.getResult().getUser();
-
-                            gotoMainActivity(user);
-                        } else { // sự kiện nhâp mã thất bại
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            if(task.getException() instanceof FirebaseAuthInvalidCredentialsException){
-                                Toast.makeText(Dangky_Activity.this,
-                                        "Mã không chính xác, vui lòng thử lại.",Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    }
-                });
-    }
+//    private void veryfyphonenumber(String phone) {
+//        PhoneAuthOptions options =
+//                PhoneAuthOptions.newBuilder(mAuth)
+//                        .setPhoneNumber(phone)
+//                        .setTimeout(60L, TimeUnit.SECONDS)   //
+//                        .setActivity(this)
+//                        .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+//                            //
+//                            //onVerificationCompleted: sau khi verify thành công thì tiếp theo làm những gì.
+//                            @Override
+//                            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+//                                signInWithPhoneAuthCredentinal(phoneAuthCredential);
+//                            }
+//
+//
+//                            //onVerificationCompleted: verify thất bại thì..
+//                            @Override
+//                            public void onVerificationFailed(@NonNull FirebaseException e) {
+//                                Toast.makeText(Dangky_Activity.this,"Failed",Toast.LENGTH_LONG).show();
+//
+//                            }
+//
+//                            @Override
+//                            public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+//                                super.onCodeSent(s, forceResendingToken);
+//                            }
+//                        })
+//                        .build();
+//        PhoneAuthProvider.verifyPhoneNumber(options);
+//    }
+//    private void signInWithPhoneAuthCredentinal(PhoneAuthCredential credential){
+//        mAuth.signInWithCredential(credential)
+//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if(task.isSuccessful()){ // sự kiện sau khi nhập otp thành công
+//                            Log.e(TAG, "signInWithCredential:success");
+//
+//                            FirebaseUser user = task.getResult().getUser();
+//
+//                            gotoMainActivity(user);
+//                        } else { // sự kiện nhâp mã thất bại
+//                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+//                            if(task.getException() instanceof FirebaseAuthInvalidCredentialsException){
+//                                Toast.makeText(Dangky_Activity.this,
+//                                        "Mã không chính xác, vui lòng thử lại.",Toast.LENGTH_LONG).show();
+//                            }
+//                        }
+//                    }
+//                });
+//    }
 
     private void gotoMainActivity(String user) {
 
