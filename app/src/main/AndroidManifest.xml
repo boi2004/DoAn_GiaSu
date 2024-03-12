@@ -34,6 +34,10 @@
         <activity
             android:name=".Khoiphucmatkhau_Activity"
             android:exported="false" />
+        <activity android:name="Activity_Menu.Danhsachlopday_Activity"
+            android:exported="false"/>
+        <activity android:name="Activity_Menu.Danhsachlophoc_Activity"
+            android:exported="false"/>
         <activity
             android:name=".Dangnhap_Activity"
             android:exported="true">
