@@ -13,10 +13,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.doan_giasu.Dangnhap_Activity;
 import com.example.doan_giasu.R;
 import com.google.android.material.navigation.NavigationView;
@@ -33,15 +35,26 @@ import Activity_Menu.DoiMatKhau_Activity;
 import Activity_Menu.ThongTinCaNhan_Activity;
 
 public class SetFragment_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private static final int FRAGMENT_HOME = 0;
+    private static final int FRAGMENT_UserProfile = 0;
     private DrawerLayout mDrawerLayout;
-    private ImageView imageView;
+    private ImageView imageViewAvatar;
     private TextView txvName,txvEmail;
+    private NavigationView mNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toolbar);
+
+        //do 3 id trên không nằm trong trong layout toolbar mà nằm trong header_nav
+        //cần mNavigationView mới có thể ánh xạ id được
+        mNavigationView = findViewById(R.id.navigation_view);
+        mNavigationView.setNavigationItemSelectedListener(this);
+        replaceFragment(new HomeFragment());
+        mNavigationView.getMenu().findItem(R.id.nav_Trangchu).setChecked(true);
+        //===>
+        // ánh xạ id
+        addControl();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -52,17 +65,16 @@ public class SetFragment_Activity extends AppCompatActivity implements Navigatio
         mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.navigation_view);
-        navigationView.setNavigationItemSelectedListener(this);
 
-        replaceFragment(new HomeFragment());
-        navigationView.getMenu().findItem(R.id.nav_Trangchu).setChecked(true);
-        addControl();
+        //nextActivity();
+        showUserInformation();
+
     }
     public void addControl(){
-        txvEmail=findViewById(R.id.txv_mail_header);
-        imageView =findViewById(R.id.img_avatar_header);
-        txvName=findViewById(R.id.txv_ten_header);
+
+        txvEmail = mNavigationView.getHeaderView(0).findViewById(R.id.txv_mail_header);
+        imageViewAvatar = mNavigationView.getHeaderView(0).findViewById(R.id.img_avatar_header);
+        txvName = mNavigationView.getHeaderView(0).findViewById(R.id.txv_ten_header);
     }
 
 
@@ -77,16 +89,11 @@ public class SetFragment_Activity extends AppCompatActivity implements Navigatio
             Intent intent = new Intent(this, DoiMatKhau_Activity.class);
             startActivity(intent);
 
-        }else if (id == R.id.nav_Thongtincanhan) {           //THÔNG TIN CÁ NHÂN
-            Intent intent = new Intent(this, ThongTinCaNhan_Activity.class);
-            startActivity(intent);
-
         }else if (id == R.id.nav_dieukhoanvadichvu){           //Điều khoản dịch vụ
             Intent intent = new Intent(this, DieuKhoanDichVuActivity.class);
             startActivity(intent);
-
-
         }else if (id == R.id.nav_Dangxuat){
+            FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(this, Dangnhap_Activity.class);      //Đăng xuất
             startActivity(intent);
             finish();
@@ -98,41 +105,45 @@ public class SetFragment_Activity extends AppCompatActivity implements Navigatio
         else if (id == R.id.nav_Danhsachlophoc){
             Intent intent = new Intent(this, Danhsachlophoc_Activity.class);      //Danh sách lớp dạy
             startActivity(intent);
+        }else if (id == R.id.nav_Thongtincanhan) {           //THÔNG TIN CÁ NHÂN
+            Intent intent = new Intent(this, ThongTinCaNhan_Activity.class);
+            startActivity(intent);
         }
 
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
-    private void nextActivity(){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();                    //Kiểm tra nếu đăng nhập thì  ở frament new calsas,chưa thì quay về trang đăng nhập
-        if(user==null){
-            //chưa login
-            Intent intent=new Intent(this, Dangnhap_Activity.class);
-            startActivity(intent);
-        }
-        else {
-            Intent intent=new Intent(this, NewclassFragment.class);
-            startActivity(intent);
-        }
 
-    }
+
+
     private void replaceFragment(Fragment fragment){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.content_frame, fragment);
         transaction.commit();
     }
-    private void showUserInformation(){
-        FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();      //Nếu bạn login thì firebase sẽ trả về cho thằng này
-        if(user==null){
+
+
+
+    private void showUserInformation() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();   // Nếu bạn đăng nhập thì Firebase sẽ trả về thông qua user
+
+        if (user == null) {
             return;
         }
 
-        String name = user.getDisplayName();        //Cái này dùng để hiển tên và gmail bên thanh header.
+        String name = user.getDisplayName();        // Lấy tên và email từ user
         String email = user.getEmail();
         Uri photoUrl = user.getPhotoUrl();
 
-        txvName.setText(name);
-        txvEmail.setText(email);
-        //Glide.with(this).load(photoUrl).error(R.drawable.img_1).into(imageView);        //Tìm hiểu thư mục này vì khoông dùng thư viện glide được,cái này sẽ load ảnh lên.
+        if (name == null) {
+            txvName.setVisibility(View.GONE);  // Nếu tên là null, ẩn TextView txvName
+        } else {
+            txvName.setVisibility(View.VISIBLE);  // Nếu tên không null, hiển thị TextView txvName và thiết lập giá trị
+            txvName.setText(name);
+        }
+
+        txvEmail.setText(email);  // Thiết lập giá trị cho email
+        Glide.with(this).load(photoUrl).error(R.drawable.img_1).into(imageViewAvatar);  // Load ảnh từ URL và hiển thị vào imageViewAvatar
     }
+
 }

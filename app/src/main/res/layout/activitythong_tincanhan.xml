@@ -8,21 +8,7 @@
     android:background="#FFFFFF"
     tools:context="Activity_Menu.ThongTinCaNhan_Activity">
 
-    <EditText
-        android:id="@+id/edt_TaiKhoan_fragment_Infomation"
-        android:layout_width="380dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/custom_edt"
-        android:drawableLeft="@drawable/iconuser"
-        android:ems="10"
-        android:hint=" Tài khoản"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_thongtincanhan" />
-
-    <EditText
+    <!--<EditText
         android:id="@+id/edt_DiaChi_fragment_Infomation"
         android:layout_width="380dp"
         android:layout_height="60dp"
@@ -36,63 +22,59 @@
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_Email_fragment_Infomation" />
+-->
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circleImageView_InforUser"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="28dp"
+        android:src="@drawable/img_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_thongtincanhan" />
 
     <EditText
-        android:id="@+id/edt_NamSinh_fragment_Infomation"
+        android:id="@+id/edt_Name_fragment_Infomation"
         android:layout_width="380dp"
         android:layout_height="60dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/custom_edt"
-        android:drawableLeft="@drawable/iconbirthday"
+        android:drawableLeft="@drawable/iconuser"
         android:ems="10"
-        android:hint="  Năm sinh"
+        android:hint="Tên Người Dùng"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_DiaChi_fragment_Infomation" />
+        app:layout_constraintTop_toBottomOf="@+id/circleImageView_InforUser" />
 
     <EditText
         android:id="@+id/edt_Email_fragment_Infomation"
         android:layout_width="380dp"
         android:layout_height="60dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="44dp"
         android:background="@drawable/custom_edt"
         android:drawableLeft="@drawable/iconemail"
         android:ems="10"
         android:hint="  Email"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RadioGroup_GioiTinh_fragment_Infomation" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_SDT_fragment_Infomation" />
 
-    <Button
-        android:id="@+id/btn_LuuThayDoi_fragment_Infomation"
-        android:layout_width="380dp"
-        android:layout_height="66dp"
-        android:layout_marginBottom="84dp"
-        android:backgroundTint="#43A047"
-        android:text="Lưu Thay Đổi"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <RadioGroup
+    <!--<RadioGroup
         android:id="@+id/RadioGroup_GioiTinh_fragment_Infomation"
         android:layout_width="380dp"
         android:layout_height="60dp"
-        android:layout_marginTop="20dp"
         android:background="@drawable/custom_edt"
         android:gravity="center|top|left"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_TaiKhoan_fragment_Infomation">
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="472dp">
 
         <TextView
             android:id="@+id/textView2"
@@ -115,68 +97,59 @@
             android:layout_marginLeft="58dp"
             android:layout_marginTop="10dp"
             android:text="Nữ" />
-    </RadioGroup>
+    </RadioGroup>-->
 
     <Button
-        android:id="@+id/btn_QuayLai_fragment_Infomation"
+        android:id="@+id/btn_LuuThayDoi_fragment_Infomation"
         android:layout_width="380dp"
         android:layout_height="66dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="72dp"
         android:backgroundTint="#43A047"
-        android:text="Quay Lại"
+        android:text="Lưu Thay Đổi"
         android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_LuuThayDoi_fragment_Infomation" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/edt_SĐT_fragment_Infomation"
+        android:id="@+id/edt_SDT_fragment_Infomation"
         android:layout_width="380dp"
         android:layout_height="60dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/custom_edt"
         android:drawableLeft="@drawable/baseline_local_phone_24"
         android:ems="10"
         android:hint=" Số điện thoại"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_NamSinh_fragment_Infomation" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_Name_fragment_Infomation" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textStyle="bold"
-        android:text="Vui lòng điền đầy đủ thông tin để xác thực"
+        android:text="Nhớ bấm lưu để thay đổi nhé!"
         android:textColor="#FFB300"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_SĐT_fragment_Infomation"
-        app:layout_constraintVertical_bias="0.0" />
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="547dp" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="20dp"
         android:layout_height="33dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:gravity="bottom|center"
         android:text="*"
         android:textColor="#F80606"
         android:textSize="35dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/textView8"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_SĐT_fragment_Infomation" />
+        tools:layout_editor_absoluteX="68dp"
+        tools:layout_editor_absoluteY="547dp" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_thongtincanhan"
@@ -189,7 +162,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
