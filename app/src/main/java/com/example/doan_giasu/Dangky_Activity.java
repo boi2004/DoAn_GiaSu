@@ -41,7 +41,7 @@ public class Dangky_Activity extends AppCompatActivity {
 
     private static final String TAG = Dangky_Activity.class.getName();
     Button btnDk;
-    EditText edtSdt, edtMk, edtMkmoi,edt_Enter_Otp;
+    EditText edtSdt, edtMk, edtMkmoi;
 
     private String selectedRole = ""; // Biến để lưu trữ vai trò đã chọn
     private void showToast(String message) {
@@ -147,7 +147,6 @@ public class Dangky_Activity extends AppCompatActivity {
         edtSdt = findViewById(R.id.edt_Sdt_dangky);
         edtMkmoi = findViewById(R.id.edt_nhaplaimatkhau_dangky);
         edtMk = findViewById(R.id.edt_matkhau_dangky);
-        edt_Enter_Otp = findViewById(R.id.edt_Enter_Otp);
     }
 
 

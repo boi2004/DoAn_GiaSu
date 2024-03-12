@@ -1,6 +1,5 @@
 package Activity_Menu;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -8,15 +7,13 @@ import android.widget.EditText;
 import android.widget.PopupMenu;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.doan_giasu.R;
 
-public class DangKyLamGiaSu_Activity extends AppCompatActivity {
+public class DangKyLamGiaSuBinding_Activity extends AppCompatActivity {
     EditText edt_monhoc, edt_nghenghiep, edt_thanhpho,
             edt_t2, edt_t3, edt_t4, edt_t5, edt_t6, edt_t7, edt_cn;
 
@@ -1035,6 +1032,13 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
             }
         });
         popupMenu.show();
+    }
+    public boolean onOptionsItemSelected(@NonNull MenuItem item)
+    {
+        if (item.getItemId() == android.R.id.home){
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 

@@ -17,6 +17,9 @@ import com.example.doan_giasu.Dangnhap_Activity;
 import com.example.doan_giasu.R;
 import com.google.android.material.navigation.NavigationView;
 
+import Activity_Menu.DangKyLamGiaSuBinding_Activity;
+import Activity_Menu.Danhsachlopday_Activity;
+import Activity_Menu.Danhsachlophoc_Activity;
 import Activity_Menu.DieuKhoanDichVuActivity;
 import Activity_Menu.DoiMatKhau_Activity;
 import Activity_Menu.ThongTinCaNhan_Activity;
@@ -36,7 +39,7 @@ public class SetFragment_Activity extends AppCompatActivity implements Navigatio
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main5);
+        setContentView(R.layout.activity_toolbar);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -63,17 +66,13 @@ public class SetFragment_Activity extends AppCompatActivity implements Navigatio
                 mCurrentFragment = FRAGMENT_HOME;
             }
 
-        }else if (id == R.id.nav_Dangkylamgiasu){               //FRAMENT ĐĂNG KÝ LÀM GIA SƯ
-            if (mCurrentFragment != FRAGMENT_DANGKYLAMGIASU){
-                replaceFragment(new DangKyLamGiaSu_Fragment());
-                mCurrentFragment = FRAGMENT_DANGKYLAMGIASU;
-            }
+        }else if (id == R.id.nav_Dangkylamgiasu){           //
+            Intent intent = new Intent(this, DangKyLamGiaSuBinding_Activity.class);
+            startActivity(intent);
 
-        }else if (id == R.id.nav_Danhsachlopday){              //FRAMENT DANH SÁCH LỚP DẠY
-            if (mCurrentFragment != FRAGMENT_DANHSACHLOPDAY){
-                replaceFragment(new DanhSachLopDay_Fragment());
-                mCurrentFragment = FRAGMENT_DANHSACHLOPDAY;
-            }
+        }else if (id == R.id.nav_Danhsachlopday){           //
+            Intent intent = new Intent(this, Danhsachlopday_Activity.class);
+            startActivity(intent);
 
         }else if (id == R.id.nav_Doimatkhau){               //Đổi Lại Mật Khẩu
             Intent intent = new Intent(this, DoiMatKhau_Activity.class);
@@ -83,20 +82,12 @@ public class SetFragment_Activity extends AppCompatActivity implements Navigatio
             Intent intent = new Intent(this, ThongTinCaNhan_Activity.class);
             startActivity(intent);
 
-        }else if (id == R.id.nav_dieukhoanvadichvu){           //THÔNG TIN CÁ NHÂN
+        }else if (id == R.id.nav_dieukhoanvadichvu){           //
             Intent intent = new Intent(this, DieuKhoanDichVuActivity.class);
             startActivity(intent);
-
-        }else if (id == R.id.nav_dieukhoanvadichvu){        //FRAMENT ĐIỀU KHOẢN VÀ DỊCH VỤ
-            if (mCurrentFragment != FRAGMENT_DIEUKHOANVADICHVU){
-                replaceFragment(new Dieukhoanvadichvu_Fragment());
-                mCurrentFragment = FRAGMENT_DIEUKHOANVADICHVU;
-            }
-        }else if (id == R.id.nav_Danhsachlophoc){           //FRAMENT DANH SÁCH LỚP HỌC
-            if (mCurrentFragment != FRAGMENT_DANHSACHLOPHOC){
-                replaceFragment(new DanhSachLopHoc_Fragment());
-                mCurrentFragment = FRAGMENT_DANHSACHLOPHOC;
-            }
+        }else if (id == R.id.nav_Danhsachlophoc){           //
+            Intent intent = new Intent(this, Danhsachlophoc_Activity.class);
+            startActivity(intent);
         }else if (id == R.id.nav_Dangxuat){           //FRAMENT Đăng xuất
             performLogout();
         }
