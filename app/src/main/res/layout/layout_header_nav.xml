@@ -8,24 +8,27 @@
     android:background="#43A047">
 
     <ImageView
+        android:id="@+id/img_avatar_header"
         android:layout_width="120dp"
         android:layout_height="80dp"
-        android:src="@drawable/img_1"/>
+        android:src="@drawable/img_1" />
 
     <TextView
+        android:id="@+id/txv_ten_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ThanhTruc"
-        android:textStyle="bold"
-        android:textSize="20sp"
         android:layout_marginTop="8dp"
-        android:textColor="@color/white"/>
+        android:text="ThanhTruc"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/txv_mail_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Truc15112002@gmail.com"
-        android:textSize="16sp"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:textSize="16sp" />
 
 </LinearLayout>
