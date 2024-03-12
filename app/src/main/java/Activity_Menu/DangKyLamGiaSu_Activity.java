@@ -13,7 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.doan_giasu.R;
 
-public class DangKyLamGiaSuBinding_Activity extends AppCompatActivity {
+public class DangKyLamGiaSu_Activity extends AppCompatActivity {
     EditText edt_monhoc, edt_nghenghiep, edt_thanhpho,
             edt_t2, edt_t3, edt_t4, edt_t5, edt_t6, edt_t7, edt_cn;
 

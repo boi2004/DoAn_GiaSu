@@ -17,7 +17,7 @@ import com.example.doan_giasu.Dangnhap_Activity;
 import com.example.doan_giasu.R;
 import com.google.android.material.navigation.NavigationView;
 
-import Activity_Menu.DangKyLamGiaSuBinding_Activity;
+import Activity_Menu.DangKyLamGiaSu_Activity;
 import Activity_Menu.Danhsachlopday_Activity;
 import Activity_Menu.Danhsachlophoc_Activity;
 import Activity_Menu.DieuKhoanDichVuActivity;
@@ -67,7 +67,7 @@ public class SetFragment_Activity extends AppCompatActivity implements Navigatio
             }
 
         }else if (id == R.id.nav_Dangkylamgiasu){           //
-            Intent intent = new Intent(this, DangKyLamGiaSuBinding_Activity.class);
+            Intent intent = new Intent(this, DangKyLamGiaSu_Activity.class);
             startActivity(intent);
 
         }else if (id == R.id.nav_Danhsachlopday){           //

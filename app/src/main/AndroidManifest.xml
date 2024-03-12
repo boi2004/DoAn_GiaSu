@@ -14,9 +14,6 @@
         android:theme="@style/Theme.DoAn_GiaSu"
         tools:targetApi="31">
         <activity
-            android:name=".EnterOTPActivity"
-            android:exported="false" />
-        <activity
             android:name="Activity_Menu.DieuKhoanDichVuActivity"
             android:exported="false" />
         <activity
