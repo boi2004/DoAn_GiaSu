@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Lập trình"
+        android:id="@+id/menulaptrinh"/>
+    <item android:title="Lập trình Android"
+        android:id="@+id/menulaptrinhandroid"/>
+    <item android:title="Lập trình ASP.NET"
+        android:id="@+id/menulaptrinhaspnet"/>
+    <item android:title="Lập trình Autolisp"
+        android:id="@+id/menulaptrinhautolisp"/>
+    <item android:title="Lập trình C, C++, C#"
+        android:id="@+id/menulaptrinhc"/>
+    <item android:title="Lập trình các ngôn ngữ khác"
+        android:id="@+id/menulaptrinhcacngonngukhac"/>
+    <item android:title="Lập trình Game"
+        android:id="@+id/menulaptrinhgame"/>
+    <item android:title="Lập trình IOS"
+        android:id="@+id/menulaptrinhios"/>
+    <item android:title="Lập trình Java"
+        android:id="@+id/menulaptrinhjava"/>
+    <item android:title="Lập trình java spring"
+        android:id="@+id/menulaptrinhjavaspring"/>
+    <item android:title="Lập trình Objective, SWIFT"
+        android:id="@+id/menulaptrinhojective"/>
+    <item android:title="Lập trình online"
+        android:id="@+id/menulaptrinhonline"/>
+    <item android:title="Lập trình Pascal"
+        android:id="@+id/menulaptrinhpascal"/>
+    <item android:title="Lập trình Python"
+        android:id="@+id/menulaptrinhpython"/>
+    <item android:title="Lập trình sharepoint"
+        android:id="@+id/menulaptrinhsharepoint"/>
+    <item android:title="Lập trình SQL"
+        android:id="@+id/menulaptrinhsql"/>
+    <item android:title="Lập trình Ứng dụng di động"
+        android:id="@+id/menulaptrinhdidong"/>
+    <item android:title="Lập trình VBA"
+        android:id="@+id/menulaptrinhvba"/>
+    <item android:title="Lập trình web"
+        android:id="@+id/menulaptrinhweb"/>
+    <item android:title="Lập trình web PHP"
+        android:id="@+id/menulaptrinhphp"/>
+
+</menu>

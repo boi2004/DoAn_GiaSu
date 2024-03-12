@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Nghề tự do"
+        android:id="@+id/menunghetudo"/>
+    <item android:title="Sinh viên"
+        android:id="@+id/menusinhvien"/>
+    <item android:title="Giáo viên"
+        android:id="@+id/menugiaovien"/>
+    <item android:title="Đã tốt nghiệp"
+        android:id="@+id/menudatotnghiep"/>
+
+</menu>
