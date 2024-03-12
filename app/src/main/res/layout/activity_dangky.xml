@@ -82,7 +82,7 @@
             android:id="@+id/edt_Sdt_dangky"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Số điện thoại" />
+            android:hint="Email" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -107,6 +107,7 @@
             android:maxLength="32" />
     </com.google.android.material.textfield.TextInputLayout>
 
+
     <Button
         android:id="@+id/btn_dangky_dangky"
         android:layout_width="348dp"
@@ -120,23 +121,7 @@
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.857" />
-
-
-    <Button
-        android:id="@+id/btn_quaylai_dangky"
-        android:layout_width="348dp"
-        android:layout_height="66dp"
-        android:backgroundTint="#43A047"
-        android:text="QUAY LẠI"
-        android:textStyle="bold"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.975" />
+        app:layout_constraintVertical_bias="0.914" />
 
     <ImageView
         android:id="@+id/imageView7"
@@ -174,41 +159,6 @@
         app:layout_constraintVertical_bias="0.407"
         app:srcCompat="@drawable/icphone" />
 
-    <RadioGroup
-        android:layout_width="348dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="16dp"
-        android:id="@+id/radioGroup_GV_HV_dangky"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.477"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4">
-
-        <RadioButton
-            android:id="@+id/radioButton_GV_dangky"
-            android:layout_width="110dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="35dp"
-            android:text="Giáo viên"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.25"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
-
-        <RadioButton
-            android:id="@+id/radioButton_SV_dangky"
-            android:layout_width="110dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="55dp"
-            android:text="Sinh Viên"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.25"
-            app:layout_constraintStart_toEndOf="@+id/radioButton_GV_dangky"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
-    </RadioGroup>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

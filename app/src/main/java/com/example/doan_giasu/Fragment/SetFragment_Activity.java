@@ -17,7 +17,6 @@ import com.example.doan_giasu.Dangnhap_Activity;
 import com.example.doan_giasu.R;
 import com.google.android.material.navigation.NavigationView;
 
-import Activity_Menu.DangKyLamGiaSu_Activity;
 import Activity_Menu.DieuKhoanDichVuActivity;
 import Activity_Menu.DoiMatKhau_Activity;
 import Activity_Menu.ThongTinCaNhan_Activity;
@@ -63,6 +62,13 @@ public class SetFragment_Activity extends AppCompatActivity implements Navigatio
                 replaceFragment(new HomeFragment());
                 mCurrentFragment = FRAGMENT_HOME;
             }
+
+        }else if (id == R.id.nav_Dangkylamgiasu){               //FRAMENT ĐĂNG KÝ LÀM GIA SƯ
+            if (mCurrentFragment != FRAGMENT_DANGKYLAMGIASU){
+                replaceFragment(new DangKyLamGiaSu_Fragment());
+                mCurrentFragment = FRAGMENT_DANGKYLAMGIASU;
+            }
+
         }else if (id == R.id.nav_Danhsachlopday){              //FRAMENT DANH SÁCH LỚP DẠY
             if (mCurrentFragment != FRAGMENT_DANHSACHLOPDAY){
                 replaceFragment(new DanhSachLopDay_Fragment());
@@ -77,14 +83,15 @@ public class SetFragment_Activity extends AppCompatActivity implements Navigatio
             Intent intent = new Intent(this, ThongTinCaNhan_Activity.class);
             startActivity(intent);
 
-        }else if (id == R.id.nav_dieukhoanvadichvu) {           //ĐIỀU KHOẢN VÀ DỊCH VỤ
+        }else if (id == R.id.nav_dieukhoanvadichvu){           //THÔNG TIN CÁ NHÂN
             Intent intent = new Intent(this, DieuKhoanDichVuActivity.class);
             startActivity(intent);
 
-        }else if (id == R.id.nav_Dangkylamgiasu){           //ĐĂNG KÝ LÀM GIA SƯ
-                Intent intent = new Intent(this, DangKyLamGiaSu_Activity.class);
-                startActivity(intent);
-                
+        }else if (id == R.id.nav_dieukhoanvadichvu){        //FRAMENT ĐIỀU KHOẢN VÀ DỊCH VỤ
+            if (mCurrentFragment != FRAGMENT_DIEUKHOANVADICHVU){
+                replaceFragment(new Dieukhoanvadichvu_Fragment());
+                mCurrentFragment = FRAGMENT_DIEUKHOANVADICHVU;
+            }
         }else if (id == R.id.nav_Danhsachlophoc){           //FRAMENT DANH SÁCH LỚP HỌC
             if (mCurrentFragment != FRAGMENT_DANHSACHLOPHOC){
                 replaceFragment(new DanhSachLopHoc_Fragment());

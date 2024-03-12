@@ -81,13 +81,6 @@ public class Khoiphucmatkhau_Activity extends AppCompatActivity {
                     startActivity(i);
                     //Return từng cái trên dùng để nếu sai dữ liệu thì nhập lại và không chuyển trang
                 }
-                if(!password.isEmpty() && !passwordnew.isEmpty() && !phone.isEmpty()){
-                    edtMatkhau.setCompoundDrawables(null,null,null,null);
-                    edtMatkhaumoi.setCompoundDrawables(null,null,null,null);
-                    edtSodienthoai.setCompoundDrawables(null,null,null,null);
-                    Intent i = new Intent(Khoiphucmatkhau_Activity.this, MainActivity4.class);
-                    startActivity(i);
-                }
             }
         });
     }

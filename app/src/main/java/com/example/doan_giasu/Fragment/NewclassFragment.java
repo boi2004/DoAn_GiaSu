@@ -2,65 +2,88 @@ package com.example.doan_giasu.Fragment;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.doan_giasu.Adapter.LopHocAdapter;
+import com.example.doan_giasu.Model.LopHoc;
 import com.example.doan_giasu.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link NewclassFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class NewclassFragment extends Fragment {
+import java.util.ArrayList;
+import java.util.List;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class NewclassFragment extends Fragment  {
+        private RecyclerView rcv;
+        private static final String ARG_PARAM1 = "param1";
+        private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+        // TODO: Rename and change types of parameters
+        private String mParam1;
+        private String mParam2;
 
-    public NewclassFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment NewclassFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static NewclassFragment newInstance(String param1, String param2) {
-        NewclassFragment fragment = new NewclassFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+        public NewclassFragment() {
+            // Required empty public constructor
         }
-    }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_newclass, container, false);
-    }
-}
+        // TODO: Rename and change types and number of parameters
+        public static NewclassFragment newInstance(String param1, String param2) {
+            NewclassFragment fragment = new NewclassFragment();
+            Bundle args = new Bundle();
+            args.putString(ARG_PARAM1, param1);
+            args.putString(ARG_PARAM2, param2);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            if (getArguments() != null) {
+                mParam1 = getArguments().getString(ARG_PARAM1);
+                mParam2 = getArguments().getString(ARG_PARAM2);
+            }
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.fragment_newclass, container, false);
+
+            List<LopHoc> lophoclist = new ArrayList<>();
+            lophoclist.add(new LopHoc(321, "Lớp học công nghệ thông tin cơ bản 1", 3320000,
+                    "Lập Trình1","Sáng","HCM"));
+            lophoclist.add(new LopHoc(321, "Lớp học công nghệ thông tin cơ bản 2", 321321,
+                    "Lập Trình2","Sáng","HCM"));
+            lophoclist.add(new LopHoc(321, "Lớp học công nghệ thông tin cơ bản 3", 321321,
+                    "Lập Trình3","Sáng","HCM"));
+            lophoclist.add(new LopHoc(321, "Lớp học công nghệ thông tin cơ bản 4 ", 350000,
+                    "Lập Trình4","Sáng","HCM"));
+            lophoclist.add(new LopHoc(321, "Lớp học công nghệ thông tin cơ bản 5", 321321,
+                    "Lập Trình5","Sáng","HCM"));
+
+            rcv = view.findViewById(R.id.rcv);
+
+            // Kết nối LopHocAdapter vào RecyclerView
+            LopHocAdapter lopHocAdapter = new LopHocAdapter(lophoclist);
+            rcv.setAdapter(lopHocAdapter);
+
+            // Bài trí cột sử dụng GridLayoutManager
+            rcv.setLayoutManager(new GridLayoutManager(getActivity(), 1));
+
+            // Thiết lập sự kiện nhấp vào item
+            lopHocAdapter.setOnItemClickListener(new LopHocAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(LopHoc lophoc) {
+                    // Xử lý sự kiện khi nhấp vào item ở đây
+                }
+            });
+
+            return view;
+        }
+        }
