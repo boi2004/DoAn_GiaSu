@@ -8,6 +8,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -19,11 +20,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.doan_giasu.Adapter.LopHocAdapter;
 import com.example.doan_giasu.Dangnhap_Activity;
+import com.example.doan_giasu.Model.LopHoc;
 import com.example.doan_giasu.R;
+import com.firebase.ui.database.FirebaseListAdapter;
+import com.firebase.ui.database.FirebaseListOptions;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.net.URI;
 
@@ -35,6 +42,7 @@ import Activity_Menu.DoiMatKhau_Activity;
 import Activity_Menu.ThongTinCaNhan_Activity;
 
 public class SetFragment_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
     private static final int FRAGMENT_UserProfile = 0;
     private DrawerLayout mDrawerLayout;
     private ImageView imageViewAvatar;
@@ -68,6 +76,7 @@ public class SetFragment_Activity extends AppCompatActivity implements Navigatio
 
         //nextActivity();
         showUserInformation();
+
 
     }
     public void addControl(){

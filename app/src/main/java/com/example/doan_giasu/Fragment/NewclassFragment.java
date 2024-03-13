@@ -15,12 +15,15 @@ import android.widget.TextView;
 import com.example.doan_giasu.Adapter.LopHocAdapter;
 import com.example.doan_giasu.Model.LopHoc;
 import com.example.doan_giasu.R;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class NewclassFragment extends Fragment  {
-        private RecyclerView rcv;
+    RecyclerView rcv;
+    LopHocAdapter lopHocAdapter;
         private static final String ARG_PARAM1 = "param1";
         private static final String ARG_PARAM2 = "param2";
 
@@ -55,35 +58,16 @@ public class NewclassFragment extends Fragment  {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.fragment_newclass, container, false);
-
-            List<LopHoc> lophoclist = new ArrayList<>();
-            lophoclist.add(new LopHoc(321, "Lớp học công nghệ thông tin cơ bản 1", 3320000,
-                    "Lập Trình1","Sáng","HCM"));
-            lophoclist.add(new LopHoc(321, "Lớp học công nghệ thông tin cơ bản 2", 321321,
-                    "Lập Trình2","Sáng","HCM"));
-            lophoclist.add(new LopHoc(321, "Lớp học công nghệ thông tin cơ bản 3", 321321,
-                    "Lập Trình3","Sáng","HCM"));
-            lophoclist.add(new LopHoc(321, "Lớp học công nghệ thông tin cơ bản 4 ", 350000,
-                    "Lập Trình4","Sáng","HCM"));
-            lophoclist.add(new LopHoc(321, "Lớp học công nghệ thông tin cơ bản 5", 321321,
-                    "Lập Trình5","Sáng","HCM"));
-
             rcv = view.findViewById(R.id.rcv);
 
-            // Kết nối LopHocAdapter vào RecyclerView
-            LopHocAdapter lopHocAdapter = new LopHocAdapter(lophoclist);
+
+            FirebaseRecyclerOptions<LopHoc> options =
+                    new FirebaseRecyclerOptions.Builder<LopHoc>()
+                            .setQuery(FirebaseDatabase.getInstance().getReference().child("LopHoc"), LopHoc.class)
+                            .build();
+
+            lopHocAdapter = new LopHocAdapter(options);
             rcv.setAdapter(lopHocAdapter);
-
-            // Bài trí cột sử dụng GridLayoutManager
-            rcv.setLayoutManager(new GridLayoutManager(getActivity(), 1));
-
-            // Thiết lập sự kiện nhấp vào item
-            lopHocAdapter.setOnItemClickListener(new LopHocAdapter.OnItemClickListener() {
-                @Override
-                public void onItemClick(LopHoc lophoc) {
-                    // Xử lý sự kiện khi nhấp vào item ở đây
-                }
-            });
 
             return view;
         }

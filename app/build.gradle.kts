@@ -44,6 +44,7 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation("androidx.cardview:cardview:1.0.0")
 
     // Import the BoM for the Firebase platform
     implementation("com.google.firebase:firebase-database:20.3.1")
@@ -57,4 +58,17 @@ dependencies {
     implementation ("com.github.bumptech.glide:glide:4.16.0")
 //CircleImageView
     implementation ("de.hdodenhof:circleimageview:3.1.0")
+
+    // FirebaseUI for Firebase Realtime Database
+    implementation ("com.firebaseui:firebase-ui-database:8.0.2")
+
+    // FirebaseUI for Cloud Firestore
+    implementation("com.firebaseui:firebase-ui-firestore:8.0.2")
+
+    // FirebaseUI for Firebase Auth
+    implementation ("com.firebaseui:firebase-ui-auth:8.0.2")
+
+    // FirebaseUI for Cloud Storage
+    implementation ("com.firebaseui:firebase-ui-storage:8.0.2")
 }
+/*apply plugin: ("com.google.gms.google-services")*/

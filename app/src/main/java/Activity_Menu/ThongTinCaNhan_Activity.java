@@ -99,7 +99,7 @@ public class ThongTinCaNhan_Activity extends AppCompatActivity {
 
                 UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                         .setDisplayName(strName)
-                        .setPhotoUri(mSelectedImageUri) //**
+                        .setPhotoUri(Uri.parse(String.valueOf(mSelectedImageUri))) //**
                         .build();
 
                 user.updateProfile(profileUpdates)
@@ -114,21 +114,6 @@ public class ThongTinCaNhan_Activity extends AppCompatActivity {
             }
         });
     }
-
-
-
-    /*  private void UppData(GiaSu giaSu){                     //TẠO THÔNG TIN CÁ NHÂN
-          FirebaseDatabase database =FirebaseDatabase.getInstance();
-          DatabaseReference databaseReference = database.getReference("Thông tin cá nhân gia sư");              //Truyền thông tin vào firebase
-          String thongtingiasu=String.valueOf(giaSu.getSDT());
-          databaseReference.child(thongtingiasu).setValue(giaSu, new DatabaseReference.CompletionListener() {
-              @Override
-              public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                  Toast.makeText(ThongTinCaNhan_Activity.this, "Đã cập nhật thông tin thành công", Toast.LENGTH_SHORT).show();
-              }
-          });
-
-      }*/
     private void addControls() {
         // Khai báo các EditText
         edt_Name_fragment_Infomation = findViewById(R.id.edt_Name_fragment_Infomation);
