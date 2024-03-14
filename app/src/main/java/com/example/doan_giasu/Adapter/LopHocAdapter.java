@@ -20,12 +20,6 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class LopHocAdapter extends FirebaseRecyclerAdapter<LopHoc,LopHocAdapter.myViewHolder> {
-    /**
-     * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
-     * {@link FirebaseRecyclerOptions} for configuration options.
-     *
-     * @param options
-     */
     public LopHocAdapter(@NonNull FirebaseRecyclerOptions<LopHoc> options) {
         super(options);
 
@@ -38,7 +32,6 @@ public class LopHocAdapter extends FirebaseRecyclerAdapter<LopHoc,LopHocAdapter.
         holder.Hocphi.setText(String.valueOf(model.getHocPhi()));
         holder.Tenmonhoc.setText(model.getMonHoc());
         holder.Title.setText(model.getTitle());
-
     }
 
     @NonNull
