@@ -1,21 +1,40 @@
 package Activity_Menu;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.doan_giasu.Model.GiaSu;
 import com.example.doan_giasu.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 
 public class DangKyLamGiaSu_Activity extends AppCompatActivity {
-    EditText edt_monhoc, edt_nghenghiep, edt_thanhpho,
+    EditText edt_monhoc, edt_nghenghiep, edt_thanhpho,edt_hovaten,edt_diachi,edt_namsinh,edt_email,edt_gioithieubanthan,edt_sodienthoai,edt_truongdahoc,edt_namtotnghiep,
             edt_t2, edt_t3, edt_t4, edt_t5, edt_t6, edt_t7, edt_cn;
+    Button dangkylamgiasu;
+    ImageButton img_giasu;
+    Uri imageUri; // Đường dẫn của ảnh đã chọn
+   // private StorageReference storageReference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,12 +115,59 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
                 ShowMenuCN();
             }
         });
+        dangkylamgiasu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Lấy giá trị từ các trường EditText
+                String monhoc = edt_monhoc.getText().toString().trim();
+                String nghenghiep = edt_nghenghiep.getText().toString().trim();
+                String thanhpho = edt_thanhpho.getText().toString().trim();
+                String hovaten = edt_hovaten.getText().toString().trim();
+                String diachi = edt_diachi.getText().toString().trim();
+                String namsinh = edt_namsinh.getText().toString().trim();
+                String email = edt_email.getText().toString().trim();
+                String gioithieubanthan = edt_gioithieubanthan.getText().toString().trim();
+                String sodienthoai = edt_sodienthoai.getText().toString().trim();
+                String truongdahoc = edt_truongdahoc.getText().toString().trim();
+                String namtotnghiep = edt_namtotnghiep.getText().toString().trim();
+
+                // Kiểm tra xem có thông tin nào bị thiếu không
+                if (monhoc.isEmpty() || nghenghiep.isEmpty() || thanhpho.isEmpty() || hovaten.isEmpty() ||
+                        diachi.isEmpty() || namsinh.isEmpty() || email.isEmpty() || gioithieubanthan.isEmpty() ||
+                        sodienthoai.isEmpty() || truongdahoc.isEmpty() || namtotnghiep.isEmpty()) {
+                    Toast.makeText(DangKyLamGiaSu_Activity.this, "Vui lòng nhập đầy đủ thông tin ", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                FirebaseUser currentUser = mAuth.getCurrentUser();
+                luuThongTinGiaSu();         //Hàm kểm tra nếu chưa có thông tin gia sư thì tạo mới,ngược lại có rồi thì cập nhật lại thông tin mà không tạo mới
+
+
+
+
+
+            }
+        });
+        img_giasu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        })  ;
     }
 
     private void addControls() {
         edt_monhoc = findViewById(R.id.edt_monhoc);
         edt_nghenghiep = findViewById(R.id.edt_nghenghiep);
         edt_thanhpho = findViewById(R.id.edt_thanhpho);
+        edt_hovaten = findViewById(R.id.edt_hovaten);
+        edt_diachi = findViewById(R.id.edt_diachi);
+        edt_namsinh = findViewById(R.id.edt_namsinh);
+        edt_email = findViewById(R.id.edt_email);
+        edt_gioithieubanthan = findViewById(R.id.edt_gioithieubanthan);
+        edt_sodienthoai = findViewById(R.id.edt_sodienthoai);
+        edt_truongdahoc = findViewById(R.id.edt_truongdahoc);
+        edt_namtotnghiep = findViewById(R.id.edt_namtotnghiep);
         edt_t2 = findViewById(R.id.edt_t2);
         edt_t3 = findViewById(R.id.edt_t3);
         edt_t4 = findViewById(R.id.edt_t4);
@@ -109,6 +175,8 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
         edt_t6 = findViewById(R.id.edt_t6);
         edt_t7 = findViewById(R.id.edt_t7);
         edt_cn = findViewById(R.id.edt_cn);
+        dangkylamgiasu =findViewById(R.id.btn_dangkylamgiasu_dangkylamgiasu);
+        img_giasu = findViewById(R.id.image_GiaSu);
     }
 
     private void ShowMenu() {
@@ -1040,6 +1108,115 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+
+    private void luuThongTinGiaSu() {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (currentUser != null) {
+            String userId = currentUser.getUid(); // Lấy ID của người dùng hiện tại
+
+            // Kiểm tra xem người dùng đã có thông tin gia sư trong cơ sở dữ liệu chưa
+            FirebaseDatabase.getInstance().getReference("GiaSu").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        // Người dùng đã có thông tin gia sư trong cơ sở dữ liệu, cập nhật thông tin
+                        capNhatThongTinGiaSu(userId);
+                    } else {
+                        // Người dùng chưa có thông tin gia sư trong cơ sở dữ liệu, tạo mới thông tin
+                        taoMoiThongTinGiaSu(userId);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    // Xử lý khi có lỗi xảy ra
+                    Toast.makeText(DangKyLamGiaSu_Activity.this, "Đã xảy ra lỗi, vui lòng thử lại sau", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            // Người dùng chưa đăng nhập, xử lý tùy thuộc vào yêu cầu của bạn
+        }
+    }
+
+    // Phương thức để cập nhật thông tin gia sư
+    private void capNhatThongTinGiaSu(String userId) {
+        // Lấy thông tin mới từ các EditText
+        String monhoc = edt_monhoc.getText().toString().trim();
+        String nghenghiep = edt_nghenghiep.getText().toString().trim();
+        String thanhpho = edt_thanhpho.getText().toString().trim();
+        String hovaten = edt_hovaten.getText().toString().trim();
+        String diachi = edt_diachi.getText().toString().trim();
+        String namsinh = edt_namsinh.getText().toString().trim();
+        String email = edt_email.getText().toString().trim();
+        String gioithieubanthan = edt_gioithieubanthan.getText().toString().trim();
+        String sodienthoai = edt_sodienthoai.getText().toString().trim();
+        String truongdahoc = edt_truongdahoc.getText().toString().trim();
+        String namtotnghiep = edt_namtotnghiep.getText().toString().trim();
+
+// Tạo đối tượng GiaSu mới từ thông tin mới
+        GiaSu giaSu = new GiaSu(nghenghiep, monhoc, thanhpho, hovaten, diachi, Integer.parseInt(namsinh), email, gioithieubanthan, sodienthoai, truongdahoc, Integer.parseInt(namtotnghiep));
+
+// Cập nhật thông tin GiaSu lên Firebase Realtime Database
+        FirebaseDatabase.getInstance().getReference("GiaSu").child(userId).setValue(giaSu)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(DangKyLamGiaSu_Activity.this, "Cập nhật thông tin thành công", Toast.LENGTH_SHORT).show();
+                        // Xử lý khi cập nhật thành công, ví dụ: chuyển về màn hình chính
+                        finish();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(DangKyLamGiaSu_Activity.this, "Cập nhật thông tin thất bại", Toast.LENGTH_SHORT).show();
+                        // Xử lý khi cập nhật thất bại
+                    }
+                });
+    }
+
+    // Phương thức để tạo mới thông tin gia sư
+    private void taoMoiThongTinGiaSu(String userId) {
+        // Lấy thông tin từ các EditText
+        String monhoc = edt_monhoc.getText().toString().trim();
+        String nghenghiep = edt_nghenghiep.getText().toString().trim();
+        String thanhpho = edt_thanhpho.getText().toString().trim();
+        String hovaten = edt_hovaten.getText().toString().trim();
+        String diachi = edt_diachi.getText().toString().trim();
+        String namsinh = edt_namsinh.getText().toString().trim();
+        String email = edt_email.getText().toString().trim();
+        String gioithieubanthan = edt_gioithieubanthan.getText().toString().trim();
+        String sodienthoai = edt_sodienthoai.getText().toString().trim();
+        String truongdahoc = edt_truongdahoc.getText().toString().trim();
+        String namtotnghiep = edt_namtotnghiep.getText().toString().trim();
+
+        // Tạo đối tượng GiaSu mới từ thông tin
+        GiaSu giaSu = new GiaSu(nghenghiep, monhoc, thanhpho, hovaten, diachi, Integer.parseInt(namsinh), email, gioithieubanthan, sodienthoai, truongdahoc, Integer.parseInt(namtotnghiep));
+
+        // Lưu thông tin GiaSu mới vào Firebase Realtime Database
+        FirebaseDatabase.getInstance().getReference("GiaSu").child(userId).setValue(giaSu)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(DangKyLamGiaSu_Activity.this, "Lưu thông tin thành công", Toast.LENGTH_SHORT).show();
+                        // Xử lý khi lưu thành công, ví dụ: chuyển về màn hình chính
+                        finish();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(DangKyLamGiaSu_Activity.this, "Lưu thông tin thất bại", Toast.LENGTH_SHORT).show();
+                        // Xử lý khi lưu thất bại
+                    }
+                });
+    }
+
+
 
 
 }
