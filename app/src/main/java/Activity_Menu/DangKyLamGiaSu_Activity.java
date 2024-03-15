@@ -1,5 +1,6 @@
 package Activity_Menu;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -25,15 +27,21 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 
 public class DangKyLamGiaSu_Activity extends AppCompatActivity {
-    EditText edt_monhoc, edt_nghenghiep, edt_thanhpho,edt_hovaten,edt_diachi,edt_namsinh,edt_email,edt_gioithieubanthan,edt_sodienthoai,edt_truongdahoc,edt_namtotnghiep,
+    EditText edt_monhoc, edt_nghenghiep, edt_thanhpho, edt_hovaten, edt_diachi, edt_namsinh, edt_email, edt_gioithieubanthan, edt_sodienthoai, edt_truongdahoc, edt_namtotnghiep,
             edt_t2, edt_t3, edt_t4, edt_t5, edt_t6, edt_t7, edt_cn;
     Button dangkylamgiasu;
     ImageButton img_giasu;
     Uri imageUri; // Đường dẫn của ảnh đã chọn
-   // private StorageReference storageReference;
+    // private StorageReference storageReference;
+    private static final int PICK_IMAGE_REQUEST = 1;
+    private String userId; // Khai báo biến userId ở cấp độ lớp
+
 
 
     @Override
@@ -54,6 +62,7 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
 
 
     }
+
     private void addEvents() {
         edt_monhoc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,7 +139,6 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
                 String sodienthoai = edt_sodienthoai.getText().toString().trim();
                 String truongdahoc = edt_truongdahoc.getText().toString().trim();
                 String namtotnghiep = edt_namtotnghiep.getText().toString().trim();
-
                 // Kiểm tra xem có thông tin nào bị thiếu không
                 if (monhoc.isEmpty() || nghenghiep.isEmpty() || thanhpho.isEmpty() || hovaten.isEmpty() ||
                         diachi.isEmpty() || namsinh.isEmpty() || email.isEmpty() || gioithieubanthan.isEmpty() ||
@@ -141,19 +149,29 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
                 FirebaseUser currentUser = mAuth.getCurrentUser();
                 luuThongTinGiaSu();         //Hàm kểm tra nếu chưa có thông tin gia sư thì tạo mới,ngược lại có rồi thì cập nhật lại thông tin mà không tạo mới
+            }
+        });
+        img_giasu.setOnClickListener(new View.OnClickListener() {   //Nút  luu hình ảnh
 
-
-
-
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+                startActivityForResult(intent, PICK_IMAGE_REQUEST);
 
             }
         });
-        img_giasu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        })  ;
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            imageUri = data.getData();
+            // Set ảnh cho ImageButton
+            img_giasu.setImageURI(imageUri);
+            // Gọi hàm uploadImageToFirebaseStorage(userId) để tải ảnh lên Firebase Storage
+            uploadImageToFirebaseStorage(userId);
+        }
     }
 
     private void addControls() {
@@ -175,7 +193,7 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
         edt_t6 = findViewById(R.id.edt_t6);
         edt_t7 = findViewById(R.id.edt_t7);
         edt_cn = findViewById(R.id.edt_cn);
-        dangkylamgiasu =findViewById(R.id.btn_dangkylamgiasu_dangkylamgiasu);
+        dangkylamgiasu = findViewById(R.id.btn_dangkylamgiasu_dangkylamgiasu);
         img_giasu = findViewById(R.id.image_GiaSu);
     }
 
@@ -417,6 +435,8 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
                         break;
                     case R.id.menuhoabinh:
                         edt_thanhpho.setText("Hòa Bình");
+                        String thanhpho = "Hòa Bình";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhpho);
                         break;
                     case R.id.menuthainguyen:
                         edt_thanhpho.setText("Thái Nguyên");
@@ -485,6 +505,7 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
         popupMenu.show();
 
     }
+
     private void ShowMenuT2() {
         PopupMenu popupMenu = new PopupMenu(this, edt_t2);
         popupMenu.getMenuInflater().inflate(R.menu.menu_pupop_thu, popupMenu.getMenu());
@@ -573,6 +594,7 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
         });
         popupMenu.show();
     }
+
     private void ShowMenuT3() {
         PopupMenu popupMenu = new PopupMenu(this, edt_t3);
         popupMenu.getMenuInflater().inflate(R.menu.menu_pupop_thu, popupMenu.getMenu());
@@ -661,6 +683,7 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
         });
         popupMenu.show();
     }
+
     private void ShowMenuT4() {
         PopupMenu popupMenu = new PopupMenu(this, edt_t4);
         popupMenu.getMenuInflater().inflate(R.menu.menu_pupop_thu, popupMenu.getMenu());
@@ -749,6 +772,7 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
         });
         popupMenu.show();
     }
+
     private void ShowMenuT5() {
         PopupMenu popupMenu = new PopupMenu(this, edt_t5);
         popupMenu.getMenuInflater().inflate(R.menu.menu_pupop_thu, popupMenu.getMenu());
@@ -837,6 +861,7 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
         });
         popupMenu.show();
     }
+
     private void ShowMenuT6() {
         PopupMenu popupMenu = new PopupMenu(this, edt_t6);
         popupMenu.getMenuInflater().inflate(R.menu.menu_pupop_thu, popupMenu.getMenu());
@@ -925,6 +950,7 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
         });
         popupMenu.show();
     }
+
     private void ShowMenuT7() {
         PopupMenu popupMenu = new PopupMenu(this, edt_t7);
         popupMenu.getMenuInflater().inflate(R.menu.menu_pupop_thu, popupMenu.getMenu());
@@ -1013,6 +1039,7 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
         });
         popupMenu.show();
     }
+
     private void ShowMenuCN() {
         PopupMenu popupMenu = new PopupMenu(this, edt_cn);
         popupMenu.getMenuInflater().inflate(R.menu.menu_pupop_thu, popupMenu.getMenu());
@@ -1101,14 +1128,13 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
         });
         popupMenu.show();
     }
-    public boolean onOptionsItemSelected(@NonNull MenuItem item)
-    {
-        if (item.getItemId() == android.R.id.home){
+
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
             finish();
         }
         return super.onOptionsItemSelected(item);
     }
-
 
 
     private void luuThongTinGiaSu() {
@@ -1203,7 +1229,6 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(DangKyLamGiaSu_Activity.this, "Lưu thông tin thành công", Toast.LENGTH_SHORT).show();
-                        // Xử lý khi lưu thành công, ví dụ: chuyển về màn hình chính
                         finish();
                     }
                 })
@@ -1211,12 +1236,33 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(DangKyLamGiaSu_Activity.this, "Lưu thông tin thất bại", Toast.LENGTH_SHORT).show();
-                        // Xử lý khi lưu thất bại
                     }
                 });
     }
+    private void uploadImageToFirebaseStorage(String userId) {
+        if (imageUri != null) {
+            StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+            String imageName = "profile_image.jpg";
+            StorageReference imageRef = storageRef.child("profile_images").child(userId).child(imageName);
 
-
-
-
+            imageRef.putFile(imageUri)
+                    .addOnSuccessListener(taskSnapshot -> {
+                        imageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                            String imageUrl = uri.toString();
+                            // Lưu đường dẫn URL của ảnh vào Firestore hoặc Realtime Database
+                            luuThongTinGiaSu();
+                        });
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(DangKyLamGiaSu_Activity.this, "Tải ảnh lên thất bại", Toast.LENGTH_SHORT).show();
+                    });
+        } else {
+            Toast.makeText(DangKyLamGiaSu_Activity.this, "Vui lòng chọn ảnh", Toast.LENGTH_SHORT).show();
+        }
+    }       //Lỗi chưa lên
 }
+
+
+
+
+
