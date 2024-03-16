@@ -188,65 +188,106 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
                     case R.id.menulaptrinh:
                         edt_monhoc.setText("Lập trình");
+                        String monhocLaptrinh = "Lập trình";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("monhoc").setValue(monhocLaptrinh);
                         break;
                     case R.id.menulaptrinhandroid:
                         edt_monhoc.setText("Lập trình Android");
+                        String monhocAndroid = "Lập trình Android";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("monhoc").setValue(monhocAndroid);
                         break;
                     case R.id.menulaptrinhaspnet:
                         edt_monhoc.setText("Lập trình ASP.NET");
+                        String monhocASPNET = "Lập trình ASP.NET";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("monhoc").setValue(monhocASPNET);
                         break;
                     case R.id.menulaptrinhautolisp:
                         edt_monhoc.setText("Lập trình Autolisp");
+                        String monhocAutolisp = "Lập trình Autolisp";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("monhoc").setValue(monhocAutolisp);
                         break;
                     case R.id.menulaptrinhc:
                         edt_monhoc.setText("Lập trình C, C++, C#");
+                        String monhocC = "Lập trình C, C++, C#";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("monhoc").setValue(monhocC);
                         break;
                     case R.id.menulaptrinhcacngonngukhac:
                         edt_monhoc.setText("Lập trình các ngôn ngữ khác");
+                        String monhocKhac = "Lập trình các ngôn ngữ khác";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("monhoc").setValue(monhocKhac);
                         break;
                     case R.id.menulaptrinhgame:
                         edt_monhoc.setText("Lập trình Game");
+                        String monhocGame = "Lập trình Game";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("monhoc").setValue(monhocGame);
                         break;
                     case R.id.menulaptrinhios:
                         edt_monhoc.setText("Lập trình IOS");
+                        String monhocIOS = "Lập trình IOS";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("monhoc").setValue(monhocIOS);
                         break;
                     case R.id.menulaptrinhjava:
                         edt_monhoc.setText("Lập trình Java");
+                        String monhocJava = "Lập trình Java";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("monhoc").setValue(monhocJava);
                         break;
                     case R.id.menulaptrinhjavaspring:
                         edt_monhoc.setText("Lập trình java spring");
+                        String monhocJavaSpring = "Lập trình java spring";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("monhoc").setValue(monhocJavaSpring);
                         break;
                     case R.id.menulaptrinhojective:
                         edt_monhoc.setText("Lập trình Objective, SWIFT");
+                        String monhocObjective = "Lập trình Objective, SWIFT";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("monhoc").setValue(monhocObjective);
                         break;
                     case R.id.menulaptrinhonline:
                         edt_monhoc.setText("Lập trình online");
+                        String monhocOnline = "Lập trình online";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("monhoc").setValue(monhocOnline);
                         break;
                     case R.id.menulaptrinhpascal:
                         edt_monhoc.setText("Lập trình Pascal");
+                        String monhocPascal = "Lập trình Pascal";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("monhoc").setValue(monhocPascal);
                         break;
                     case R.id.menulaptrinhpython:
                         edt_monhoc.setText("Lập trình Python");
+                        String monhocPython = "Lập trình Python";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("monhoc").setValue(monhocPython);
                         break;
                     case R.id.menulaptrinhsharepoint:
                         edt_monhoc.setText("Lập trình sharepoint");
+                        String monhocSharepoint = "Lập trình sharepoint";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("monhoc").setValue(monhocSharepoint);
                         break;
                     case R.id.menulaptrinhsql:
                         edt_monhoc.setText("Lập trình SQL");
+                        String monhocSQL = "Lập trình SQL";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("monhoc").setValue(monhocSQL);
                         break;
                     case R.id.menulaptrinhdidong:
                         edt_monhoc.setText("Lập trình Ứng dụng di động");
+                        String monhocUngdungdidong = "Lập trình Ứng dụng di động";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("monhoc").setValue(monhocUngdungdidong);
                         break;
                     case R.id.menulaptrinhvba:
                         edt_monhoc.setText("Lập trình VBA");
+                        String monhocVBA = "Lập trình VBA";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("monhoc").setValue(monhocVBA);
                         break;
                     case R.id.menulaptrinhweb:
                         edt_monhoc.setText("Lập trình web");
+                        String monhocWeb = "Lập trình web";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("monhoc").setValue(monhocWeb);
                         break;
                     case R.id.menulaptrinhphp:
                         edt_monhoc.setText("Lập trình web PHP");
+                        String monhocWebPHP = "Lập trình web PHP";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("monhoc").setValue(monhocWebPHP);
                         break;
                 }
+
                 return false;
             }
         });
@@ -291,192 +332,318 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
                     case R.id.menuhochiminh:
                         edt_thanhpho.setText("Hồ Chí Minh");
+                        String thanhphoHochiminh = "Hồ Chí Minh";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoHochiminh);
                         break;
                     case R.id.menuhanoi:
                         edt_thanhpho.setText("Hà Nội");
+                        String thanhphoHanoi = "Hà Nội";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoHanoi);
                         break;
                     case R.id.menudanang:
                         edt_thanhpho.setText("Đà Nẵng");
+                        String thanhphoDanang = "Đà Nẵng";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoDanang);
                         break;
                     case R.id.menukhanhhoa:
                         edt_thanhpho.setText("Khánh Hòa");
+                        String thanhphoKhanhhoa = "Khánh Hòa";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoKhanhhoa);
                         break;
                     case R.id.menulamdong:
                         edt_thanhpho.setText("Lâm Đồng");
+                        String thanhphoLamdong = "Lâm Đồng";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoLamdong);
                         break;
                     case R.id.menubariavungtau:
                         edt_thanhpho.setText("Bà Rịa-Vũng Tàu");
+                        String thanhphoBariaVungtau = "Bà Rịa-Vũng Tàu";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoBariaVungtau);
                         break;
                     case R.id.menucantho:
                         edt_thanhpho.setText("Cần Thơ");
+                        String thanhphoCantho = "Cần Thơ";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoCantho);
                         break;
                     case R.id.menubinhphuoc:
                         edt_thanhpho.setText("Bình Phước");
+                        String thanhphoBinhphuoc = "Bình Phước";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoBinhphuoc);
                         break;
                     case R.id.menucamau:
                         edt_thanhpho.setText("Cà Mau");
+                        String thanhphoCamaum = "Cà Mau";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoCamaum);
                         break;
                     case R.id.menuquangngai:
                         edt_thanhpho.setText("Quãng Ngãi");
+                        String thanhphoQuangngai = "Quãng Ngãi";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoQuangngai);
                         break;
                     case R.id.menubinhdinh:
                         edt_thanhpho.setText("Bình Định");
+                        String thanhphoBinhdinh = "Bình Định";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoBinhdinh);
                         break;
                     case R.id.menuphuyen:
                         edt_thanhpho.setText("Phú Yên");
+                        String thanhphoPhuyen = "Phú Yên";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoPhuyen);
                         break;
                     case R.id.menubaclieu:
                         edt_thanhpho.setText("Bạc Liêu");
+                        String thanhphoBaclieu = "Bạc Liêu";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoBaclieu);
                         break;
                     case R.id.menuninhthuan:
                         edt_thanhpho.setText("Ninh Thuận");
+                        String thanhphoNinhthuan = "Ninh Thuận";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoNinhthuan);
                         break;
                     case R.id.menubinhthuan:
                         edt_thanhpho.setText("Bình Thuận");
+                        String thanhphoBinhthuan = "Bình Thuận";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoBinhthuan);
                         break;
                     case R.id.menukontum:
                         edt_thanhpho.setText("Kon Tum");
+                        String thanhphoKontum = "Kon Tum";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoKontum);
                         break;
                     case R.id.menugialai:
                         edt_thanhpho.setText("Gia Lai");
+                        String thanhphoGialai = "Gia Lai";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoGialai);
                         break;
                     case R.id.menudaklak:
                         edt_thanhpho.setText("Đắk Lắk");
+                        String thanhphoDaklak = "Đắk Lắk";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoDaklak);
                         break;
                     case R.id.menudaknong:
                         edt_thanhpho.setText("Đắk Nông");
+                        String thanhphoDaknong = "Đắk Nông";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoDaknong);
                         break;
                     case R.id.menusoctrang:
                         edt_thanhpho.setText("Sóc Trăng");
+                        String thanhphoSocTrang = "Sóc Trăng";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoSocTrang);
                         break;
                     case R.id.menukiengiang:
                         edt_thanhpho.setText("Kiên Giang");
+                        String thanhphoKiengiang = "Kiên Giang";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoKiengiang);
                         break;
                     case R.id.menutayninh:
                         edt_thanhpho.setText("Tây Ninh");
+                        String thanhphoTayninh = "Tây Ninh";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoTayninh);
                         break;
                     case R.id.menubinhduong:
                         edt_thanhpho.setText("Bình Dương");
+                        String thanhphoBinhduong = "Bình Dương";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoBinhduong);
                         break;
                     case R.id.menudongnai:
                         edt_thanhpho.setText("Đồng Nai");
+                        String thanhphoDongnai = "Đồng Nai";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoDongnai);
                         break;
                     case R.id.menuhaugiang:
                         edt_thanhpho.setText("Hậu Giang");
+                        String thanhphoHaugiang = "Hậu Giang";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoHaugiang);
                         break;
                     case R.id.menulongan:
                         edt_thanhpho.setText("Long An");
+                        String thanhphoLongan = "Long An";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoLongan);
                         break;
                     case R.id.menutiengiang:
                         edt_thanhpho.setText("Tiền Giang");
+                        String thanhphoTiengiang = "Tiền Giang";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoTiengiang);
                         break;
                     case R.id.menubentre:
                         edt_thanhpho.setText("Bến Tre");
+                        String thanhphoBentre = "Bến Tre";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoBentre);
                         break;
                     case R.id.menutravinh:
                         edt_thanhpho.setText("Trà Vinh");
+                        String thanhphoTravinh = "Trà Vinh";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoTravinh);
                         break;
                     case R.id.menuvinhlong:
                         edt_thanhpho.setText("Vĩnh Long");
+                        String thanhphoVinhlong = "Vĩnh Long";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoVinhlong);
                         break;
                     case R.id.menudongthap:
                         edt_thanhpho.setText("Đồng Tháp");
+                        String thanhphoDongthap = "Đồng Tháp";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoDongthap);
                         break;
                     case R.id.menuangiang:
                         edt_thanhpho.setText("An Giang");
+                        String thanhphoAngiang = "An Giang";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoAngiang);
                         break;
                     case R.id.menuvinhphuc:
                         edt_thanhpho.setText("Vĩnh Phúc");
+                        String thanhphoVinhphuc = "Vĩnh Phúc";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoVinhphuc);
                         break;
                     case R.id.menuhagiang:
                         edt_thanhpho.setText("Hà Giang");
+                        String thanhphoHagiang = "Hà Giang";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoHagiang);
                         break;
                     case R.id.menucaobang:
                         edt_thanhpho.setText("Cao Bằng");
+                        String thanhphoCaobang = "Cao Bằng";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoCaobang);
                         break;
                     case R.id.menubackan:
                         edt_thanhpho.setText("Bắc Kạn");
+                        String thanhphoBackan = "Bắc Kạn";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoBackan);
                         break;
                     case R.id.menutuyenquang:
                         edt_thanhpho.setText("Tuyên Quang");
+                        String thanhphoTuyenquang = "Tuyên Quang";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoTuyenquang);
                         break;
                     case R.id.menulaocai:
                         edt_thanhpho.setText("Lào Cai");
+                        String thanhphoLaocai = "Lào Cai";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoLaocai);
                         break;
                     case R.id.menudienbien:
                         edt_thanhpho.setText("Điện Biên");
+                        String thanhphoDienbien = "Điện Biên";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoDienbien);
                         break;
                     case R.id.menulaichau:
                         edt_thanhpho.setText("Lai Châu");
+                        String thanhphoLaichau = "Lai Châu";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoLaichau);
                         break;
                     case R.id.menusonla:
                         edt_thanhpho.setText("Sơn La");
+                        String thanhphoSonla = "Sơn La";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoSonla);
                         break;
                     case R.id.menuyenbai:
                         edt_thanhpho.setText("Yên Bái");
+                        String thanhphoYenbai = "Yên Bái";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoYenbai);
                         break;
                     case R.id.menuhoabinh:
                         edt_thanhpho.setText("Hòa Bình");
+                        String thanhphoHoabinh = "Hòa Bình";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoHoabinh);
                         break;
                     case R.id.menuthainguyen:
                         edt_thanhpho.setText("Thái Nguyên");
+                        String thanhphoThainguyen = "Thái Nguyên";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoThainguyen);
                         break;
                     case R.id.menulangson:
                         edt_thanhpho.setText("Lạng Sơn");
+                        String thanhphoLangson = "Lạng Sơn";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoLangson);
                         break;
                     case R.id.menuquangninh:
                         edt_thanhpho.setText("Quảng Ninh");
+                        String thanhphoQuangninh = "Quảng Ninh";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoQuangninh);
                         break;
                     case R.id.menubacgiang:
                         edt_thanhpho.setText("Bắc Giang");
+                        String thanhphoBacgiang = "Bắc Giang";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoBacgiang);
                         break;
                     case R.id.menuphutho:
                         edt_thanhpho.setText("Phú Thọ");
+                        String thanhphoPhutho = "Phú Thọ";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoPhutho);
                         break;
                     case R.id.menuquangnam:
                         edt_thanhpho.setText("Quảng Nam");
+                        String thanhphoQuangnam = "Quảng Nam";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoQuangnam);
                         break;
                     case R.id.menubacninh:
                         edt_thanhpho.setText("Bắc Ninh");
+                        String thanhphoBacninh = "Bắc Ninh";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoBacninh);
                         break;
                     case R.id.menuhaiduong:
                         edt_thanhpho.setText("Hải Dương");
+                        String thanhphoHaiduong = "Hải Dương";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoHaiduong);
                         break;
                     case R.id.menuhaiphong:
                         edt_thanhpho.setText("Hải Phòng");
+                        String thanhphoHaiphong = "Hải Phòng";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoHaiphong);
                         break;
                     case R.id.menuhungyen:
                         edt_thanhpho.setText("Hưng Yên");
+                        String thanhphoHungyen = "Hưng Yên";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoHungyen);
                         break;
                     case R.id.menuthaibinh:
                         edt_thanhpho.setText("Thái Bình");
+                        String thanhphoThaibinh = "Thái Bình";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoThaibinh);
                         break;
                     case R.id.menuhanam:
                         edt_thanhpho.setText("Hà Nam");
+                        String thanhphoHanam = "Hà Nam";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoHanam);
                         break;
                     case R.id.menunamdinh:
                         edt_thanhpho.setText("Nam Định");
+                        String thanhphoNamdinh = "Nam Định";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoNamdinh);
                         break;
                     case R.id.menuninhbinh:
                         edt_thanhpho.setText("Ninh Bình");
+                        String thanhphoNinhbinh = "Ninh Bình";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoNinhbinh);
                         break;
                     case R.id.menuthanhhoa:
                         edt_thanhpho.setText("Thanh Hóa");
+                        String thanhphoThanhhoa = "Thanh Hóa";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoThanhhoa);
                         break;
                     case R.id.menunghean:
                         edt_thanhpho.setText("Nghệ An");
+                        String thanhphoNghean = "Nghệ An";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoNghean);
                         break;
                     case R.id.menuhatinh:
                         edt_thanhpho.setText("Hà Tĩnh");
+                        String thanhphoHatinh = "Hà Tĩnh";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoHatinh);
                         break;
                     case R.id.menuquangbinh:
                         edt_thanhpho.setText("Quảng Bình");
+                        String thanhphoQuangbinh = "Quảng Bình";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoQuangbinh);
                         break;
                     case R.id.menuquangtri:
                         edt_thanhpho.setText("Quảng Trị");
+                        String thanhphoQuangtri = "Quảng Trị";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoQuangtri);
                         break;
                     case R.id.menuthuathienhue:
                         edt_thanhpho.setText("Thừa Thiên Huế ");
+                        String thanhphoThuathienhue = "Thừa Thiên Huế ";
+                        FirebaseDatabase.getInstance().getReference("your_reference").child("thanhpho").setValue(thanhphoThuathienhue);
                         break;
                 }
                 return false;

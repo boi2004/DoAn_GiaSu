@@ -9,14 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.doan_giasu.Model.LopHoc;
 import com.example.doan_giasu.R;
-//import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class NewclassFragment extends Fragment  {
     RecyclerView rcv;
-   // LopHocAdapter lopHocAdapter;
         private static final String ARG_PARAM1 = "param1";
         private static final String ARG_PARAM2 = "param2";
 
@@ -45,13 +41,13 @@ public class NewclassFragment extends Fragment  {
                 mParam1 = getArguments().getString(ARG_PARAM1);
                 mParam2 = getArguments().getString(ARG_PARAM2);
             }
+            rcv = (RecyclerView) getActivity().findViewById(R.id.rcv);
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.fragment_newclass, container, false);
-            rcv = view.findViewById(R.id.rcv);
 
             return view;
         }
