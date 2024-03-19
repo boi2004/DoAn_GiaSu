@@ -1,5 +1,7 @@
 package Activity_Menu;
 
+import static java.security.AccessController.getContext;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -64,6 +66,7 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
 
         addControls();
         addEvents();
+        LuuDuLieu();
 
 
     }
@@ -154,6 +157,7 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
                 FirebaseUser currentUser = mAuth.getCurrentUser();
                 luuThongTinGiaSu();         //Hàm kểm tra nếu chưa có thông tin gia sư thì tạo mới,ngược lại có rồi thì cập nhật lại thông tin mà không tạo mới
+
             }
         });
         img_giasu.setOnClickListener(new View.OnClickListener() {   //Nút  luu hình ảnh
@@ -1266,34 +1270,47 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
         }
     }
     // Tham chiếu đến node chứa dữ liệu trên Realtime Database
-    private GiaSuAdapter giaSuAdapter;
-    private List<GiaSu> ListGiasu;
     public void LuuDuLieu(){
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = database.getReference("GiaSu");
-        databaseReference.addValueEventListener(new ValueEventListener() {
+// Lấy reference đến node chứa dữ liệu gia sư từ Realtime Database
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userID = user.getUid();
+        DatabaseReference giaSuRef = FirebaseDatabase.getInstance().getReference().child("GiaSu").child(userID);
+        giaSuRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    ListGiasu.clear(); // Xóa dữ liệu cũ trước khi cập nhật mới
-                    for (DataSnapshot dataSnapshot: snapshot.getChildren()){
-                        GiaSu giaSu = dataSnapshot.getValue(GiaSu.class);
-                        Log.d("FirebaseData", "GiaSu: " + giaSu.toString()); // In ra dữ liệu của mỗi gia sư
-                        ListGiasu.add(giaSu);
-                    }
-                    giaSuAdapter.notifyDataSetChanged(); // Thông báo cho adapter rằng dữ liệu đã thay đổi
-                } else {
-                    Log.d("FirebaseData", "No data available");
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // Lấy dữ liệu từ snapshot
+                    String diaChi = dataSnapshot.child("diaChi").getValue(String.class);
+                    String email = dataSnapshot.child("email").getValue(String.class);
+                    String gioiThieuBanThan = dataSnapshot.child("gioiThieuBanThan").getValue(String.class);
+                    String hoVaTen = dataSnapshot.child("hoVaTen").getValue(String.class);
+                    String monHoc = dataSnapshot.child("monHoc").getValue(String.class);
+                    long namSinh = dataSnapshot.child("namSinh").getValue(Long.class);
+                    String ngheNghiep = dataSnapshot.child("ngheNghiep").getValue(String.class);
+                    String soDienThoai = dataSnapshot.child("soDienThoai").getValue(String.class);
+                    String thanhPho = dataSnapshot.child("thanhPho").getValue(String.class);
+                    String truongDaHoc = dataSnapshot.child("truongDaHoc").getValue(String.class);
+                    long namTotNghiep = dataSnapshot.child("namTotNghiep").getValue(Long.class);
+
+                    // Hiển thị dữ liệu lên các EditText
+                    edt_diachi.setText(diaChi);
+                    edt_email.setText(email);
+                    edt_gioithieubanthan.setText(gioiThieuBanThan);
+                    edt_hovaten.setText(hoVaTen);
+                    edt_monhoc.setText(monHoc);
+                    edt_namsinh.setText(String.valueOf(namSinh));
+                    edt_nghenghiep.setText(ngheNghiep);
+                    edt_sodienthoai.setText(soDienThoai);
+                    edt_thanhpho.setText(thanhPho);
+                    edt_truongdahoc.setText(truongDaHoc);
+                    edt_namtotnghiep.setText(String.valueOf(namTotNghiep));
                 }
             }
-
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Xử lý khi có lỗi xảy ra
             }
-        });
-    }
+        });    }
 
 }
 
