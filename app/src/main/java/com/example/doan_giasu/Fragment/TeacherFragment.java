@@ -33,10 +33,6 @@ public class TeacherFragment extends Fragment {
     private RecyclerView recyclerView;
     private GiaSuAdapter giaSuAdapter;
     private List<GiaSu> ListGiasu;
-    Button button3;
-    private Activity view;
-
-    // Phần còn lại của Fragment không thay đổi
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,60 +40,51 @@ public class TeacherFragment extends Fragment {
         if (getArguments() != null) {
             ListGiasu = new ArrayList<>(); // Khởi tạo danh sách gia sư
             giaSuAdapter = new GiaSuAdapter(ListGiasu); // Khởi tạo Adapter
-            addControl();
             LayDanhSachGiaSuTuData(); // Lấy dữ liệu từ Firebase
         }
-//
     }
 
-    private void addControl() {
-        recyclerView = view.findViewById(R.id.list_GiaoVien); // Gán recyclerView từ view đã inflate
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext()); // Sử dụng getContext() thay vì this
-        recyclerView.setLayoutManager(linearLayoutManager);
-        DividerItemDecoration dividerItemDecoration=  new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL); // Sử dụng getContext() thay vì this
-        recyclerView.addItemDecoration(dividerItemDecoration);
-        recyclerView.setAdapter(giaSuAdapter); // Thiết lập Adapter cho RecyclerView
-    }
-
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_teacher, container, false);
-        recyclerView = view.findViewById(R.id.list_GiaoVien); // Gán recyclerView từ view đã inflate
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext()); // Sử dụng getContext() thay vì this
+        recyclerView = view.findViewById(R.id.list_GiaoVien);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        DividerItemDecoration dividerItemDecoration=  new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL); // Sử dụng getContext() thay vì this
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
-        recyclerView.setAdapter(giaSuAdapter); // Thiết lập Adapter cho RecyclerView
+
+        // Kiểm tra xem adapter đã được khởi tạo trước đó hay chưa
+        if (giaSuAdapter == null) {
+            // Khởi tạo adapter và lấy dữ liệu từ Firebase
+            ListGiasu = new ArrayList<>();
+            giaSuAdapter = new GiaSuAdapter(ListGiasu);
+            LayDanhSachGiaSuTuData();
+        } else {
+            // Adapter đã được khởi tạo trước đó, không cần làm gì cả
+        }
+
+        // Gán adapter cho RecyclerView
+        recyclerView.setAdapter(giaSuAdapter);
 
         return view;
     }
-
     public void LayDanhSachGiaSuTuData(){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference=database.getReference("GiaSu");
+        DatabaseReference databaseReference = database.getReference("GiaSu");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                List<GiaSu> tempList = new ArrayList<>(); // Tạo một danh sách tạm thời để lưu trữ dữ liệu mới
-
-                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    GiaSu giaSu = dataSnapshot.getValue(GiaSu.class);
-                    Log.d("FirebaseData", "Gia su: " + giaSu.getHoVaTen()); // In ra Logcat
-                    tempList.add(giaSu);
-                }
-
-                // Cập nhật danh sách dữ liệu mới trên luồng UI chính
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        ListGiasu.clear(); // Xóa danh sách cũ
-                        ListGiasu.addAll(tempList); // Thêm dữ liệu mới vào danh sách
-                        giaSuAdapter.notifyDataSetChanged(); // Cập nhật adapter
+                if (snapshot.exists()) {
+                    ListGiasu.clear(); // Xóa dữ liệu cũ trước khi cập nhật mới
+                    for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                        GiaSu giaSu = dataSnapshot.getValue(GiaSu.class);
+                        Log.d("FirebaseData", "GiaSu: " + giaSu.toString()); // In ra dữ liệu của mỗi gia sư
+                        ListGiasu.add(giaSu);
                     }
-                });
-
-                Toast.makeText(getActivity(), "Thành công khi lấy dữ liệu từ Firebase", Toast.LENGTH_SHORT).show();
+                    giaSuAdapter.notifyDataSetChanged(); // Thông báo cho adapter rằng dữ liệu đã thay đổi
+                } else {
+                    Log.d("FirebaseData", "No data available");
+                }
             }
 
             @Override
@@ -106,5 +93,5 @@ public class TeacherFragment extends Fragment {
             }
         });
     }
-
 }
+

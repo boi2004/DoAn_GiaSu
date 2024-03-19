@@ -3,6 +3,7 @@ package Activity_Menu;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.doan_giasu.Adapter.GiaSuAdapter;
 import com.example.doan_giasu.Model.GiaSu;
 import com.example.doan_giasu.R;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -25,11 +27,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import java.util.List;
 
 
 public class DangKyLamGiaSu_Activity extends AppCompatActivity {
@@ -1259,7 +1264,37 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
         } else {
             Toast.makeText(DangKyLamGiaSu_Activity.this, "Vui lòng chọn ảnh", Toast.LENGTH_SHORT).show();
         }
-    }       //Lỗi chưa lên
+    }
+    // Tham chiếu đến node chứa dữ liệu trên Realtime Database
+    private GiaSuAdapter giaSuAdapter;
+    private List<GiaSu> ListGiasu;
+    public void LuuDuLieu(){
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = database.getReference("GiaSu");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    ListGiasu.clear(); // Xóa dữ liệu cũ trước khi cập nhật mới
+                    for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                        GiaSu giaSu = dataSnapshot.getValue(GiaSu.class);
+                        Log.d("FirebaseData", "GiaSu: " + giaSu.toString()); // In ra dữ liệu của mỗi gia sư
+                        ListGiasu.add(giaSu);
+                    }
+                    giaSuAdapter.notifyDataSetChanged(); // Thông báo cho adapter rằng dữ liệu đã thay đổi
+                } else {
+                    Log.d("FirebaseData", "No data available");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
 }
 
 

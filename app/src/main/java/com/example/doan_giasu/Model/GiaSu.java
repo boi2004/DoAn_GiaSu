@@ -45,6 +45,13 @@ public class GiaSu {
         this.truongDaHoc = truongDaHoc;
         this.namTotNghiep = namTotNghiep;
     }
+    public GiaSu(String monHoc, String ngheNghiep, String hoVaTen, String diaChi, int namSinh) {
+        this.monHoc = monHoc;
+        this.ngheNghiep = ngheNghiep;
+        this.hoVaTen = hoVaTen;
+        this.diaChi = diaChi;
+        this.namSinh = namSinh;
+    }
 
     // Các phương thức getter và setter
     public String getMonHoc() {

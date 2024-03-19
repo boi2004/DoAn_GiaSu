@@ -7,10 +7,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_GiaoVien"
-        android:layout_width="406dp"
-        android:layout_height="607dp"
+        android:layout_width="408dp"
+        android:layout_height="735dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="150dp"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -18,22 +18,5 @@
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="194dp"
-        android:layout_height="29dp"
-        android:layout_marginTop="19dp"
-        android:text="Teacher"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteY="2dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
