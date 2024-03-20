@@ -1,5 +1,4 @@
 package Activity_Menu;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -33,14 +32,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;               //FireBase
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.util.BitSet;
-
-
 public class ThongTinCaNhan_Activity extends AppCompatActivity {
     private static final int MY_REQUEST_CODE = 1;
     EditText edt_Name_fragment_Infomation, edtDiaChi, edtNamSinh, edtEmail, edtSdt;
@@ -75,17 +74,15 @@ public class ThongTinCaNhan_Activity extends AppCompatActivity {
         setContentView(R.layout.activitythong_tincanhan);
         addControls();
         /*addEvents();*/
-
         SetInformationUser();
         ChangeAvatar();
-
-        Toolbar toolbar = findViewById(R.id.toolbar_thongtincanhan);          //Hàm toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar_thongtincanhan);       //Hàm toolbar
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Thông tin cá nhân");
         int white = getResources().getColor(android.R.color.white);
         toolbar.setTitleTextColor(white);   //Trong đoạn mã trên, toolbar.setTitleTextColor(white) sẽ đặt màu trắng cho tiêu đề của Toolbar.
-
+        LuuDuLieu();//Hiện thông  tin trên edittext
 
         btnLuuThayDoi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,17 +116,8 @@ public class ThongTinCaNhan_Activity extends AppCompatActivity {
         edtEmail = findViewById(R.id.edt_Email_fragment_Infomation);
         edtSdt = findViewById(R.id.edt_SDT_fragment_Infomation);
         circleImageView_InforUser = findViewById(R.id.circleImageView_InforUser);
-
-
-       /* // Khai báo RadioGroup và RadioButton
-        radioGroupGioiTinh = findViewById(R.id.RadioGroup_GioiTinh_fragment_Infomation);
-        radioButtonNam = findViewById(R.id.RadioButton_Nam_fragment_Infomation);
-        radioButtonNu = findViewById(R.id.RadioButton_Nu_fragment_Infomation);*/
-
         // Khai báo các Button
         btnLuuThayDoi = findViewById(R.id.btn_LuuThayDoi_fragment_Infomation);
-
-
     }
     private void SetInformationUser() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -176,12 +164,9 @@ public class ThongTinCaNhan_Activity extends AppCompatActivity {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         mActivityResultLauncher.launch(Intent.createChooser(intent,"Chọn ảnh"));
     }
-
     public void setBitmapImageView(Bitmap bitmapImageView){
         circleImageView_InforUser.setImageBitmap(bitmapImageView);
-
     }
-
     //Hàm thoát ra trên toolbal
     public boolean onOptionsItemSelected(@NonNull MenuItem item)
     {
@@ -190,6 +175,28 @@ public class ThongTinCaNhan_Activity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    public void LuuDuLieu(){
+    // Lấy reference đến node chứa dữ liệu gia sư từ Realtime Database
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userID = user.getUid();
+        DatabaseReference giaSuRef = FirebaseDatabase.getInstance().getReference().child("GiaSu").child(userID);
+        giaSuRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // Lấy dữ liệu từ snapshot
+                    String email = dataSnapshot.child("email").getValue(String.class);
+                    String soDienThoai = dataSnapshot.child("soDienThoai").getValue(String.class);
+                    // Hiển thị dữ liệu lên các EditText
+                    edtEmail.setText(email);
+                    edtSdt.setText(soDienThoai);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Xử lý khi có lỗi xảy ra
+            }
+        });    }
 
 }
 

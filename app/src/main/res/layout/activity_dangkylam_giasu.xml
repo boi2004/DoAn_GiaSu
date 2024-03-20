@@ -68,43 +68,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_sodienthoai" />
 
-        <RadioGroup
-            android:id="@+id/RadioGroup_gioitinh"
-            android:layout_width="380dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/custom_edt"
-            android:gravity="center|top|left"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.505"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edt_hovaten">
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/icongender1" />
-
-            <RadioButton
-                android:id="@+id/RadioButton_Nam_fragment_Infomation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginTop="10dp"
-                android:text="Nam" />
-
-            <RadioButton
-                android:id="@+id/RadioButton_Nu_fragment_Infomation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="58dp"
-                android:layout_marginTop="10dp"
-                android:text="Nữ" />
-
-        </RadioGroup>
-
         <EditText
             android:id="@+id/edt_gioithieubanthan"
             android:layout_width="380dp"
@@ -135,15 +98,16 @@
             android:id="@+id/edt_sodienthoai"
             android:layout_width="380dp"
             android:layout_height="60dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="27dp"
             android:background="@drawable/custom_edt"
             android:drawableLeft="@drawable/baseline_local_phone_24"
             android:ems="10"
             android:hint="  Số điện thoại"
             android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.483"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/RadioGroup_gioitinh" />
+            app:layout_constraintTop_toBottomOf="@+id/edt_hovaten" />
 
         <EditText
             android:id="@+id/edt_monhoc"
@@ -456,9 +420,9 @@
             android:id="@+id/image_GiaSu"
             android:layout_width="271dp"
             android:layout_height="137dp"
-            android:layout_marginStart="81dp"
+            android:layout_marginStart="80dp"
             android:layout_marginTop="36dp"
-            android:layout_marginEnd="72dp"
+            android:layout_marginEnd="80dp"
             android:background="@null"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
