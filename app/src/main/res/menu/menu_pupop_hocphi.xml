@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Tháng"
+        android:id="@+id/menuthang"/>
+    <item android:title="Buổi"
+        android:id="@+id/menubuoi"/>
+    <item android:title="Tuần"
+        android:id="@+id/menutuan"/>
+    <item android:title="Giờ"
+        android:id="@+id/menugio"/>
+</menu>

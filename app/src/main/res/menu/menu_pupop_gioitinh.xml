@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Nam/nữ"
+        android:id="@+id/menunamnu"/>
+    <item android:title="Nam"
+        android:id="@+id/menunam"/>
+    <item android:title="Nữ"
+        android:id="@+id/menunu"/>
+</menu>
