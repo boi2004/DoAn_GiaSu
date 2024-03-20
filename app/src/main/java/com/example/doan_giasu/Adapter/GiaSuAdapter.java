@@ -34,7 +34,8 @@ public class GiaSuAdapter extends RecyclerView.Adapter<GiaSuAdapter.viewholder> 
     @NonNull
     @Override
     public viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.giasu_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.giasu_item, parent, false);
         return new viewholder(view);
     }
 
@@ -58,6 +59,7 @@ public class GiaSuAdapter extends RecyclerView.Adapter<GiaSuAdapter.viewholder> 
 
     @Override
     public int getItemCount() {
+
         return GiaSu1 != null ? GiaSu1.size() : 0;
     }
 
