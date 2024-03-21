@@ -1,35 +1,50 @@
 package Activity_Menu;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
+
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.doan_giasu.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class DoiMatKhau_Activity extends AppCompatActivity {
+    private View mview;
     EditText edtTaiKhoan, edtMatKhauNew, edtMatKhauNewAgain;
-   Button btnLuu, btnQuayLai;
+   Button btnLuu;
+   private ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datlaimatkhau);
+
         addControls();
+
         addEvents();
+
         Toolbar toolbar = findViewById(R.id.toolbar3);          //Hàm toolbar
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Đổi Mật Khẩu");
         int white = getResources().getColor(android.R.color.white);
         toolbar.setTitleTextColor(white);   //Trong đoạn mã trên, toolbar.setTitleTextColor(white) sẽ đặt màu trắng cho tiêu đề của Toolbar.
+
     }
     private void addControls() {
+
+        progressDialog = new ProgressDialog(DoiMatKhau_Activity.this);
         // Khai báo các EditText
         edtTaiKhoan = findViewById(R.id.editT_matkhaunew_datlaimatkhau);
         edtMatKhauNew = findViewById(R.id.editTextText3);
@@ -37,8 +52,6 @@ public class DoiMatKhau_Activity extends AppCompatActivity {
 
         // Khai báo các Button
         btnLuu = findViewById(R.id.btn_luu_datlaimatkhau);
-        btnQuayLai = findViewById(R.id.button2);
-
 
     }
 
@@ -51,13 +64,7 @@ public class DoiMatKhau_Activity extends AppCompatActivity {
                 String matKhauMoi = edtMatKhauNew.getText().toString().trim();
                 String nhapLaiMatKhau = edtMatKhauNewAgain.getText().toString().trim();
 
-//                 Kiểm tra mật khẩu cũ trùng khớp
-//                if (!kiemTraMatKhauCu(matKhauCu)) {
-//                    edtTaiKhoan.setError("Mật khẩu cũ không đúng");
-//                    return;
-//                }
-
-                // Kiểm tra mật khẩu mới phải khác mật khẩu cũ
+                //Kiểm tra mật khẩu mới phải khác mật khẩu cũ
                 if (matKhauCu.equals(matKhauMoi)) {
                     edtMatKhauNew.setError("Mật khẩu mới phải khác mật khẩu cũ");
                     return;
@@ -74,19 +81,68 @@ public class DoiMatKhau_Activity extends AppCompatActivity {
                     edtMatKhauNew.setError("Mật khẩu của bạn phải có tối thiểu 6 ký tự, đồng thời bao gồm cả chữ số, chữ cái và ký tự đặc biệt (!$@%).");
                     return;
                 }
-
-                // Nếu tất cả điều kiện đều đúng, thực hiện lưu mật khẩu mới
-                luuMatKhauMoi(matKhauMoi);
+                kiemTraMatKhauCu(matKhauCu);
             }
         });
+    }
 
-        btnQuayLai.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Xử lý sự kiện khi nhấn nút "Quay Lại"
-                finish();
+    private void kiemTraMatKhauCu(String matKhauCu) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        AuthCredential credential = EmailAuthProvider.getCredential(user.getEmail(), matKhauCu);
+
+        user.reauthenticate(credential)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            // Thực hiện lưu mật khẩu
+                            luuMatKhauMoi();
+                        } else {
+                            // Mật khẩu cũ không chính xác, thông báo cho người dùng
+                            Toast.makeText(DoiMatKhau_Activity.this, "Mật Khẩu Cũ Không Đúng. Vui Lòng Nhập Lại!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+    private boolean kiemTraMatKhauMoi(String matKhauMoi) {
+        // Kiểm tra mật khẩu mới có đủ 6 ký tự không
+        if (matKhauMoi.length() < 6) {
+            return false;
+        }
+
+        // Kiểm tra mật khẩu mới có chứa ký tự viết hoa không
+        boolean hasUppercase = false;
+        for (char ch : matKhauMoi.toCharArray()) {
+            if (Character.isUpperCase(ch)) {
+                hasUppercase = true;
+                break;
             }
-        });
+        }
+        return hasUppercase;
+    }
+
+    private void luuMatKhauMoi() {
+        // Thực hiện lưu mật khẩu mới vào cơ sở dữ liệu hoặc nơi lưu trữ khác
+        String newpassword = edtMatKhauNew.getText().toString().trim();
+        //show dialog
+        progressDialog.show();
+        progressDialog.setMessage("Đang Kiểm Tra....");
+        //sử dụng update password của firebase
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String newPassword = "SOME-SECURE-PASSWORD";
+
+        user.updatePassword(newpassword)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            //Thông Báo Lưu mật khẩu mới thành công
+                            Toast.makeText(DoiMatKhau_Activity.this, "Lưu mật khẩu mới thành công", Toast.LENGTH_SHORT).show();
+                            // tắt dialog
+                            progressDialog.dismiss();
+                        }
+                    }
+                });
     }
     @Override
     //Hàm thoát ra trên toorbal
@@ -97,24 +153,4 @@ public class DoiMatKhau_Activity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
-     private boolean kiemTraMatKhauCu(String matKhauCu) {
-        // Thực hiện kiểm tra mật khẩu cũ, bạn cần thay thế bằng logic kiểm tra thực tế
-        return matKhauCu.equals("matkhaucu");
-    }
-    // // Kiểm tra mật khẩu mới đáp ứng yêu cầu độ dài và thành phần ký tự
-    private boolean kiemTraMatKhauMoi(String matKhauMoi) {
-        return matKhauMoi.length() >= 6 && chuaChuSoChuCaiKyTuDacBiet(matKhauMoi);
-    }
-    // // Kiểm tra mật khẩu mới đáp ứng yêu cầu độ dài và thành phần ký tự
-    private boolean chuaChuSoChuCaiKyTuDacBiet(String matKhau) {
-        return matKhau.matches(".*\\d.*") && matKhau.matches(".*[a-zA-Z].*") && matKhau.matches(".*[!@$%].*");
-    }
-
-    private void luuMatKhauMoi(String matKhauMoi) {
-        // Thực hiện lưu mật khẩu mới vào cơ sở dữ liệu hoặc nơi lưu trữ khác
-        Toast.makeText(DoiMatKhau_Activity.this, "Lưu mật khẩu mới thành công", Toast.LENGTH_SHORT).show();
-    }
-
 }
