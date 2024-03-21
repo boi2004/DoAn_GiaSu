@@ -48,12 +48,12 @@ public class GiaSuAdapter extends RecyclerView.Adapter<GiaSuAdapter.viewholder> 
         holder.monhoc.setText(giaSu.getMonHoc());
 
         // Sử dụng Glide để tải và hiển thị hình ảnh đại diện từ URL
-//        Glide.with(holder.itemView.getContext())
-//                .load(giaSu.getAvatarUrl())
-//                .placeholder(R.drawable.ic_error) // Hình ảnh mặc định nếu URL không hợp lệ hoặc hình ảnh không thể tải được
-//                .error(R.drawable.ic_error) // Hình ảnh mặc định nếu có lỗi xảy ra trong quá trình tải hình ảnh
-//                .transform(new CenterCrop(), new RoundedCorners(10)) // Hiển thị hình ảnh với góc bo tròn và căn giữa
-//                .into(holder.picture);
+       Glide.with(holder.itemView.getContext())
+                .load(giaSu.getAvatarUrl())
+               .placeholder(R.drawable.img_2) // Hình ảnh mặc định nếu URL không hợp lệ hoặc hình ảnh không thể tải được
+                .error(R.drawable.baseline_error_24) // Hình ảnh mặc định nếu có lỗi xảy ra trong quá trình tải hình ảnh
+                .transform(new CenterCrop(), new RoundedCorners(10)) // Hiển thị hình ảnh với góc bo tròn và căn giữa
+                .into(holder.picture);
     }
 
     @Override
@@ -63,13 +63,13 @@ public class GiaSuAdapter extends RecyclerView.Adapter<GiaSuAdapter.viewholder> 
 
     public class viewholder extends RecyclerView.ViewHolder {
         TextView Name, vitri, nghenghiep, namsinh, monhoc;
-        //ImageView picture;
+        ImageView picture;
 
         public viewholder(@NonNull View itemView) {
             super(itemView);
             // Ánh xạ các thành phần giao diện từ layout item gia sư
             Name = itemView.findViewById(R.id.Hoten_giasu_item);
-            //picture = itemView.findViewById(R.id.Avatar_giasu_item);
+            picture = itemView.findViewById(R.id.Avatar_giasu_item);
             vitri = itemView.findViewById(R.id.Diachi_giasu_item);
             nghenghiep = itemView.findViewById(R.id.Nghenghiep_giasu_item);
             namsinh = itemView.findViewById(R.id.Namsinh_giasu_item);

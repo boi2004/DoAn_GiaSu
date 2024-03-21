@@ -24,6 +24,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,6 +93,20 @@ public class TeacherFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getActivity(), "Lỗi khi lấy dữ liệu từ Firebase", Toast.LENGTH_SHORT).show();
             }
+        });
+    }
+    private void taiAnhGiaSu(GiaSu giaSu) {
+        // Tạo reference đến ảnh của gia sư trên Firebase Storage
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("profile_images").child(giaSu.getAvatarUrl()).child("profile_image.jpg");
+
+        // Tải ảnh về
+        storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+            // Lấy đường dẫn URL của ảnh và gán vào đối tượng GiaSu
+            giaSu.setAvatarUrl(uri.toString());
+            // Cập nhật lại adapter sau khi đã có đường dẫn ảnh
+            giaSuAdapter.notifyDataSetChanged();
+        }).addOnFailureListener(exception -> {
+            // Xử lý khi không thể tải ảnh về
         });
     }
 }

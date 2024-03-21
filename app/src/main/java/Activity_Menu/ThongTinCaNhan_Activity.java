@@ -67,7 +67,14 @@ public class ThongTinCaNhan_Activity extends AppCompatActivity {
                 }
             }
         }
+
     });
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Gọi hàm LuuDuLieu() để load dữ liệu của tài khoản gia sư khi Fragment được hiển thị
+        LuuDuLieu();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +89,7 @@ public class ThongTinCaNhan_Activity extends AppCompatActivity {
         getSupportActionBar().setTitle("Thông tin cá nhân");
         int white = getResources().getColor(android.R.color.white);
         toolbar.setTitleTextColor(white);   //Trong đoạn mã trên, toolbar.setTitleTextColor(white) sẽ đặt màu trắng cho tiêu đề của Toolbar.
-        LuuDuLieu();//Hiện thông  tin trên edittext
+
 
         btnLuuThayDoi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,6 +114,7 @@ public class ThongTinCaNhan_Activity extends AppCompatActivity {
                                     }
                                 }
                         });
+                finish();
             }
         });
     }

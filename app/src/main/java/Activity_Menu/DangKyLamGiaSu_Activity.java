@@ -20,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.bumptech.glide.Glide;
 import com.example.doan_giasu.Adapter.GiaSuAdapter;
 import com.example.doan_giasu.Model.GiaSu;
 import com.example.doan_giasu.R;
@@ -1291,6 +1292,8 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
                     String thanhPho = dataSnapshot.child("thanhPho").getValue(String.class);
                     String truongDaHoc = dataSnapshot.child("truongDaHoc").getValue(String.class);
                     long namTotNghiep = dataSnapshot.child("namTotNghiep").getValue(Long.class);
+                    String imageUrl = dataSnapshot.child("avatarUrl").getValue(String.class);
+
 
                     // Hiển thị dữ liệu lên các EditText
                     edt_diachi.setText(diaChi);
@@ -1304,6 +1307,7 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
                     edt_thanhpho.setText(thanhPho);
                     edt_truongdahoc.setText(truongDaHoc);
                     edt_namtotnghiep.setText(String.valueOf(namTotNghiep));
+
                 }
             }
             @Override

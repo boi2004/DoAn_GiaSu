@@ -61,16 +61,19 @@ public class SetFragment_Activity extends AppCompatActivity implements Navigatio
         mNavigationView.getMenu().findItem(R.id.nav_Trangchu).setChecked(true);
         // Ánh xạ id
         addControl();
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         mDrawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Gọi hàm LuuDuLieu() để load dữ liệu của tài khoản gia sư khi Fragment được hiển thị
         showUserInformation();
     }
 
