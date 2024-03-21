@@ -26,30 +26,30 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.UUID;
+
 public class TaoYeuCauTimGiaSu_Activity extends AppCompatActivity {
     EditText edt_email, edt_tieude, edt_diadiemday, edt_ngaybatdau, edt_giomoibuoi, edt_monhoc, edt_gioitinhhocvien,
     edt_hocphi, edt_sobuoitrongtuan, edt_gioitinh, edt_hocphitheo, edt_motachitiet;
     Button btn_taoyeucau;
 
+    //Hàm chạy sự kiện
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tao_yeu_cau_tim_gia_su);
-
         Toolbar toolbar = findViewById(toolbar_taoyeucautimgiasu);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Đăng ký làm gia sư");
         int white = getResources().getColor(android.R.color.white);
         toolbar.setTitleTextColor(white);   //Trong đoạn mã trên, toolbar.setTitleTextColor(white) sẽ đặt màu trắng cho tiêu đề của Toolbar.
-
         Controls();
         Events();
-        LuuDuLieu();
+        LuuDuLieu();//Hạm đẩy dữ liệu lên firebase
     }
 
     public void LuuDuLieu(){
-// Lấy reference đến node chứa dữ liệu gia sư từ Realtime Database
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String userID = user.getUid();
         DatabaseReference lopmoiRef = FirebaseDatabase.getInstance().getReference().child("LopMoi").child(userID);
@@ -152,8 +152,6 @@ public class TaoYeuCauTimGiaSu_Activity extends AppCompatActivity {
                 }
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
                 FirebaseUser currentUser = mAuth.getCurrentUser();
-                //Hàm kểm tra nếu chưa có thông tin gia sư thì tạo mới
-                // ,ngược lại có rồi thì cập nhật lại thông tin mà không tạo mới
                 luuThongTinLopMoi();
             }
         });
@@ -167,31 +165,16 @@ public class TaoYeuCauTimGiaSu_Activity extends AppCompatActivity {
         if(currentUserLopMoi != null){
             String userID = currentUserLopMoi.getUid(); // Lấy ID của người dùng hiện tại
 
-            // Kiểm tra xem người dùng đã có thông tin gia sư trong cơ sở dữ liệu chưa
+            // Tạo một ID duy nhất cho lớp học mới
+            String lopHocId = UUID.randomUUID().toString();
 
-            FirebaseDatabase.getInstance().getReference("LopMoi").child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if(snapshot.exists()){
-                        // Người dùng đã có thông tin lớp học trong cơ sở dữ liệu
-                        // , cập nhật thông tin
-                        capNhatThongTinLopMoi(userID);
-                    }else {
-                        // Người dùng chưa có thông tin lớp học trong cơ sở dữ liệu, tạo mới thông tin
-                        taoMoiThongTinLopHoc(userID);
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    // Xử lý khi có lỗi xảy ra
-                    Toast.makeText(TaoYeuCauTimGiaSu_Activity.this, "Đã xảy ra lỗi, vui lòng thử lại sau", Toast.LENGTH_SHORT).show();
-                }
-            });
+            // Lưu thông tin của lớp học dưới một nhánh mới với ID duy nhất
+            taoMoiThongTinLopHoc(userID, lopHocId);
         }
     }
 
-    private void taoMoiThongTinLopHoc(String userId) {
+    private void taoMoiThongTinLopHoc(String userId, String lopHocId) {
+        // Lấy thông tin của lớp học từ EditText
         String Email = edt_email.getText().toString().trim();
         String Title = edt_tieude.getText().toString().trim();
         String DiaDiemDay = edt_diadiemday.getText().toString().trim();
@@ -205,29 +188,27 @@ public class TaoYeuCauTimGiaSu_Activity extends AppCompatActivity {
         String HocPhiTheo = edt_hocphitheo.getText().toString().trim();
         String MoTaChiTiet = edt_motachitiet.getText().toString().trim();
 
-        // Tạo đối tượng GiaSu mới từ thông tin mới
-        LopHoc lopHoc = new LopHoc(Email,Title,DiaDiemDay,NgayBatDau,GioMoiBuoi
-                ,MonHoc,GioiTinhHocVien,HocPhi,SoBuoiTrongTuan,GioiTinh,HocPhiTheo,MoTaChiTiet);
+        // Tạo đối tượng LopHoc mới từ thông tin mới
+        LopHoc lopHoc = new LopHoc(Email, Title, DiaDiemDay, NgayBatDau, GioMoiBuoi, MonHoc, GioiTinhHocVien, HocPhi, SoBuoiTrongTuan, GioiTinh, HocPhiTheo, MoTaChiTiet);
 
-        // Cập nhật thông tin GiaSu lên Firebase Realtime Database
-        FirebaseDatabase.getInstance().getReference("LopMoi").child(userId).setValue(lopHoc)
+        // Lưu thông tin LopHoc dưới một nhánh mới với ID duy nhất
+        FirebaseDatabase.getInstance().getReference("LopMoi").child(userId).child(lopHocId).setValue(lopHoc)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(TaoYeuCauTimGiaSu_Activity.this, "Cập nhật thông tin thành công", Toast.LENGTH_SHORT).show();
-                        // Xử lý khi cập nhật thành công, ví dụ: chuyển về màn hình chính
+                        Toast.makeText(TaoYeuCauTimGiaSu_Activity.this, "Tạo lớp học thành công", Toast.LENGTH_SHORT).show();
+                        // Xử lý khi tạo lớp học thành công, ví dụ: chuyển về màn hình chính
                         finish();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(TaoYeuCauTimGiaSu_Activity.this, "Cập nhật thông tin thất bại", Toast.LENGTH_SHORT).show();
-                        // Xử lý khi cập nhật thất bại
+                        Toast.makeText(TaoYeuCauTimGiaSu_Activity.this, "Tạo lớp học thất bại", Toast.LENGTH_SHORT).show();
+                        // Xử lý khi tạo lớp học thất bại
                     }
                 });
     }
-
     private void capNhatThongTinLopMoi(String userID) {
         // Lây thông tin mới từ các EditText
         String Email = edt_email.getText().toString().trim();
@@ -247,7 +228,7 @@ public class TaoYeuCauTimGiaSu_Activity extends AppCompatActivity {
         LopHoc lopHoc = new LopHoc(Email,Title, DiaDiemDay, NgayBatDau,GioMoiBuoi,MonHoc,GioiTinhHocVien,HocPhi,SoBuoiTrongTuan,GioiTinh,HocPhiTheo,MoTaChiTiet);
 
         // Cập nhật thông tin GiaSu lên Firebase Realtime Database
-        FirebaseDatabase.getInstance().getReference("LopHoc").child(userID).setValue(lopHoc)
+        FirebaseDatabase.getInstance().getReference("LopHoc").child(userID).setValue(lopHoc)                ///Cập nật dữ liệu
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
@@ -450,6 +431,7 @@ public class TaoYeuCauTimGiaSu_Activity extends AppCompatActivity {
         popupMenu.show();
     }
 
+    //Hàm ánh xạ
     private void Controls() {
         edt_email = findViewById(R.id.edt_email);
         edt_tieude = findViewById(R.id.edt_tieude);
