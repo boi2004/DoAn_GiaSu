@@ -62,28 +62,7 @@ public class LopMoiAdapter extends RecyclerView.Adapter<LopMoiAdapter.viewholder
             btn_Edit = itemView.findViewById(R.id.btn_Edit);
             btn_Detail = itemView.findViewById(R.id.btn_detail);
             // Gán sự kiện cho các nút Xóa,Chỉnh Sửa,Chi tiết dữ liệu
-            addEvent();
         }
-        public void addEvent(){
-            btn_Xoa.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
 
-                }
-            });
-            btn_Detail.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
-            btn_Edit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
-
-        }
     }
 }
