@@ -2,6 +2,7 @@ package Activity_Menu;
 
 import static com.example.doan_giasu.R.id.*;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -11,8 +12,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
+import com.example.doan_giasu.Model.LopHoc;
 import com.example.doan_giasu.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class TaoYeuCauTimGiaSu_Activity extends AppCompatActivity {
     EditText edt_email, edt_tieude, edt_diadiemday, edt_ngaybatdau, edt_giomoibuoi, edt_monhoc, edt_gioitinhhocvien,
@@ -33,6 +45,52 @@ public class TaoYeuCauTimGiaSu_Activity extends AppCompatActivity {
 
         Controls();
         Events();
+        LuuDuLieu();
+    }
+
+    public void LuuDuLieu(){
+// Lấy reference đến node chứa dữ liệu gia sư từ Realtime Database
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userID = user.getUid();
+        DatabaseReference lopmoiRef = FirebaseDatabase.getInstance().getReference().child("LopMoi").child(userID);
+        lopmoiRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // Lấy dữ liệu từ snapshot
+                    String email = dataSnapshot.child("email").getValue(String.class);
+                    String tieude = dataSnapshot.child("tieude").getValue(String.class);
+                    String diadiemday = dataSnapshot.child("diadiemday").getValue(String.class);
+                    String ngaybatdau = dataSnapshot.child("ngaybatdau").getValue(String.class);
+                    String monhoc = dataSnapshot.child("monhoc").getValue(String.class);
+                    String giomoibuoi = dataSnapshot.child("giomoibuoi").getValue(String.class);
+                    String gioitinhhocvien = dataSnapshot.child("gioitinhhocvien").getValue(String.class);
+                    String hocphi = dataSnapshot.child("hocphi").getValue(String.class);
+                    String sobuoitrongtuan = dataSnapshot.child("sobuoitrongtuan").getValue(String.class);
+                    String gioitinh = dataSnapshot.child("gioitinh").getValue(String.class);
+                    String hocphitheo = dataSnapshot.child("hocphitheo").getValue(String.class);
+                    String motachitiet = dataSnapshot.child("motachitiet").getValue(String.class);
+
+                    // Hiển thị dữ liệu lên các EditText
+                    edt_email.setText(email);
+                    edt_tieude.setText(tieude);
+                    edt_diadiemday.setText(diadiemday);
+                    edt_ngaybatdau.setText(ngaybatdau);
+                    edt_monhoc.setText(monhoc);
+                    edt_giomoibuoi.setText(giomoibuoi);
+                    edt_gioitinhhocvien.setText(gioitinhhocvien);
+                    edt_hocphi.setText(hocphi);
+                    edt_sobuoitrongtuan.setText(sobuoitrongtuan);
+                    edt_gioitinh.setText(gioitinh);
+                    edt_hocphitheo.setText(hocphitheo);
+                    edt_motachitiet.setText(motachitiet);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Xử lý khi có lỗi xảy ra
+            }
+        });
     }
 
     private void Events() {
@@ -66,7 +124,147 @@ public class TaoYeuCauTimGiaSu_Activity extends AppCompatActivity {
                 ShowMenuhocphitheo();
             }
         });
+        btn_taoyeucau.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //lấy giá trị từ các trường EditText
+               /* EditText edt_email, edt_tieude, edt_diadiemday, edt_ngaybatdau, edt_giomoibuoi, edt_monhoc, edt_gioitinhhocvien,
+                        edt_hocphi, edt_sobuoitrongtuan, edt_gioitinh, edt_hocphitheo, edt_motachitiet;*/
+                String Email = edt_email.getText().toString().trim();
+                String Title = edt_tieude.getText().toString().trim();
+                String DiaDiemDay = edt_diadiemday.getText().toString().trim();
+                String NgayBatDau = edt_ngaybatdau.getText().toString().trim();
+                String GioMoiBuoi = edt_giomoibuoi.getText().toString().trim();
+                String MonHoc = edt_monhoc.getText().toString().trim();
+                String GioiTinhHocVien = edt_gioitinhhocvien.getText().toString().trim();
+                String HocPhi = edt_hocphi.getText().toString().trim();
+                String SoBuoiTrongTuan = edt_sobuoitrongtuan.getText().toString().trim();
+                String GioiTinh = edt_gioitinh.getText().toString().trim();
+                String HocPhiTheo = edt_hocphitheo.getText().toString().trim();
+                String MoTaChiTiet = edt_motachitiet.getText().toString().trim();
+
+                //Kiểm tra xem có thông tin nào bị thiếu không
+                if(Email.isEmpty()||Title.isEmpty()||DiaDiemDay.isEmpty()||NgayBatDau.isEmpty()||
+                        GioMoiBuoi.isEmpty()||MonHoc.isEmpty()||GioiTinhHocVien.isEmpty()||HocPhi.isEmpty()||
+                        SoBuoiTrongTuan.isEmpty()||GioiTinh.isEmpty()||HocPhiTheo.isEmpty()||MoTaChiTiet.isEmpty()){
+                    Toast.makeText(TaoYeuCauTimGiaSu_Activity.this,"Vui Lòng Nhập Đầy Đủ Thông Tin",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                FirebaseUser currentUser = mAuth.getCurrentUser();
+                //Hàm kểm tra nếu chưa có thông tin gia sư thì tạo mới
+                // ,ngược lại có rồi thì cập nhật lại thông tin mà không tạo mới
+                luuThongTinLopMoi();
+            }
+        });
+
     }
+
+    private void luuThongTinLopMoi() {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUserLopMoi = mAuth.getCurrentUser();
+
+        if(currentUserLopMoi != null){
+            String userID = currentUserLopMoi.getUid(); // Lấy ID của người dùng hiện tại
+
+            // Kiểm tra xem người dùng đã có thông tin gia sư trong cơ sở dữ liệu chưa
+
+            FirebaseDatabase.getInstance().getReference("LopMoi").child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){
+                        // Người dùng đã có thông tin lớp học trong cơ sở dữ liệu
+                        // , cập nhật thông tin
+                        capNhatThongTinLopMoi(userID);
+                    }else {
+                        // Người dùng chưa có thông tin lớp học trong cơ sở dữ liệu, tạo mới thông tin
+                        taoMoiThongTinLopHoc(userID);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    // Xử lý khi có lỗi xảy ra
+                    Toast.makeText(TaoYeuCauTimGiaSu_Activity.this, "Đã xảy ra lỗi, vui lòng thử lại sau", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+
+    private void taoMoiThongTinLopHoc(String userId) {
+        String Email = edt_email.getText().toString().trim();
+        String Title = edt_tieude.getText().toString().trim();
+        String DiaDiemDay = edt_diadiemday.getText().toString().trim();
+        String NgayBatDau = edt_ngaybatdau.getText().toString().trim();
+        String GioMoiBuoi = edt_giomoibuoi.getText().toString().trim();
+        String MonHoc = edt_monhoc.getText().toString().trim();
+        String GioiTinhHocVien = edt_gioitinhhocvien.getText().toString().trim();
+        String HocPhi = edt_hocphi.getText().toString().trim();
+        String SoBuoiTrongTuan = edt_sobuoitrongtuan.getText().toString().trim();
+        String GioiTinh = edt_gioitinh.getText().toString().trim();
+        String HocPhiTheo = edt_hocphitheo.getText().toString().trim();
+        String MoTaChiTiet = edt_motachitiet.getText().toString().trim();
+
+        // Tạo đối tượng GiaSu mới từ thông tin mới
+        LopHoc lopHoc = new LopHoc(Email,Title,DiaDiemDay,NgayBatDau,GioMoiBuoi
+                ,MonHoc,GioiTinhHocVien,HocPhi,SoBuoiTrongTuan,GioiTinh,HocPhiTheo,MoTaChiTiet);
+
+        // Cập nhật thông tin GiaSu lên Firebase Realtime Database
+        FirebaseDatabase.getInstance().getReference("LopMoi").child(userId).setValue(lopHoc)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(TaoYeuCauTimGiaSu_Activity.this, "Cập nhật thông tin thành công", Toast.LENGTH_SHORT).show();
+                        // Xử lý khi cập nhật thành công, ví dụ: chuyển về màn hình chính
+                        finish();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(TaoYeuCauTimGiaSu_Activity.this, "Cập nhật thông tin thất bại", Toast.LENGTH_SHORT).show();
+                        // Xử lý khi cập nhật thất bại
+                    }
+                });
+    }
+
+    private void capNhatThongTinLopMoi(String userID) {
+        // Lây thông tin mới từ các EditText
+        String Email = edt_email.getText().toString().trim();
+        String Title = edt_tieude.getText().toString().trim();
+        String DiaDiemDay = edt_diadiemday.getText().toString().trim();
+        String NgayBatDau = edt_ngaybatdau.getText().toString().trim();
+        String GioMoiBuoi = edt_giomoibuoi.getText().toString().trim();
+        String MonHoc = edt_monhoc.getText().toString().trim();
+        String GioiTinhHocVien = edt_gioitinhhocvien.getText().toString().trim();
+        String HocPhi = edt_hocphi.getText().toString().trim();
+        String SoBuoiTrongTuan = edt_sobuoitrongtuan.getText().toString().trim();
+        String GioiTinh = edt_gioitinh.getText().toString().trim();
+        String HocPhiTheo = edt_hocphitheo.getText().toString().trim();
+        String MoTaChiTiet = edt_motachitiet.getText().toString().trim();
+
+        // Tạo đối tượng GiaSu mới từ thông tin mới
+        LopHoc lopHoc = new LopHoc(Email,Title, DiaDiemDay, NgayBatDau,GioMoiBuoi,MonHoc,GioiTinhHocVien,HocPhi,SoBuoiTrongTuan,GioiTinh,HocPhiTheo,MoTaChiTiet);
+
+        // Cập nhật thông tin GiaSu lên Firebase Realtime Database
+        FirebaseDatabase.getInstance().getReference("LopHoc").child(userID).setValue(lopHoc)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(TaoYeuCauTimGiaSu_Activity.this, "Cập nhật thông tin thành công", Toast.LENGTH_SHORT).show();
+                        // Xử lý khi cập nhật thành công, ví dụ: chuyển về màn hình chính
+                        finish();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(TaoYeuCauTimGiaSu_Activity.this, "Cập nhật thông tin thất bại", Toast.LENGTH_SHORT).show();
+                        // Xử lý khi cập nhật thất bại
+                    }
+                });
+    }
+
     private void ShowMenumonhoc() {
         PopupMenu popupMenu = new PopupMenu(this, edt_monhoc);
         popupMenu.getMenuInflater().inflate(R.menu.menu_pupop_monhoc, popupMenu.getMenu());
@@ -250,8 +448,6 @@ public class TaoYeuCauTimGiaSu_Activity extends AppCompatActivity {
             }
         });
         popupMenu.show();
-
-
     }
 
     private void Controls() {
@@ -268,5 +464,12 @@ public class TaoYeuCauTimGiaSu_Activity extends AppCompatActivity {
         edt_hocphitheo = findViewById(R.id.edt_hocphitheo);
         edt_motachitiet = findViewById(R.id.edt_motachitiet);
         btn_taoyeucau = findViewById(R.id.btn_taoyeucau);
+    }
+    public boolean onOptionsItemSelected(@NonNull MenuItem item)
+    {
+        if (item.getItemId() == android.R.id.home){
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -38,8 +38,7 @@ public class LopMoiAdapter extends RecyclerView.Adapter<LopMoiAdapter.viewholder
     public void onBindViewHolder(@NonNull LopMoiAdapter.viewholder holder, int position) {
         LopHoc lopHoc = listLopHoc.get(position);
         holder.Title_item.setText(lopHoc.getTitle());
-        holder.MaLop_item.setText(lopHoc.getMaLop());
-        holder.Time_item.setText(lopHoc.getThoiGian());
+        holder.Time_item.setText(lopHoc.getGioMoiBuoi());
         holder.Monhoc_item.setText(lopHoc.getMonHoc());
         holder.Tien_item.setText(lopHoc.getHocPhi());
     }
