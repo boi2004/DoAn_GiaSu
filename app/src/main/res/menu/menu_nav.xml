@@ -13,6 +13,10 @@
             android:title="Đăng ký làm gia sư"
             android:icon="@drawable/iconteacher"/>
 
+        <item android:id="@+id/nav_Taoyeucautimgiasu"
+            android:title="Tạo yêu cầu tìm gia sư"
+            android:icon="@drawable/note"/>
+
         <item android:id="@+id/nav_Doimatkhau"
             android:title="Đổi mật khẩu"
             android:icon="@drawable/ickey"/>

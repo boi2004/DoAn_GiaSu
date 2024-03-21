@@ -18,7 +18,8 @@
             android:layout_height="wrap_content"
             android:text="Cần gia sư môn công nghệ thông tin cá nhân"
             android:textSize="16sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

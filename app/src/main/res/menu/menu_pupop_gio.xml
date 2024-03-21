@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="------"
+        android:id="@+id/menun"/>
+    <item android:title="30 phút"
+        android:id="@+id/menu30p"/>
+    <item android:title="45 phút"
+        android:id="@+id/menu45p"/>
+    <item android:title="60 phút"
+        android:id="@+id/menu60p"/>
+    <item android:title="90 phút"
+        android:id="@+id/menun90p"/>
+    <item android:title="2 giờ"
+        android:id="@+id/menu2h"/>
+    <item android:title="2.5 giờ"
+        android:id="@+id/menu25h"/>
+    <item android:title="3 giờ"
+        android:id="@+id/menu3h"/>
+
+
+</menu>

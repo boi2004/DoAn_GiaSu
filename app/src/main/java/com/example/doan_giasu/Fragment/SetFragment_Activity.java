@@ -37,6 +37,7 @@ import Activity_Menu.Danhsachlopday_Activity;
 import Activity_Menu.Danhsachlophoc_Activity;
 import Activity_Menu.DieuKhoanDichVuActivity;
 import Activity_Menu.DoiMatKhau_Activity;
+import Activity_Menu.TaoYeuCauTimGiaSu_Activity;
 import Activity_Menu.ThongTinCaNhan_Activity;
 
 public class SetFragment_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -94,6 +95,9 @@ public class SetFragment_Activity extends AppCompatActivity implements Navigatio
             startActivity(intent);
         } else if (id == R.id.nav_dieukhoanvadichvu) {           //Điều khoản dịch vụ
             Intent intent = new Intent(this, DieuKhoanDichVuActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_Taoyeucautimgiasu) {           //Điều khoản dịch vụ
+            Intent intent = new Intent(this, TaoYeuCauTimGiaSu_Activity.class);
             startActivity(intent);
         } else if (id == R.id.nav_Dangxuat) {
             FirebaseAuth.getInstance().signOut();
