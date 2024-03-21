@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doan_giasu.Adapter.LopMoiAdapter;
+import com.example.doan_giasu.Adapter.LophocLopday_Adapter;
 import com.example.doan_giasu.Model.LopHoc;
 import com.example.doan_giasu.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,7 +28,7 @@ import java.util.List;
 
 public class Danhsachlophoc_Activity extends AppCompatActivity {
     RecyclerView rcv;
-    private LopMoiAdapter lopMoiAdapter;
+    private LophocLopday_Adapter lophocLopdayAdapter;
     private List<LopHoc> ListLopHoc;
 
     @Override
@@ -52,7 +53,7 @@ public class Danhsachlophoc_Activity extends AppCompatActivity {
 
         // Khởi tạo danh sách lớp học và adapter
         ListLopHoc = new ArrayList<>();
-        lopMoiAdapter = new LopMoiAdapter(ListLopHoc);
+        lophocLopdayAdapter = new LophocLopday_Adapter(ListLopHoc);
 
         //Lấy id người dùng
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -63,7 +64,7 @@ public class Danhsachlophoc_Activity extends AppCompatActivity {
         LayDanhSachLopHocTuData(userId);
 
         // Gán adapter cho RecyclerView
-        rcv.setAdapter(lopMoiAdapter);
+        rcv.setAdapter( lophocLopdayAdapter);
     }
 
     // Hàm thoát ra trên toolbar
@@ -90,7 +91,7 @@ public class Danhsachlophoc_Activity extends AppCompatActivity {
                         Log.d("FirebaseData", "LopMoi: " + lopHoc.toString()); // In ra dữ liệu của mỗi lớp học
                         ListLopHoc.add(lopHoc);
                     }
-                    lopMoiAdapter.notifyDataSetChanged(); // Thông báo cho adapter rằng dữ liệu đã thay đổi
+                    lophocLopdayAdapter.notifyDataSetChanged(); // Thông báo cho adapter rằng dữ liệu đã thay đổi
                 } else {
                     Log.d("FirebaseData", "No data available");
                 }
