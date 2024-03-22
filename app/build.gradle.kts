@@ -72,5 +72,4 @@ dependencies {
 
     // FirebaseUI for Cloud Storage
     implementation ("com.firebaseui:firebase-ui-storage:8.0.2")
-}
-/*apply plugin: ("com.google.gms.google-services")*/
+    implementation("com.theartofdev.edmodo:android-image-cropper:2.8.0")}

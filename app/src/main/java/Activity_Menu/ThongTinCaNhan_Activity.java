@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
@@ -45,6 +46,7 @@ import java.io.IOException;
 import java.util.BitSet;
 public class ThongTinCaNhan_Activity extends AppCompatActivity {
     private static final int MY_REQUEST_CODE = 1;
+    TextView Change_Image_Profile;
     EditText edt_Name_fragment_Infomation,edtEmail, edtSdt;
     Button btnLuuThayDoi;
     DatabaseReference databaseReference;
@@ -58,6 +60,7 @@ public class ThongTinCaNhan_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activitythong_tincanhan);
+
         addControls();
         /*addEvents();*/
         SetInformationUser();
@@ -71,7 +74,7 @@ public class ThongTinCaNhan_Activity extends AppCompatActivity {
         toolbar.setTitleTextColor(white);   //Trong đoạn mã trên, toolbar.setTitleTextColor(white) sẽ đặt màu trắng cho tiêu đề của Toolbar.
 
 
-        LuuDuLieu();//Hiện thông  tin trên edittext
+        LuuDuLieu();//Hiện thông  tin trên editext
 
         btnLuuThayDoi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,18 +90,25 @@ public class ThongTinCaNhan_Activity extends AppCompatActivity {
                         .setPhotoUri(Uri.parse(String.valueOf(mSelectedImageUri))) //**
                         .build();
 
+
                 user.updateProfile(profileUpdates)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
+                                        SetInformationUser();
+                                        LuuDuLieu();
                                         Toast.makeText(ThongTinCaNhan_Activity.this,"Cập Nhật Thông Tin Cá Nhân Thành Công!",Toast.LENGTH_LONG).show();
                                     }
                                 }
                         });
             }
         });
-
+        Change_Image_Profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
     }
     private void addControls() {
@@ -107,6 +117,7 @@ public class ThongTinCaNhan_Activity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference().child("GiaSu");
         mstoragePicRef = FirebaseStorage.getInstance().getReference().child("Profile Pic");
         circleImageView_InforUser = findViewById(R.id.circleImageView_InforUser);
+        Change_Image_Profile = findViewById(R.id.Change_Image_Profile);
 
         // Khai báo các EditText
         edt_Name_fragment_Infomation = findViewById(R.id.edt_Name_fragment_Infomation);
@@ -158,6 +169,5 @@ public class ThongTinCaNhan_Activity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }
 
