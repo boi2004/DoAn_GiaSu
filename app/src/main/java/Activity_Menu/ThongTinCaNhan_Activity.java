@@ -37,44 +37,23 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
 
 import java.io.IOException;
 import java.util.BitSet;
 public class ThongTinCaNhan_Activity extends AppCompatActivity {
     private static final int MY_REQUEST_CODE = 1;
-    EditText edt_Name_fragment_Infomation, edtDiaChi, edtNamSinh, edtEmail, edtSdt;
-    RadioGroup radioGroupGioiTinh;
-    RadioButton radioButtonNam, radioButtonNu;
+    EditText edt_Name_fragment_Infomation,edtEmail, edtSdt;
     Button btnLuuThayDoi;
+    DatabaseReference databaseReference;
+    FirebaseAuth mAuth;
     ImageView circleImageView_InforUser;
     Uri mSelectedImageUri;
-    private ActivityResultLauncher<Intent> mActivityResultLauncher =
-            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-        @Override
-        public void onActivityResult(ActivityResult result) {
-            if(result.getResultCode() == RESULT_OK);{
-                Intent intent =result.getData();
-                if (intent == null){
-                    return;
-                }
-               Uri uri = intent.getData();
-                try {
-                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
-                    mSelectedImageUri = uri;
-                    setBitmapImageView(bitmap);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        }
-
-    });
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Gọi hàm LuuDuLieu() để load dữ liệu của tài khoản gia sư khi Fragment được hiển thị
-        LuuDuLieu();
-    }
+    String mUri = "";
+    StorageTask uploadTask;
+    StorageReference mstoragePicRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,14 +61,17 @@ public class ThongTinCaNhan_Activity extends AppCompatActivity {
         addControls();
         /*addEvents();*/
         SetInformationUser();
-        ChangeAvatar();
-        Toolbar toolbar = findViewById(R.id.toolbar_thongtincanhan);       //Hàm toolbar
+
+        //Hàm toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar_thongtincanhan);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Thông tin cá nhân");
         int white = getResources().getColor(android.R.color.white);
         toolbar.setTitleTextColor(white);   //Trong đoạn mã trên, toolbar.setTitleTextColor(white) sẽ đặt màu trắng cho tiêu đề của Toolbar.
 
+
+        LuuDuLieu();//Hiện thông  tin trên edittext
 
         btnLuuThayDoi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,11 +96,18 @@ public class ThongTinCaNhan_Activity extends AppCompatActivity {
                                     }
                                 }
                         });
-                finish();
             }
         });
+
+
     }
     private void addControls() {
+        //firebase
+        mAuth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("GiaSu");
+        mstoragePicRef = FirebaseStorage.getInstance().getReference().child("Profile Pic");
+        circleImageView_InforUser = findViewById(R.id.circleImageView_InforUser);
+
         // Khai báo các EditText
         edt_Name_fragment_Infomation = findViewById(R.id.edt_Name_fragment_Infomation);
         edtEmail = findViewById(R.id.edt_Email_fragment_Infomation);
@@ -138,51 +127,6 @@ public class ThongTinCaNhan_Activity extends AppCompatActivity {
         Glide.with(this).load(user.getPhotoUrl()).error(R.drawable.img_1).into(circleImageView_InforUser);
     }
 
-    private void ChangeAvatar(){
-        circleImageView_InforUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
-                    openGallery();
-                    return;
-                }
-                //nếu người dùng cho phép quyền đọc thư viện thì openGallery()
-                if(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED){
-                    openGallery();
-                }else {
-                    String [] permisstions = {Manifest.permission.READ_EXTERNAL_STORAGE};
-                    requestPermissions(permisstions,MY_REQUEST_CODE);
-                }
-            }
-        });
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode == MY_REQUEST_CODE){
-            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                openGallery();
-            }
-        }
-    }
-    public void openGallery(){
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        mActivityResultLauncher.launch(Intent.createChooser(intent,"Chọn ảnh"));
-    }
-    public void setBitmapImageView(Bitmap bitmapImageView){
-        circleImageView_InforUser.setImageBitmap(bitmapImageView);
-    }
-    //Hàm thoát ra trên toolbal
-    public boolean onOptionsItemSelected(@NonNull MenuItem item)
-    {
-        if (item.getItemId() == android.R.id.home){
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
-    }
     public void LuuDuLieu(){
     // Lấy reference đến node chứa dữ liệu gia sư từ Realtime Database
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -204,7 +148,16 @@ public class ThongTinCaNhan_Activity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 // Xử lý khi có lỗi xảy ra
             }
-        });    }
+        });
+    }
+    //Hàm thoát ra trên toolbal
+    public boolean onOptionsItemSelected(@NonNull MenuItem item)
+    {
+        if (item.getItemId() == android.R.id.home){
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }
 

@@ -23,7 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Dangnhap_Activity extends AppCompatActivity {
     Button btn_Dangnhap;
-    EditText edt_Sodienthoai, edt_Matkhau;
+    EditText edt_Email_dangnhap, edt_Matkhau;
     TextView txtQuenmatkhau, txt_Dangky;
 
 
@@ -42,16 +42,16 @@ public class Dangnhap_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 Drawable icERR =getResources().getDrawable(R.drawable.baseline_error_24);
                 icERR.setBounds(0,0,icERR.getIntrinsicWidth(),icERR.getIntrinsicHeight());
-                String phone = edt_Sodienthoai.getText().toString().trim();
+                String email = edt_Email_dangnhap.getText().toString().trim();
                 String password = edt_Matkhau.getText().toString().trim();
-                if(phone.isEmpty()){        //Xem có bị trống không
-                    edt_Sodienthoai.setCompoundDrawables(null,null,icERR,null);
-                    edt_Sodienthoai.setError("Vui lòng nhập số điện thoại",icERR);
+                if(email.isEmpty()){        //Xem có bị trống không
+                    edt_Email_dangnhap.setCompoundDrawables(null,null,icERR,null);
+                    edt_Email_dangnhap.setError("Vui lòng nhập Email",icERR);
                     return;
                 }
                 if(password.isEmpty()){ ////Xem có bị trống không
                     edt_Matkhau.setCompoundDrawables(null,null,icERR,null);
-                    edt_Matkhau.setError("Vui lòng nhập mật khẩu",icERR);
+                    edt_Matkhau.setError("Vui lòng nhập Mật khẩu",icERR);
                     return;
                 }
                 dangnhap(); //Hàm đăng nhập
@@ -62,7 +62,6 @@ public class Dangnhap_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Dangnhap_Activity.this, Khoiphucmatkhau_Activity.class));
-
             }
         });
         txt_Dangky.setOnClickListener(new View.OnClickListener() {
@@ -73,26 +72,24 @@ public class Dangnhap_Activity extends AppCompatActivity {
         });
 
     }
+    //thoat ung dung
     @Override
     public void onBackPressed() {
         //Tạo hộp thoại
+        super.onBackPressed();
         AlertDialog.Builder mydialog = new AlertDialog.Builder(Dangnhap_Activity.this);             //Thông báo thoát ứng dụng
         mydialog.setTitle("EXIT");
         mydialog.setMessage("Bạn có muốn thoát khỏi ứng dụng");
         mydialog.setIcon(R.drawable.ic_error);
-        mydialog.setPositiveButton("Yes", new DialogInterface.OnClickListener()
-        {
+        mydialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which)
-            {
+            public void onClick(DialogInterface dialog, int which) {
                 finish(); //thoát ứng dụng
             }
         });
-        mydialog.setNegativeButton("No", new DialogInterface.OnClickListener()
-        {
+        mydialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which)
-            {
+            public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }
         });
@@ -100,14 +97,13 @@ public class Dangnhap_Activity extends AppCompatActivity {
     };
     public void dangnhap() {    //Form đăng nhập
         String password = edt_Matkhau.getText().toString();
-        String email = edt_Sodienthoai.getText().toString();         //Coi lại layout chứ dùng sđt không được,dể tên thì được chứ dùng số là không cho này chỉ dùng gmail thôi
+        String email = edt_Email_dangnhap.getText().toString();
         FirebaseAuth auth = FirebaseAuth.getInstance();
         ProgressDialog progressDialog = new ProgressDialog(Dangnhap_Activity.this);
         progressDialog.setMessage("Đang kiểm tra đăng nhập...");
         progressDialog.show();
-        progressDialog.show();
 
-        auth.signInWithEmailAndPassword(email, password)        //Toàn bộ nên chuyển sang gmail vì số điện thoại không dugnf được rảnh thì sửa layout lại thành gmail hết
+        auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -128,7 +124,7 @@ public class Dangnhap_Activity extends AppCompatActivity {
     }
     private void addControls() {
         btn_Dangnhap = findViewById(R.id.btn_Dangnhap_dangnhap);
-        edt_Sodienthoai = findViewById(R.id.edt_Sodienthoai_dangnhap);
+        edt_Email_dangnhap = findViewById(R.id.edt_Email_dangnhap);
         edt_Matkhau = findViewById(R.id.edt_Matkhau_dangnhap);
         txtQuenmatkhau = findViewById(R.id.txt_Quenmatkhau_dangnhap);
         txt_Dangky = findViewById(R.id.txt_Dangky_dangnhap);
