@@ -107,6 +107,7 @@ public class ThongTinCaNhan_Activity extends AppCompatActivity {
         Change_Image_Profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
             }
         });
 
