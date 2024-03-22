@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -40,6 +39,7 @@ public class LopMoiAdapter extends RecyclerView.Adapter<LopMoiAdapter.viewholder
         holder.Time_item.setText(lopHoc.getGioMoiBuoi());
         holder.Monhoc_item.setText(lopHoc.getMonHoc());
         holder.Tien_item.setText(lopHoc.getHocPhi());
+        holder.MaLop_item.setText(lopHoc.getID());      //Lấy id
     }
 
     @Override
@@ -50,39 +50,14 @@ public class LopMoiAdapter extends RecyclerView.Adapter<LopMoiAdapter.viewholder
     public class viewholder extends RecyclerView.ViewHolder{
         //ánh xạ id trong layout lop moi
         TextView Title_item, MaLop_item, Time_item, Monhoc_item, Tien_item;
-       Button btn_Xoa, btn_Edit, btn_Detail;
         public viewholder(@NonNull View itemView) {
             super(itemView);
             Title_item = itemView.findViewById(R.id.Title_item);
-            MaLop_item = itemView.findViewById(R.id.MaLop_item);
+            MaLop_item = itemView.findViewById(R.id.MaLop_item);//Chưa có
             Time_item = itemView.findViewById(R.id.Time_item);
             Monhoc_item = itemView.findViewById(R.id.Monhoc_item);
             Tien_item = itemView.findViewById(R.id.Tien_item);
-            btn_Xoa = itemView.findViewById(R.id.btn_Delete);
-            btn_Edit = itemView.findViewById(R.id.btn_Edit);
-            btn_Detail = itemView.findViewById(R.id.btn_detail);
-            // Gán sự kiện cho các nút Xóa,Chỉnh Sửa,Chi tiết dữ liệu
-            addEvent();
-        }
-        public void addEvent(){
-            btn_Xoa.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
 
-                }
-            });
-            btn_Detail.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
-            btn_Edit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
 
         }
     }

@@ -86,8 +86,10 @@ public class Danhsachlophoc_Activity extends AppCompatActivity {
                 if (dataSnapshot.exists()) {
                     ListLopHoc.clear(); // Xóa dữ liệu cũ trước khi cập nhật mới
                     for (DataSnapshot lopHocSnapshot : dataSnapshot.getChildren()) {
+                        String id = lopHocSnapshot.getKey();
                         // Lấy thông tin của lớp học
                         LopHoc lopHoc = lopHocSnapshot.getValue(LopHoc.class);
+                        lopHoc.setID(id);//Lấy id từ firebase gắn về id lớp học
                         Log.d("FirebaseData", "LopMoi: " + lopHoc.toString()); // In ra dữ liệu của mỗi lớp học
                         ListLopHoc.add(lopHoc);
                     }

@@ -1,6 +1,7 @@
 package com.example.doan_giasu.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,11 @@ import com.example.doan_giasu.Model.LopHoc;
 import com.example.doan_giasu.R;
 
 import java.util.List;
+
+import Activity_Menu.Danhsachlophoc_Activity;
+import Activity_Menu.TaoYeuCauTimGiaSu_Activity;
+import Edit_Detail.Detail_Activity;
+import Edit_Detail.Edit_Activity;
 
 public class LophocLopday_Adapter extends RecyclerView.Adapter<LophocLopday_Adapter.ViewHolder> {
     private List<LopHoc> listLopHoc; // Danh sách các lớp học
@@ -62,10 +68,33 @@ public class LophocLopday_Adapter extends RecyclerView.Adapter<LophocLopday_Adap
             btn_Xoa= itemView.findViewById(R.id.btn_Delete);   //Nút Xóa dữ liệu
             btn_Edit= itemView.findViewById(R.id.btn_Edit); //Nút Sửa  dữ liệu
             btn_Detail= itemView.findViewById(R.id.btn_detail);//Nút Chi tiết dữ liệu
-
+            addEvent();
         }
+        //Trong Adapter, bạn không thể trực tiếp chuyển đổi hoạt động giữa các Activity như bạn làm trong Activity chính. Thay vào đó, bạn nên sử dụng các Interface để tương tác giữa Adapter và Activity.
+        public void addEvent(){
+            btn_Detail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Lấy ID của lớp học từ danh sách dựa vào vị trí của item
+                    String lopHocId = listLopHoc.get(getAdapterPosition()).getID();//Chưa xong
+                    Intent intent = new Intent(context, Detail_Activity.class);
+                    intent.putExtra("LopMoi", lopHocId);
+                    context.startActivity(intent);
+                }
+            });
+            btn_Xoa.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-
+                }
+            });
+            btn_Edit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, Edit_Activity.class);
+                }
+            });
+        }
 
         // Phương thức này gắn dữ liệu từ một đối tượng LopHoc vào ViewHolder
         public void bind(LopHoc lopHoc) {
@@ -74,6 +103,8 @@ public class LophocLopday_Adapter extends RecyclerView.Adapter<LophocLopday_Adap
             Time_item.setText(lopHoc.getGioMoiBuoi());
             Monhoc_item.setText(lopHoc.getMonHoc());
             Tien_item.setText(lopHoc.getHocPhi());
+            MaLop_item.setText(lopHoc.getID());
+
         }
     }
 }
