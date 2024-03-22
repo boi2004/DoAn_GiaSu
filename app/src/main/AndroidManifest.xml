@@ -19,6 +19,12 @@
         android:theme="@style/Theme.DoAn_GiaSu"
         tools:targetApi="31">
         <activity
+            android:name="Edit_Detail.Detail_Activity"
+            android:exported="false" />
+        <activity
+            android:name="Edit_Detail.Edit_Activity"
+            android:exported="false" />
+        <activity
             android:name="Activity_Menu.TaoYeuCauTimGiaSu_Activity"
             android:exported="false" />
         <activity
