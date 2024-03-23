@@ -94,7 +94,6 @@ public class NewclassFragment extends Fragment  {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.fragment_newclass, container, false);
-
             rcv = view.findViewById(R.id.rcv);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rcv.setLayoutManager(linearLayoutManager);
@@ -125,11 +124,11 @@ public class NewclassFragment extends Fragment  {
                     for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                         // Lấy ID của người dùng
                         String userId = userSnapshot.getKey();
-
                         // Duyệt qua từng lớp học của người dùng
                         for (DataSnapshot lopHocSnapshot : userSnapshot.getChildren()) {
                             // Lấy thông tin của lớp học
                             LopHoc lopHoc = lopHocSnapshot.getValue(LopHoc.class);
+                            lopHoc.setID(userId);
                             Log.d("FirebaseData", "LopMoi: " + lopHoc.toString()); // In ra dữ liệu của mỗi lớp học
                             ListLopHoc.add(lopHoc);
                         }

@@ -1,11 +1,8 @@
 package Activity_Menu;
 
-import static java.security.AccessController.getContext;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +17,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.doan_giasu.Adapter.GiaSuAdapter;
 import com.example.doan_giasu.Model.GiaSu;
 import com.example.doan_giasu.R;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -34,9 +30,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
-
-import java.util.List;
 
 
 public class DangKyLamGiaSu_Activity extends AppCompatActivity {
@@ -56,7 +49,7 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_dangkylam_giasu);
 
-        Toolbar toolbar = findViewById(R.id.toolbar_dangkylamgiasu);
+        Toolbar toolbar = findViewById(R.id.toolbar_dangkylamgiasu1);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Đăng ký làm gia sư");
