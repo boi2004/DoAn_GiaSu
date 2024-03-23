@@ -42,15 +42,29 @@
         android:textStyle="italic"
             android:textColor="@color/black"
             android:padding="10dp" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
     <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Học phí: "
+            android:textColor="#00897B"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+        <TextView
             android:id="@+id/txt_ten_gia_su"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="Học phí: 350,000/Buổi"
+            android:text="350,000/Buổi"
             android:textColor="#00897B"
             android:textSize="18sp"
             android:textStyle="bold" />
+    </LinearLayout>
+
     <LinearLayout
         android:id="@+id/monhoc"
         android:layout_width="wrap_content"
