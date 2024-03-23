@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:shadowColor="#329133"
         android:text="EDUBOX"
-        android:textColor="#43A047"
+        android:textColor="#00897B"
         android:textSize="40sp"
         android:textStyle="bold"
         android:typeface="serif"

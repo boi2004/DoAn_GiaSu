@@ -74,19 +74,31 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
         edt_monhoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShowMenu();
+                ShowMenuMonhoc();
             }
         });
         edt_nghenghiep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShowMenu1();
+                ShowMenuNghenghiep();
             }
         });
         edt_thanhpho.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShowMenu2();
+                ShowMenuThanhpho();
+            }
+        });
+        edt_truongdahoc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShowMenuTruongdahoc();
+            }
+        });
+        edt_namtotnghiep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShowMenuNamtotnghiep();
             }
         });
         dangkylamgiasu.setOnClickListener(new View.OnClickListener() {
@@ -316,7 +328,7 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
     }
 
 
-    private void ShowMenu() {
+    private void ShowMenuMonhoc() {
         PopupMenu popupMenu = new PopupMenu(this, edt_monhoc);
         popupMenu.getMenuInflater().inflate(R.menu.menu_pupop_monhoc, popupMenu.getMenu());
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -391,7 +403,7 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
 
     }
 
-    private void ShowMenu1() {
+    private void ShowMenuNghenghiep() {
         PopupMenu popupMenu = new PopupMenu(this, edt_nghenghiep);
         popupMenu.getMenuInflater().inflate(R.menu.menu_pupop_nghenghiep, popupMenu.getMenu());
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -419,7 +431,7 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
 
     }
 
-    private void ShowMenu2() {
+    private void ShowMenuThanhpho() {
         PopupMenu popupMenu = new PopupMenu(this, edt_thanhpho);
         popupMenu.getMenuInflater().inflate(R.menu.menu_pupop_thanhpho, popupMenu.getMenu());
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -622,6 +634,87 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
             }
         });
         popupMenu.show();
+
+    }
+    private void ShowMenuTruongdahoc() {
+        PopupMenu popupMenu = new PopupMenu(this, edt_truongdahoc);
+        popupMenu.getMenuInflater().inflate(R.menu.menu_pupop_truongdahoc, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.menulehongphong:
+                        edt_truongdahoc.setText("THPT Lê Hồng Phong");
+                        break;
+                    case R.id.menunguyenthuonghien:
+                        edt_truongdahoc.setText("THPT Nguyễn Thượng Hiền");
+                        break;
+                    case R.id.menunguyenthiminhkhai:
+                        edt_truongdahoc.setText("THPT Nguyễn Thị Minh Khai");
+                        break;
+                    case R.id.menunguyencongtru:
+                        edt_truongdahoc.setText("THPT Nguyễn Công Trứ");
+                        break;
+                    case R.id.menuquangtrung:
+                        edt_truongdahoc.setText("THPT Quang Trung");
+                        break;
+                    case R.id.menuphuocthanh:
+                        edt_truongdahoc.setText("THCS Phước Thạnh");
+                        break;
+                    case R.id.menunguyendu:
+                        edt_truongdahoc.setText("THCS Nguyễn Du");
+                        break;
+                    case R.id.menunguyenhuutho:
+                        edt_truongdahoc.setText("THCS Nguyễn Hữu Thọ");
+                        break;
+                    case R.id.menulythuongkiet:
+                        edt_truongdahoc.setText("THCS Lý Thường Kiệt");
+                        break;
+                }
+                return false;
+            }
+        });
+        popupMenu.show();
+
+
+    }
+    private void ShowMenuNamtotnghiep() {
+        PopupMenu popupMenu = new PopupMenu(this, edt_namtotnghiep);
+        popupMenu.getMenuInflater().inflate(R.menu.menu_pupop_namtotnghiep, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.menu2016:
+                        edt_namtotnghiep.setText("Năm 2016");
+                        break;
+                    case R.id.menu2017:
+                        edt_namtotnghiep.setText("Năm 2017");
+                        break;
+                    case R.id.menu2018:
+                        edt_namtotnghiep.setText("Năm 2018");
+                        break;
+                    case R.id.menu2019:
+                        edt_namtotnghiep.setText("Năm 2019");
+                        break;
+                    case R.id.menu2020:
+                        edt_namtotnghiep.setText("Năm 2020");
+                        break;
+                    case R.id.menu2021:
+                        edt_namtotnghiep.setText("Năm 2021");
+                        break;
+                    case R.id.menu2022:
+                        edt_namtotnghiep.setText("Năm 2022");
+                        break;
+                    case R.id.menu2023:
+                        edt_namtotnghiep.setText("Năm 2023");
+                        break;
+                }
+                return false;
+            }
+        });
+        popupMenu.show();
+
 
     }
     private void addControls() {
