@@ -1,5 +1,7 @@
 package Activity_Menu;
+
 import android.Manifest;
+import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -28,9 +30,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.doan_giasu.R;
+import com.example.doan_giasu.UpLoadProfilePicActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;               //FireBase
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
@@ -44,103 +47,83 @@ import com.google.firebase.storage.StorageTask;
 
 import java.io.IOException;
 import java.util.BitSet;
+
 public class ThongTinCaNhan_Activity extends AppCompatActivity {
     private static final int MY_REQUEST_CODE = 1;
     TextView Change_Image_Profile;
-    EditText edt_Name_fragment_Infomation,edtEmail, edtSdt;
+    EditText edt_Name_fragment_Infomation, edtEmail, edtSdt;
     Button btnLuuThayDoi;
     DatabaseReference databaseReference;
     FirebaseAuth mAuth;
     ImageView circleImageView_InforUser;
     Uri mSelectedImageUri;
-    String mUri = "";
+    String mUri;
     StorageTask uploadTask;
     StorageReference mstoragePicRef;
+    private BroadcastReceiver profilePicUpdatedReceiver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activitythong_tincanhan);
 
         addControls();
-        /*addEvents();*/
         SetInformationUser();
 
-        //Hàm toolbar
         Toolbar toolbar = findViewById(R.id.toolbar_thongtincanhan);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Thông tin cá nhân");
         int white = getResources().getColor(android.R.color.white);
-        toolbar.setTitleTextColor(white);   //Trong đoạn mã trên, toolbar.setTitleTextColor(white) sẽ đặt màu trắng cho tiêu đề của Toolbar.
+        toolbar.setTitleTextColor(white);
 
-
-        LuuDuLieu();//Hiện thông  tin trên editext
+        LuuDuLieu();
 
         btnLuuThayDoi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                if(user == null){
-                    return;
-                }
-                String strName = edt_Name_fragment_Infomation.getText().toString().trim();
-
-                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                        .setDisplayName(strName)
-                        .setPhotoUri(Uri.parse(String.valueOf(mSelectedImageUri))) //**
-                        .build();
-
-
-                user.updateProfile(profileUpdates)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        SetInformationUser();
-                                        LuuDuLieu();
-                                        Toast.makeText(ThongTinCaNhan_Activity.this,"Cập Nhật Thông Tin Cá Nhân Thành Công!",Toast.LENGTH_LONG).show();
-                                    }
-                                }
-                        });
+                UpdateUserInfo();
             }
         });
+
         Change_Image_Profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(ThongTinCaNhan_Activity.this, UpLoadProfilePicActivity.class);
+                startActivity(intent);
             }
         });
-
     }
+
     private void addControls() {
-        //firebase
         mAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("GiaSu");
         mstoragePicRef = FirebaseStorage.getInstance().getReference().child("Profile Pic");
         circleImageView_InforUser = findViewById(R.id.circleImageView_InforUser);
         Change_Image_Profile = findViewById(R.id.Change_Image_Profile);
 
-        // Khai báo các EditText
         edt_Name_fragment_Infomation = findViewById(R.id.edt_Name_fragment_Infomation);
         edtEmail = findViewById(R.id.edt_Email_fragment_Infomation);
         edtSdt = findViewById(R.id.edt_SDT_fragment_Infomation);
-        circleImageView_InforUser = findViewById(R.id.circleImageView_InforUser);
-        // Khai báo các Button
+
         btnLuuThayDoi = findViewById(R.id.btn_LuuThayDoi_fragment_Infomation);
     }
+
     private void SetInformationUser() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if(user == null){
+        if (user == null) {
             return;
         }
+        String name = user.getDisplayName();
+        String email = user.getEmail();
+        Uri photoUrl = user.getPhotoUrl();
         edt_Name_fragment_Infomation.setText(user.getDisplayName());
         edtEmail.setText(user.getEmail());
         edtSdt.setText(user.getPhoneNumber());
-        Glide.with(this).load(user.getPhotoUrl()).error(R.drawable.img_1).into(circleImageView_InforUser);
+        Glide.with(this).load(photoUrl).error(R.drawable.img_1).into(circleImageView_InforUser);
     }
 
-    public void LuuDuLieu(){
-    // Lấy reference đến node chứa dữ liệu gia sư từ Realtime Database
+    public void LuuDuLieu() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String userID = user.getUid();
         DatabaseReference giaSuRef = FirebaseDatabase.getInstance().getReference().child("GiaSu").child(userID);
@@ -148,27 +131,51 @@ public class ThongTinCaNhan_Activity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    // Lấy dữ liệu từ snapshot
                     String email = dataSnapshot.child("email").getValue(String.class);
                     String soDienThoai = dataSnapshot.child("soDienThoai").getValue(String.class);
-                    // Hiển thị dữ liệu lên các EditText
                     edtEmail.setText(email);
                     edtSdt.setText(soDienThoai);
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 // Xử lý khi có lỗi xảy ra
             }
         });
     }
-    //Hàm thoát ra trên toolbal
-    public boolean onOptionsItemSelected(@NonNull MenuItem item)
-    {
-        if (item.getItemId() == android.R.id.home){
+
+    private void UpdateUserInfo() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) {
+            return;
+        }
+        String strName = edt_Name_fragment_Infomation.getText().toString().trim();
+
+        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                .setDisplayName(strName)
+                .setPhotoUri(Uri.parse(String.valueOf(mSelectedImageUri))) //**
+                .build();
+
+        user.updateProfile(profileUpdates)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            SetInformationUser();
+                            LuuDuLieu();
+                            Toast.makeText(ThongTinCaNhan_Activity.this, "Cập Nhật Thông Tin Cá Nhân Thành Công!", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
             finish();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
 }
-
