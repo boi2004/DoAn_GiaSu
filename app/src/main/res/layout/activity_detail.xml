@@ -42,15 +42,29 @@
         android:textStyle="italic"
             android:textColor="@color/black"
             android:padding="10dp" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
     <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Học phí: "
+            android:textColor="#00897B"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+        <TextView
             android:id="@+id/txt_ten_gia_su"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="Học phí: 350,000/Buổi"
+            android:text="350,000/Buổi"
             android:textColor="#00897B"
             android:textSize="18sp"
             android:textStyle="bold" />
+    </LinearLayout>
+
     <LinearLayout
         android:id="@+id/monhoc"
         android:layout_width="wrap_content"
@@ -62,12 +76,18 @@
             android:padding="10dp"
             app:srcCompat="@drawable/baseline_library_books_24"/>
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="18sp"
+            android:text="Môn học:"/>
+        <TextView
             android:id="@+id/txt_monhoc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textSize="18sp"
-            android:text="Môn học: Maths, Toán lớp 11"/>
+            android:text="Maths, Toán lớp 11"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/yeucau"
@@ -80,12 +100,18 @@
             android:padding="10dp"
             app:srcCompat="@drawable/baseline_emoji_people_24"/>
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="18sp"
+            android:text="Yêu cầu gia sư:"/>
+        <TextView
             android:id="@+id/txt_yeucau"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textSize="18sp"
-            android:text="Yêu cầu gia sư: (nữ) Đã tốt nghiệp"/>
+            android:text=" (nữ) Đã tốt nghiệp"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/diadiem"
@@ -98,12 +124,18 @@
             android:padding="10dp"
             app:srcCompat="@drawable/baseline_pin_drop_24"/>
         <TextView
-            android:id="@+id/txt_diadiem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textSize="18sp"
             android:text="Địa điểm:"/>
+        <TextView
+            android:id="@+id/txt_diadiem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="18sp"
+            android:text="Hồ Chí Minh"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/soluong"
@@ -116,12 +148,18 @@
             android:padding="10dp"
             app:srcCompat="@drawable/baseline_supervisor_account_24"/>
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="18sp"
+            android:text="Số lượng: "/>
+        <TextView
             android:id="@+id/txt_soluong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textSize="18sp"
-            android:text="Số lượng: 1 học viên nữ"/>
+            android:text="1 học viên nữ"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/tuanhoc"
@@ -134,12 +172,18 @@
             android:padding="10dp"
             app:srcCompat="@drawable/baseline_receipt_long_24"/>
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="18sp"
+            android:text="Tuần học: "/>
+        <TextView
             android:id="@+id/txt_tuanhoc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textSize="18sp"
-            android:text="Tuần học: 2 buổi(90 phút/buổi)"/>
+            android:text="2 buổi(90 phút/buổi)"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/taoluc"
@@ -152,13 +196,20 @@
             android:padding="10dp"
             app:srcCompat="@drawable/baseline_access_time_24"/>
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="18sp"
+            android:paddingBottom="60sp"
+            android:text="Tạo lúc: "/>
+        <TextView
             android:id="@+id/txt_taoluc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textSize="18sp"
             android:paddingBottom="60sp"
-            android:text="Tạo lúc: 20:18 22.03.2024"/>
+            android:text="20:18 22.03.2024"/>
     </LinearLayout>
     <Button
         android:id="@+id/btn_nhanlopngay"
