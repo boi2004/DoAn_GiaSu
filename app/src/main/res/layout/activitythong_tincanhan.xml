@@ -20,6 +20,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar_thongtincanhan" />
 
     <TextView
+        android:id="@+id/Change_Image_Profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
