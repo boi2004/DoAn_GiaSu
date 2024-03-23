@@ -11,7 +11,7 @@
     <Button
         android:id="@+id/btn_luu_datlaimatkhau"
         android:layout_width="380dp"
-        android:layout_height="66dp"
+        android:layout_height="70dp"
         android:layout_marginTop="70dp"
         android:backgroundTint="@color/green"
         android:text="Lưu"
@@ -25,9 +25,9 @@
         android:id="@+id/editT_matkhaunew_datlaimatkhau"
         android:layout_width="380dp"
         android:layout_height="60dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="268dp"
         android:background="@drawable/custom_edt"
-        android:drawableLeft="@drawable/iconpasss"
+        android:drawableLeft="@drawable/baseline_lock_person_24"
         android:ems="10"
         android:hint=" Mật khẩu cũ"
         android:inputType="text"
@@ -41,7 +41,7 @@
         android:layout_height="60dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/custom_edt"
-        android:drawableLeft="@drawable/iconpasss"
+        android:drawableLeft="@drawable/baseline_lock_person_24"
         android:ems="10"
         android:hint=" Nhập lại mật hhẩu"
         android:inputType="text"
@@ -55,7 +55,7 @@
         android:layout_height="60dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/custom_edt"
-        android:drawableLeft="@drawable/iconpasss"
+        android:drawableLeft="@drawable/baseline_lock_person_24"
         android:ems="10"
         android:hint=" Mật khẩu mới"
         android:inputType="text"
@@ -71,7 +71,7 @@
         android:text="Mật khẩu của bạn phải có tối thiểu 6 ký tự, đồng thời bao gồm cả chữ số, chữ cái và ký tự đặc biệt (!$@%)."
         android:textColor="#FFB300"
         android:textSize="15sp"
-        android:textStyle="bold"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editT_matkhaunewagain_datlaimatkhau" />
@@ -89,11 +89,11 @@
 
     <ImageView
         android:id="@+id/imageView11"
-        android:layout_width="286dp"
-        android:layout_height="192dp"
-        android:layout_marginTop="72dp"
+        android:layout_width="410dp"
+        android:layout_height="285dp"
+        android:layout_marginTop="64dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/panda15" />
+        app:srcCompat="@drawable/panda" />
 </androidx.constraintlayout.widget.ConstraintLayout>

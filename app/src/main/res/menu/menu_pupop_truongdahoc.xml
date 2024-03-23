@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="THPT Lê Hồng Phong"
+        android:id="@+id/menulehongphong"/>
+    <item android:title="THPT Nguyễn Thượng Hiền"
+        android:id="@+id/menunguyenthuonghien"/>
+    <item android:title="THPT Nguyễn Thị Minh Khai"
+        android:id="@+id/menunguyenthiminhkhai"/>
+    <item android:title="THPT Nguyễn Công Trứ"
+        android:id="@+id/menunguyencongtru"/>
+    <item android:title="THPT Quang Trung"
+        android:id="@+id/menuquangtrung"/>
+    <item android:title="THCS Phước Thạnh"
+        android:id="@+id/menuphuocthanh"/>
+    <item android:title="THCS Nguyễn Du"
+        android:id="@+id/menunguyendu"/>
+    <item android:title="THCS Nguyễn Hữu Thọ"
+        android:id="@+id/menunguyenhuutho"/>
+    <item android:title="THCS Lý Thường Kiệt"
+        android:id="@+id/menulythuongkiet"/>
+
+</menu>

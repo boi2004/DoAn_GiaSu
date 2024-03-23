@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#43A047" /> <!-- Đặt màu nền mong muốn, ví dụ: màu xanh lá cây -->
+    <corners android:radius="8dp" /> <!-- Đặt bo tròn cho các góc của Button, có thể thay đổi giá trị để điều chỉnh độ cong -->
+</shape>

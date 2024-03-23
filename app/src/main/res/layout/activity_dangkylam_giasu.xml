@@ -23,7 +23,7 @@
             android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar_dangkylamgiasu1" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_dangkylamgiasu" />
 
         <EditText
             android:id="@+id/edt_diachi"
@@ -71,7 +71,7 @@
         <EditText
             android:id="@+id/edt_gioithieubanthan"
             android:layout_width="380dp"
-            android:layout_height="120dp"
+            android:layout_height="150dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/custom_edt"
             android:drawableLeft="@drawable/pencil"
@@ -83,7 +83,7 @@
             app:layout_constraintTop_toBottomOf="@+id/edt_namtotnghiep" />
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_dangkylamgiasu1"
+            android:id="@+id/toolbar_dangkylamgiasu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/green"
@@ -105,7 +105,6 @@
             android:hint="  Số điện thoại"
             android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.483"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_hovaten" />
 
@@ -162,6 +161,7 @@
             android:background="@drawable/custom_edt"
             android:drawableLeft="@drawable/baseline_home_work_24"
             android:ems="10"
+            android:drawableRight="@drawable/dropdown1"
             android:hint="  Trường đã học"
             android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
@@ -176,237 +176,16 @@
             android:background="@drawable/custom_edt"
             android:drawableLeft="@drawable/baseline_school_24"
             android:ems="10"
+            android:drawableRight="@drawable/dropdown1"
             android:hint="  Năm tốt nghiệp"
             android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_truongdahoc" />
-        <TextView
-            android:id="@+id/tv_tg"
-            android:layout_width="380dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#43A047"
-            android:text="Thời gian có thể nhận lớp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edt_gioithieubanthan"/>
-        <LinearLayout
-            android:id="@+id/t2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_tg">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:textColor="#43A047"
-                android:text="T2: "/>
-            <EditText
-                android:id="@+id/edt_t2"
-                android:layout_width="380dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="8sp"
-                android:drawableRight="@drawable/dropdown1"
-                android:ems="10"
-                android:hint="  Chọn thời gian"
-                android:inputType="text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_tg" />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/t3"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/t2">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="T3: "
-                android:textColor="#43A047"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-            <EditText
-                android:id="@+id/edt_t3"
-                android:layout_width="380dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="8sp"
-                android:drawableRight="@drawable/dropdown1"
-                android:ems="10"
-                android:hint="  Chọn thời gian"
-                android:inputType="text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_tg" />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/t4"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/t3">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="T4: "
-                android:textColor="#43A047"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-            <EditText
-                android:id="@+id/edt_t4"
-                android:layout_width="380dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="8sp"
-                android:drawableRight="@drawable/dropdown1"
-                android:ems="10"
-                android:hint="  Chọn thời gian"
-                android:inputType="text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_tg" />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/t5"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/t4">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="T5: "
-                android:textColor="#43A047"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-            <EditText
-                android:id="@+id/edt_t5"
-                android:layout_width="380dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="8sp"
-                android:drawableRight="@drawable/dropdown1"
-                android:ems="10"
-                android:hint="  Chọn thời gian"
-                android:inputType="text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_tg" />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/t6"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/t5">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="T6: "
-                android:textColor="#43A047"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-            <EditText
-                android:id="@+id/edt_t6"
-                android:layout_width="380dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="8sp"
-                android:drawableRight="@drawable/dropdown1"
-                android:ems="10"
-                android:hint="  Chọn thời gian"
-                android:inputType="text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_tg" />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/t7"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/t6">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="T7: "
-                android:textColor="#43A047"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-            <EditText
-                android:id="@+id/edt_t7"
-                android:layout_width="380dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="8sp"
-                android:drawableRight="@drawable/dropdown1"
-                android:ems="10"
-                android:hint="  Chọn thời gian"
-                android:inputType="text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_tg" />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/cn"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/t7">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="CN: "
-                android:textColor="#43A047"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-            <EditText
-                android:id="@+id/edt_cn"
-                android:layout_width="380dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="8sp"
-                android:drawableRight="@drawable/dropdown1"
-                android:ems="10"
-                android:hint="  Chọn thời gian"
-                android:inputType="text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_tg" />
-        </LinearLayout>
-
         <Button
             android:id="@+id/btn_dangkylamgiasu_dangkylamgiasu"
             android:layout_width="380dp"
-            android:layout_height="60dp"
+            android:layout_height="70dp"
             android:layout_marginTop="20dp"
             android:backgroundTint="@color/green"
             android:text="Đăng Ký Làm Gia Sư"
@@ -414,21 +193,20 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cn" />
-
-        <ImageButton
+            app:layout_constraintTop_toBottomOf="@+id/edt_gioithieubanthan" />
+        <ImageView
             android:id="@+id/image_GiaSu"
-            android:layout_width="271dp"
-            android:layout_height="137dp"
+            android:layout_width="320dp"
+            android:layout_height="150dp"
             android:layout_marginStart="80dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="80dp"
             android:background="@null"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.507"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar_dangkylamgiasu1"
-            app:srcCompat="@drawable/icon_user_profile" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_dangkylamgiasu"
+            app:srcCompat="@drawable/ic_user" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
