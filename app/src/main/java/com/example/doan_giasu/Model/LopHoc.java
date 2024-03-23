@@ -13,9 +13,6 @@ public class LopHoc {
     private String GioiTinh;
     private String HocPhiTheo;
     private String MoTaChiTiet;
-
-
-
     private String ID;
 
     public LopHoc() {
@@ -136,7 +133,6 @@ public class LopHoc {
     public String getID() {
         return ID;
     }
-
     public void setID(String ID) {
         this.ID = ID;
     }

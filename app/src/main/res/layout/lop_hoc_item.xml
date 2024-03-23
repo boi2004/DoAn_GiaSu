@@ -17,7 +17,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cần gia sư môn công nghệ thông tin cá nhân"
-            android:textSize="16sp"
+            android:textSize="20sp"
+            android:textColor="#00897B"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -28,6 +29,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 android:text="Mã Lớp: "/>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -37,6 +40,7 @@
                     android:id="@+id/MaLop_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="16sp"
                     android:hint="321321"/>
             </LinearLayout>
         </LinearLayout>
@@ -47,6 +51,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 android:text="Thời Gian: "/>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -56,6 +62,7 @@
                     android:id="@+id/Time_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="16sp"
                     android:hint="14:02 01.05.2024"/>
             </LinearLayout>
         </LinearLayout>
@@ -66,6 +73,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 android:text="Môn học: "/>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -75,6 +84,7 @@
                     android:id="@+id/Monhoc_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="16sp"
                     android:hint="Lập Trình Cơ Bản 2"/>
             </LinearLayout>
         </LinearLayout>
@@ -85,6 +95,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 android:text="Giá Tiền: "/>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -94,6 +106,7 @@
                     android:id="@+id/Tien_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="16sp"
                     android:hint="550,000đ/Buổi"/>
             </LinearLayout>
             <LinearLayout

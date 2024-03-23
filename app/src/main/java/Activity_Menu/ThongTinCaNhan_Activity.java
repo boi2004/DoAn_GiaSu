@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -83,6 +84,19 @@ public class ThongTinCaNhan_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 UpdateUserInfo();
+            }
+        });
+        edtSdt.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    char ch = (char) event.getUnicodeChar();
+                    if (!Character.isDigit(ch)) {
+                        Toast.makeText(ThongTinCaNhan_Activity.this, "Vui lòng chỉ nhập số điện thoại!", Toast.LENGTH_SHORT).show();
+                        return true; // tiêu thụ sự kiện
+                    }
+                }
+                return false;
             }
         });
 

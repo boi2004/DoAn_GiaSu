@@ -31,9 +31,6 @@
             android:name="Activity_Menu.TaoYeuCauTimGiaSu_Activity"
             android:exported="false" />
         <activity
-            android:name="Activity_Menu.TaoYeuCauTimGiaSu"
-            android:exported="false" />
-        <activity
             android:name=".Dangnhap_Activity"
             android:exported="false" />
         <activity

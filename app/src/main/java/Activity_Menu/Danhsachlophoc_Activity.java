@@ -53,7 +53,7 @@ public class Danhsachlophoc_Activity extends AppCompatActivity {
 
         // Khởi tạo danh sách lớp học và adapter
         ListLopHoc = new ArrayList<>();
-        lophocLopdayAdapter = new LophocLopday_Adapter(ListLopHoc);
+        lophocLopdayAdapter = new LophocLopday_Adapter(this,ListLopHoc);
 
         //Lấy id người dùng
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
