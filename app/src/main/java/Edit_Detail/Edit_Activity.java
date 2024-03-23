@@ -29,6 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 public class Edit_Activity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private String lopHocId;
+    //Hàm lấy id từ firebase mà không phải tạo tránh trường hợp null
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser currentUser = mAuth.getCurrentUser();
     String userId = currentUser.getUid();

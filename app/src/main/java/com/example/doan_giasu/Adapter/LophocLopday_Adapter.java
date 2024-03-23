@@ -1,12 +1,15 @@
 package com.example.doan_giasu.Adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +18,8 @@ import com.example.doan_giasu.Model.LopHoc;
 import com.example.doan_giasu.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
@@ -101,7 +106,40 @@ public class LophocLopday_Adapter extends RecyclerView.Adapter<LophocLopday_Adap
             btn_Xoa.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        // 2. Lấy ID của lớp học từ danh sách dựa vào vị trí của item
+                        String lopHocId = listLopHoc.get(position).getID();
+                        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                        FirebaseUser currentUser = mAuth.getCurrentUser();
+                        String userId = currentUser.getUid();
 
+                        // 3. Tạo DatabaseReference để tham chiếu đến nút Firebase muốn xóa
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("LopMoi").child(userId).child(lopHocId);
+
+                        // Hiển thị hộp thoại xác nhận
+                        new AlertDialog.Builder(context)
+                                .setTitle("Xác nhận xóa")
+                                .setMessage("Bạn có chắc chắn muốn xóa lớp học này?")
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // 4. Xóa dữ liệu
+                                        reference.removeValue()
+                                                .addOnCompleteListener(task -> {
+                                                    if (task.isSuccessful()) {
+                                                        // Xóa thành công
+                                                        Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
+                                                    } else {
+                                                        // Xóa thất bại
+                                                        Toast.makeText(context, "Xóa thất bại", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+                                    }
+                                })
+                                .setNegativeButton(android.R.string.no, null) // Không làm gì nếu người dùng không đồng ý
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+                    }
                 }
             });
             btn_Edit.setOnClickListener(new View.OnClickListener() {

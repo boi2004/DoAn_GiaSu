@@ -4,13 +4,19 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doan_giasu.Model.LopHoc;
 import com.example.doan_giasu.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.w3c.dom.Text;
 
@@ -19,6 +25,12 @@ import java.util.List;
 
 public class LopMoiAdapter extends RecyclerView.Adapter<LopMoiAdapter.viewholder> {
     private List<LopHoc> listLopHoc;
+    private Context context; // Context của ứng dụng
+
+    public LopMoiAdapter(Context context,List<LopHoc> listLopHoc) {
+        this.context = context;
+        this.listLopHoc = listLopHoc;
+    }
 
     public LopMoiAdapter(List<LopHoc> listLopHoc) {
         this.listLopHoc = listLopHoc;
@@ -50,6 +62,7 @@ public class LopMoiAdapter extends RecyclerView.Adapter<LopMoiAdapter.viewholder
     public class viewholder extends RecyclerView.ViewHolder{
         //ánh xạ id trong layout lop moi
         TextView Title_item, MaLop_item, Time_item, Monhoc_item, Tien_item;
+        Button btn_dangkynhanlop;
         public viewholder(@NonNull View itemView) {
             super(itemView);
             Title_item = itemView.findViewById(R.id.Title_item);
@@ -57,8 +70,29 @@ public class LopMoiAdapter extends RecyclerView.Adapter<LopMoiAdapter.viewholder
             Time_item = itemView.findViewById(R.id.Time_item);
             Monhoc_item = itemView.findViewById(R.id.Monhoc_item);
             Tien_item = itemView.findViewById(R.id.Tien_item);
+            btn_dangkynhanlop=itemView.findViewById(R.id.btn_dangynhanlop);
+            btn_dangkynhanlop.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        // 2. Lấy ID của lớp học từ danh sách dựa vào vị trí của item
+                        String lopHocId = listLopHoc.get(position).getID();
+                        //Lấy id người dùng
+                        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                        FirebaseUser currentUser = mAuth.getCurrentUser();
+                        String userId = currentUser.getUid();
+                        // Thêm một đăng ký mới vào cơ sở dữ liệu Firebase
+                        // Thêm lớp học mới vào danh sách đăng ký nhận lớp của người dùng
+                        DatabaseReference dangKyRef = FirebaseDatabase.getInstance().getReference("Danh sách đăng ký nhận lớp").child(userId);
+                        dangKyRef.child(lopHocId).setValue(true);
 
-
+                        // Hiển thị thông báo hoặc thực hiện hành động khác nếu cần
+                        Toast.makeText(context, "Đã đăng ký nhận lớp học", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         }
     }
+
 }

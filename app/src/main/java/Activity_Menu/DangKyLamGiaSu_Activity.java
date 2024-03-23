@@ -48,8 +48,7 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_dangkylam_giasu);
-
-        Toolbar toolbar = findViewById(R.id.toolbar_dangkylamgiasu1);
+        Toolbar toolbar = findViewById(R.id.toolbar_dangkylamgiasu);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Đăng ký làm gia sư");
@@ -723,7 +722,7 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
         edt_truongdahoc = findViewById(R.id.edt_truongdahoc);
         edt_namtotnghiep = findViewById(R.id.edt_namtotnghiep);
         dangkylamgiasu = findViewById(R.id.btn_dangkylamgiasu_dangkylamgiasu);
-        img_giasu = findViewById(R.id.image_GiaSu);
+       // img_giasu = findViewById(R.id.image_GiaSu);
     }
 
 }
