@@ -18,6 +18,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.doan_giasu.Model.LopHoc;
 import com.example.doan_giasu.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,8 +28,22 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Edit_Activity extends AppCompatActivity {
     private DatabaseReference databaseReference;
+    private String lopHocId;
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    FirebaseUser currentUser = mAuth.getCurrentUser();
+    String userId = currentUser.getUid();
+
+    //Hạm gọi id lớp học và user từ intent trong adapter LOPHOCLOPDAY
+    private void intent(){
+        // Nhận ID của lớp học và ID của người dùng từ Intent
+        Intent intent = getIntent();
+        if (intent != null) {
+            lopHocId = intent.getStringExtra("LopMoi");
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Hàm toolbar
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
         Toolbar toolbar = findViewById(R.id.toolbar_taoyeucautimgiasu);
@@ -42,9 +58,11 @@ public class Edit_Activity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        // Khởi tạo DatabaseReference để tham chiếu đến "LopHoc" node trong Firebase
-        databaseReference = FirebaseDatabase.getInstance().getReference("LopHoc");
-        loadthongtin();
+
+        // Khởi tạo DatabaseReference để tham chiếu đến "LopMoi" node trong Firebase
+        databaseReference = FirebaseDatabase.getInstance().getReference("LopMoi");
+        intent();//Hàm lấy thông tin id của idlop và id user;
+        loadthongtin(userId,lopHocId);       //Hàm load thông tin mà chưa chạy được (Muốn hiện thông tin lên edt)
         addEvent();
     }
 
@@ -54,11 +72,14 @@ public class Edit_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Hàm cập nhật dữ liệu
-                capNhatDuLieuLenFirebase();
+                intent();
+                capNhatDuLieuLenFirebase(lopHocId,userId);
             }
         });
     }
 
+
+    //Hàm quay ra trên toolbar
     public boolean onOptionsItemSelected(@NonNull MenuItem item)
     {
         if (item.getItemId() == android.R.id.home){
@@ -66,13 +87,9 @@ public class Edit_Activity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    public void loadthongtin(){
-        Intent intent = getIntent();
-        if (intent != null) {
-            String lopHocId = intent.getStringExtra("LopMoi");
-
+    public void loadthongtin(String userId,String lopHocId){
             // Truy vấn dữ liệu từ Firebase dựa trên ID của lớp học
-            databaseReference.child(lopHocId).addListenerForSingleValueEvent(new ValueEventListener() {
+            databaseReference.child(userId).child(lopHocId).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     // Kiểm tra xem dữ liệu có tồn tại không
@@ -128,11 +145,10 @@ public class Edit_Activity extends AppCompatActivity {
                     Toast.makeText(Edit_Activity.this, "Lỗi: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
-        }
     }
 
     // Phương thức để cập nhật dữ liệu lên Firebase
-    private void capNhatDuLieuLenFirebase() {
+    private void capNhatDuLieuLenFirebase( String lopHocId,String userId) {
         // Lấy các giá trị từ các EditText
         String email = ((EditText) findViewById(R.id.edt_email)).getText().toString();
         String tieuDe = ((EditText) findViewById(R.id.edt_tieude)).getText().toString();
@@ -152,11 +168,9 @@ public class Edit_Activity extends AppCompatActivity {
                 monHoc, gioiTinhHocVien, hocPhi, soBuoiTrongTuan,
                 gioiTinh, hocPhiTheo, moTaChiTiet);
 
-        // Lấy ID của lớp học
-        String lopHocId = databaseReference.push().getKey();
 
-        // Đẩy dữ liệu lên Firebase theo ID của lớp học
-        databaseReference.child(lopHocId).setValue(lopHoc)
+        // Đẩy dữ liệu lên Firebase theo ID của lớp học,dưới id user
+        databaseReference.child(userId).child(lopHocId).setValue(lopHoc)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         // Cập nhật thành công

@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doan_giasu.Model.LopHoc;
 import com.example.doan_giasu.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 
@@ -81,10 +83,15 @@ public class LophocLopday_Adapter extends RecyclerView.Adapter<LophocLopday_Adap
                     if (position != RecyclerView.NO_POSITION) {
                         // 2. Lấy ID của lớp học từ danh sách dựa vào vị trí của item
                         String lopHocId = listLopHoc.get(position).getID();
+                        //Lấy id người dùng
+                        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                        FirebaseUser currentUser = mAuth.getCurrentUser();
+                        String userId = currentUser.getUid();
 
                         // 3. Tạo Intent và truyền ID của lớp học
                         Intent intent = new Intent(context, Detail_Activity.class);
                         intent.putExtra("LopMoi", lopHocId);
+                        intent.putExtra("iduser",userId);
 
                         // 4. Khởi chạy Intent để chuyển sang Edit_Activity
                         context.startActivity(intent);
@@ -104,10 +111,14 @@ public class LophocLopday_Adapter extends RecyclerView.Adapter<LophocLopday_Adap
                     if (position != RecyclerView.NO_POSITION) {
                         // 2. Lấy ID của lớp học từ danh sách dựa vào vị trí của item
                         String lopHocId = listLopHoc.get(position).getID();
+                        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                        FirebaseUser currentUser = mAuth.getCurrentUser();
+                        String userId = currentUser.getUid();
 
                         // 3. Tạo Intent và truyền ID của lớp học
                         Intent intent = new Intent(context, Edit_Activity.class);
                         intent.putExtra("LopMoi", lopHocId);
+                        intent.putExtra("userId", userId);
 
                         // 4. Khởi chạy Intent để chuyển sang Edit_Activity
                         context.startActivity(intent);

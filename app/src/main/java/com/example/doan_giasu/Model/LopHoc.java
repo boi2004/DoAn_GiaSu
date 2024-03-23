@@ -14,6 +14,7 @@ public class LopHoc {
     private String HocPhiTheo;
     private String MoTaChiTiet;
     private String ID;
+    private String userId;
 
     public LopHoc() {
         // Hàm khởi tạo mặc định, cần thiết cho Firebase
@@ -135,5 +136,12 @@ public class LopHoc {
     }
     public void setID(String ID) {
         this.ID = ID;
+    }
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }
