@@ -130,7 +130,7 @@ public class Dangky_Activity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Thông báo đăng ký thành công
                             Toast.makeText(Dangky_Activity.this,"Đăng ký thành công.", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(Dangky_Activity.this, Khoiphucmatkhau_Activity.class);
+                            Intent intent = new Intent(Dangky_Activity.this, Dangnhap_Activity.class);
                             startActivity(intent);
                         }
                         else
