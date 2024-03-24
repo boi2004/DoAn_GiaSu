@@ -25,9 +25,6 @@
             android:name="Edit_Detail.Detail_Danhsachlopday_Activity"
             android:exported="false" />
         <activity
-            android:name="Edit_Detail.Deteil_Danhsachlopday_Activity"
-            android:exported="false" />
-        <activity
             android:name="Edit_Detail.Edit_NewClass_Activity"
             android:exported="false" />
         <activity

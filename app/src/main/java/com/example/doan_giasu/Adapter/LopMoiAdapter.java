@@ -1,6 +1,7 @@
 package com.example.doan_giasu.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,9 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import Edit_Detail.Detail_DanhSachLopHoc_Activity;
+import Edit_Detail.Detail_NewClass_Activity;
 
 public class LopMoiAdapter extends RecyclerView.Adapter<LopMoiAdapter.viewholder> {
     private List<LopHoc> listLopHoc;
@@ -62,7 +66,7 @@ public class LopMoiAdapter extends RecyclerView.Adapter<LopMoiAdapter.viewholder
     public class viewholder extends RecyclerView.ViewHolder{
         //ánh xạ id trong layout lop moi
         TextView Title_item, MaLop_item, Time_item, Monhoc_item, Tien_item;
-        Button btn_dangkynhanlop;
+        Button btn_dangkynhanlop,btn_chitiet;
         public viewholder(@NonNull View itemView) {
             super(itemView);
             Title_item = itemView.findViewById(R.id.Title_item);
@@ -71,6 +75,7 @@ public class LopMoiAdapter extends RecyclerView.Adapter<LopMoiAdapter.viewholder
             Monhoc_item = itemView.findViewById(R.id.Monhoc_item);
             Tien_item = itemView.findViewById(R.id.Tien_item);
             btn_dangkynhanlop=itemView.findViewById(R.id.btn_dangynhanlop);
+            btn_chitiet=itemView.findViewById(R.id.btn_chitiet);
             btn_dangkynhanlop.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -89,6 +94,34 @@ public class LopMoiAdapter extends RecyclerView.Adapter<LopMoiAdapter.viewholder
 
                         // Hiển thị thông báo hoặc thực hiện hành động khác nếu cần
                            Toast.makeText(context, "Đã đăng ký nhận lớp học", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+            btn_chitiet.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        LopHoc lopHoc = listLopHoc.get(position);
+                        String lopHocId = lopHoc.getID();
+
+                        //Lấy id người dùng
+                        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                        FirebaseUser currentUser = mAuth.getCurrentUser();
+                        if (currentUser != null) {
+                            String userId = currentUser.getUid();
+
+                            // Tạo Intent và truyền ID của lớp học và ID của người dùng
+                            Intent intent = new Intent(context, Detail_NewClass_Activity.class);
+                            intent.putExtra("LopMoi", lopHocId);
+                            intent.putExtra("iduser", userId); //Phần này không cần cũng đc
+
+                            // Khởi chạy Intent để chuyển sang Detail_NewClass_Activity
+                            context.startActivity(intent);
+                        } else {
+                            // Nếu không có người dùng hiện tại, có thể cần xử lý theo cách thích hợp
+                            Toast.makeText(context, "Không tìm thấy người dùng", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             });
