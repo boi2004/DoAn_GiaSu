@@ -96,8 +96,8 @@ public class Dangnhap_Activity extends AppCompatActivity {
         mydialog.show().create();
     };
     public void dangnhap() {    //Form đăng nhập
-        String password = edt_Matkhau.getText().toString();
-        String email = edt_Email_dangnhap.getText().toString();
+        String password = edt_Matkhau.getText().toString().trim();
+        String email = edt_Email_dangnhap.getText().toString().trim();
         FirebaseAuth auth = FirebaseAuth.getInstance();
         ProgressDialog progressDialog = new ProgressDialog(Dangnhap_Activity.this);
         progressDialog.setMessage("Đang kiểm tra đăng nhập...");

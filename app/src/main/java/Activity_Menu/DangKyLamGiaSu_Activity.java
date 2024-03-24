@@ -1,16 +1,13 @@
 package Activity_Menu;
 
 import android.content.Intent;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
@@ -22,8 +19,10 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.doan_giasu.Model.GiaSu;
 import com.example.doan_giasu.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -34,16 +33,17 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.Objects;
+
 
 public class DangKyLamGiaSu_Activity extends AppCompatActivity {
     EditText edt_monhoc, edt_nghenghiep, edt_thanhpho, edt_hovaten, edt_diachi, edt_namsinh, edt_email, edt_gioithieubanthan, edt_sodienthoai, edt_truongdahoc, edt_namtotnghiep;
     Button dangkylamgiasu;
-    ImageButton image_GiaSu;
+    ImageButton img_giasu;
     Uri imageUri; // Đường dẫn của ảnh đã chọn
     // private StorageReference storageReference;
     private static final int PICK_IMAGE_REQUEST = 1;
     private String userId; // Khai báo biến userId ở cấp độ lớp
-
 
 
     @Override
@@ -61,8 +61,6 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
         addControls();
         addEvents();
         LuuDuLieu();
-
-
     }
 
     private void addEvents() {
@@ -120,10 +118,10 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
                 }
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
                 FirebaseUser currentUser = mAuth.getCurrentUser();
-                luuThongTinGiaSu();         //Hàm kểm tra nếu chưa có thông tin gia sư thì tạo mới,ngược lại có rồi thì cập nhật lại thông tin mà không tạo mới
+                uploadImageToFirebaseStorage(userId, imageUri);
             }
         });
-        image_GiaSu.setOnClickListener(new View.OnClickListener() {   //Nút  luu hình ảnh
+        img_giasu.setOnClickListener(new View.OnClickListener() {   //Nút  luu hình ảnh
 
             @Override
             public void onClick(View v) {
@@ -134,17 +132,18 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             imageUri = data.getData();
-            // Set ảnh cho ImageView
-            image_GiaSu.setImageURI(imageUri);
+            // Set ảnh cho ImageButton
+            img_giasu.setImageURI(imageUri);
             // Gọi hàm uploadImageToFirebaseStorage(userId) để tải ảnh lên Firebase Storage
-            uploadImageToFirebaseStorage(userId);
         }
     }
+
     //hàm thoát toolbar
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
@@ -154,7 +153,7 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
     }
 
 
-    private void luuThongTinGiaSu() {
+    private void luuThongTinGiaSu(String urlAvatar) {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
@@ -167,13 +166,12 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
                         // Người dùng đã có thông tin gia sư trong cơ sở dữ liệu, cập nhật thông tin
-                        capNhatThongTinGiaSu(userId);
+                        capNhatThongTinGiaSu(userId, urlAvatar);
                     } else {
                         // Người dùng chưa có thông tin gia sư trong cơ sở dữ liệu, tạo mới thông tin
-                        taoMoiThongTinGiaSu(userId);
+                        taoMoiThongTinGiaSu(userId, urlAvatar);
                     }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
                     // Xử lý khi có lỗi xảy ra
@@ -186,7 +184,7 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
     }
 
     // Phương thức để cập nhật thông tin gia sư
-    private void capNhatThongTinGiaSu(String userId) {
+    private void capNhatThongTinGiaSu(String userId, String urlAvatar) {
         // Lấy thông tin mới từ các EditText
         String monhoc = edt_monhoc.getText().toString().trim();
         String nghenghiep = edt_nghenghiep.getText().toString().trim();
@@ -201,7 +199,7 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
         String namtotnghiep = edt_namtotnghiep.getText().toString().trim();
 
 // Tạo đối tượng GiaSu mới từ thông tin mới
-        GiaSu giaSu = new GiaSu(nghenghiep, monhoc, thanhpho, hovaten, diachi, Integer.parseInt(namsinh), email, gioithieubanthan, sodienthoai, truongdahoc, Integer.parseInt(namtotnghiep));
+        GiaSu giaSu = new GiaSu(nghenghiep, monhoc, thanhpho, hovaten, diachi,namsinh, email, gioithieubanthan, sodienthoai, truongdahoc,namtotnghiep, urlAvatar);
 
 // Cập nhật thông tin GiaSu lên Firebase Realtime Database
         FirebaseDatabase.getInstance().getReference("GiaSu").child(userId).setValue(giaSu)
@@ -223,7 +221,7 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
     }
 
     // Phương thức để tạo mới thông tin gia sư
-    private void taoMoiThongTinGiaSu(String userId) {
+    private void taoMoiThongTinGiaSu(String userId, String urlAvatar) {
         // Lấy thông tin từ các EditText
         String monhoc = edt_monhoc.getText().toString().trim();
         String nghenghiep = edt_nghenghiep.getText().toString().trim();
@@ -238,7 +236,7 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
         String namtotnghiep = edt_namtotnghiep.getText().toString().trim();
 
         // Tạo đối tượng GiaSu mới từ thông tin
-        GiaSu giaSu = new GiaSu(nghenghiep, monhoc, thanhpho, hovaten, diachi, Integer.parseInt(namsinh), email, gioithieubanthan, sodienthoai, truongdahoc, Integer.parseInt(namtotnghiep));
+        GiaSu giaSu = new GiaSu(nghenghiep, monhoc, thanhpho, hovaten, diachi,namsinh, email, gioithieubanthan, sodienthoai, truongdahoc, namtotnghiep, urlAvatar);
 
         // Lưu thông tin GiaSu mới vào Firebase Realtime Database
         FirebaseDatabase.getInstance().getReference("GiaSu").child(userId).setValue(giaSu)
@@ -257,29 +255,32 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
                     }
                 });
     }
-    private void uploadImageToFirebaseStorage(String userId) {
+
+    private void uploadImageToFirebaseStorage(String userId, Uri imageUri) {
         if (imageUri != null) {
             StorageReference storageRef = FirebaseStorage.getInstance().getReference();
-            String imageName = "profile_image.jpg";
-            StorageReference imageRef = storageRef.child("profile_images").child(userId).child(imageName);
-
-            imageRef.putFile(imageUri)
-                    .addOnSuccessListener(taskSnapshot -> {
-                        imageRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                            String imageUrl = uri.toString();
-                            // Lưu đường dẫn URL của ảnh vào Firestore hoặc Realtime Database
-                            luuThongTinGiaSu();
-                        });
-                    })
-                    .addOnFailureListener(e -> {
-                        Toast.makeText(DangKyLamGiaSu_Activity.this, "Tải ảnh lên thất bại", Toast.LENGTH_SHORT).show();
-                    });
-        } else {
-            Toast.makeText(DangKyLamGiaSu_Activity.this, "Vui lòng chọn ảnh", Toast.LENGTH_SHORT).show();
+            StorageReference riversRef = storageRef.child("images/" + imageUri.getLastPathSegment());
+            riversRef.putFile(imageUri).continueWithTask(task -> {
+                if (!task.isSuccessful()) {
+                    throw Objects.requireNonNull(task.getException());
+                }
+                return riversRef.getDownloadUrl();
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()) {
+                        Uri downloadUri = task.getResult();
+                        luuThongTinGiaSu(downloadUri.toString());
+                    }
+                }
+            }).addOnFailureListener(e -> {
+                Toast.makeText(DangKyLamGiaSu_Activity.this, "Tải ảnh lên thất bại", Toast.LENGTH_SHORT).show();
+            });
         }
     }
+
     // Tham chiếu đến node chứa dữ liệu trên Realtime Database
-    public void LuuDuLieu(){
+    public void LuuDuLieu() {
 // Lấy reference đến node chứa dữ liệu gia sư từ Realtime Database
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String userID = user.getUid();
@@ -294,12 +295,12 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
                     String gioiThieuBanThan = dataSnapshot.child("gioiThieuBanThan").getValue(String.class);
                     String hoVaTen = dataSnapshot.child("hoVaTen").getValue(String.class);
                     String monHoc = dataSnapshot.child("monHoc").getValue(String.class);
-                    long namSinh = dataSnapshot.child("namSinh").getValue(Long.class);
+                    String namSinh = dataSnapshot.child("namSinh").getValue(String.class);
                     String ngheNghiep = dataSnapshot.child("ngheNghiep").getValue(String.class);
                     String soDienThoai = dataSnapshot.child("soDienThoai").getValue(String.class);
                     String thanhPho = dataSnapshot.child("thanhPho").getValue(String.class);
                     String truongDaHoc = dataSnapshot.child("truongDaHoc").getValue(String.class);
-                    long namTotNghiep = dataSnapshot.child("namTotNghiep").getValue(Long.class);
+                    String namTotNghiep = dataSnapshot.child("namTotNghiep").getValue(String.class);
 
                     // Hiển thị dữ liệu lên các EditText
                     edt_diachi.setText(diaChi);
@@ -307,14 +308,15 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
                     edt_gioithieubanthan.setText(gioiThieuBanThan);
                     edt_hovaten.setText(hoVaTen);
                     edt_monhoc.setText(monHoc);
-                    edt_namsinh.setText(String.valueOf(namSinh));
+                    edt_namsinh.setText(namSinh);
                     edt_nghenghiep.setText(ngheNghiep);
                     edt_sodienthoai.setText(soDienThoai);
                     edt_thanhpho.setText(thanhPho);
                     edt_truongdahoc.setText(truongDaHoc);
-                    edt_namtotnghiep.setText(String.valueOf(namTotNghiep));
+                    edt_namtotnghiep.setText(namTotNghiep);
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 // Xử lý khi có lỗi xảy ra
@@ -631,6 +633,7 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
         popupMenu.show();
 
     }
+
     private void ShowMenuTruongdahoc() {
         PopupMenu popupMenu = new PopupMenu(this, edt_truongdahoc);
         popupMenu.getMenuInflater().inflate(R.menu.menu_pupop_truongdahoc, popupMenu.getMenu());
@@ -673,6 +676,7 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
 
 
     }
+
     private void ShowMenuNamtotnghiep() {
         PopupMenu popupMenu = new PopupMenu(this, edt_namtotnghiep);
         popupMenu.getMenuInflater().inflate(R.menu.menu_pupop_namtotnghiep, popupMenu.getMenu());
@@ -712,6 +716,7 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
 
 
     }
+
     private void addControls() {
         edt_monhoc = findViewById(R.id.edt_monhoc);
         edt_nghenghiep = findViewById(R.id.edt_nghenghiep);
@@ -725,7 +730,7 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
         edt_truongdahoc = findViewById(R.id.edt_truongdahoc);
         edt_namtotnghiep = findViewById(R.id.edt_namtotnghiep);
         dangkylamgiasu = findViewById(R.id.btn_dangkylamgiasu_dangkylamgiasu);
-        image_GiaSu = findViewById(R.id.image_GiaSu);
+         img_giasu = findViewById(R.id.image_GiaSu);
     }
 
 }

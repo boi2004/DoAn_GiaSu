@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -52,8 +53,13 @@ public class TeacherFragment extends Fragment {
         recyclerView = view.findViewById(R.id.list_GiaoVien);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
+
+
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
+        recyclerView.setLayoutManager(gridLayoutManager);
 
         // Kiểm tra xem adapter đã được khởi tạo trước đó hay chưa
         if (giaSuAdapter == null) {
@@ -93,20 +99,6 @@ public class TeacherFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getActivity(), "Lỗi khi lấy dữ liệu từ Firebase", Toast.LENGTH_SHORT).show();
             }
-        });
-    }
-    private void taiAnhGiaSu(GiaSu giaSu) {
-        // Tạo reference đến ảnh của gia sư trên Firebase Storage
-        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("profile_images").child(giaSu.getAvatarUrl()).child("profile_image.jpg");
-
-        // Tải ảnh về
-        storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
-            // Lấy đường dẫn URL của ảnh và gán vào đối tượng GiaSu
-            giaSu.setAvatarUrl(uri.toString());
-            // Cập nhật lại adapter sau khi đã có đường dẫn ảnh
-            giaSuAdapter.notifyDataSetChanged();
-        }).addOnFailureListener(exception -> {
-            // Xử lý khi không thể tải ảnh về
         });
     }
 }
