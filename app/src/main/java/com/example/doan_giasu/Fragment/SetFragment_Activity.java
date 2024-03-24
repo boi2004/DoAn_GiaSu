@@ -101,7 +101,7 @@ public class SetFragment_Activity extends AppCompatActivity implements Navigatio
             startActivity(intent);
         } else if (id == R.id.nav_Dangxuat) {
             FirebaseAuth.getInstance().signOut();
-            Intent intent = new Intent(this, Dangnhap_Activity.class);      //Đăng xuất
+            Intent intent = new Intent(this, Dangnhap_Activity.class);           //Đăng xuất
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_Danhsachlopday) {
@@ -110,7 +110,7 @@ public class SetFragment_Activity extends AppCompatActivity implements Navigatio
         } else if (id == R.id.nav_Danhsachlophoc) {
             Intent intent = new Intent(this, Danhsachlophoc_Activity.class);      //Danh sách lớp dạy
             startActivity(intent);
-        } else if (id == R.id.nav_Thongtincanhan) {           //THÔNG TIN CÁ NHÂN
+        } else if (id == R.id.nav_Thongtincanhan) {                                            //THÔNG TIN CÁ NHÂN
             Intent intent = new Intent(this, ThongTinCaNhan_Activity.class);
             startActivity(intent);
         }

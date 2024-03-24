@@ -1,57 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="Activity_Menu.DangKyLamGiaSu_Activity">
+    tools:context="Edit_Detail.Edit_GiaSu_Activity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/main"
+        tools:ignore="MissingConstraints">
 
-
-        <EditText
-            android:id="@+id/edt_hovaten"
-            android:layout_width="380dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="200dp"
-            android:background="@drawable/custom_edt"
-            android:drawableLeft="@drawable/users"
-            android:ems="10"
-            android:hint="  Họ và tên"
-            android:inputType="text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar_dangkylamgiasu" />
-
-        <EditText
-            android:id="@+id/edt_diachi"
-            android:layout_width="380dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/custom_edt"
-            android:drawableLeft="@drawable/iconhome2"
-            android:ems="10"
-            android:hint="  Địa chỉ"
-            android:inputType="text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edt_email" />
-
-        <EditText
-            android:id="@+id/edt_namsinh"
-            android:layout_width="380dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/custom_edt"
-            android:drawableLeft="@drawable/iconbirthday"
-            android:ems="10"
-            android:hint="  Năm sinh"
-            android:inputType="text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edt_diachi" />
 
         <EditText
             android:id="@+id/edt_email"
@@ -64,49 +24,64 @@
             android:hint="  Email"
             android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edt_sodienthoai" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_taoyeucautimgiasu" />
+
+        <TextView
+            android:id="@+id/tv_motayeucau"
+            android:layout_width="380dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:text="Mô tả yêu cầu"
+            android:textColor="#43A047"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_email" />
 
         <EditText
-            android:id="@+id/edt_gioithieubanthan"
+            android:id="@+id/edt_tieude"
             android:layout_width="380dp"
-            android:layout_height="150dp"
+            android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/custom_edt"
             android:drawableLeft="@drawable/pencil"
             android:ems="10"
-            android:hint="  Giới thiệu bản thân"
+            android:hint="  Tiêu đề"
             android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edt_namtotnghiep" />
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_dangkylamgiasu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/green"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_motayeucau" />
 
         <EditText
-            android:id="@+id/edt_sodienthoai"
+            android:id="@+id/edt_diadiemday"
             android:layout_width="380dp"
             android:layout_height="60dp"
-            android:layout_marginTop="27dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/custom_edt"
-            android:drawableLeft="@drawable/baseline_local_phone_24"
+            android:drawableLeft="@drawable/baseline_pin_drop_24"
             android:ems="10"
-            android:hint="  Số điện thoại"
+            android:hint="  Địa điểm dạy"
             android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edt_hovaten" />
+            app:layout_constraintTop_toBottomOf="@+id/edt_tieude" />
+
+        <EditText
+            android:id="@+id/edt_ngaybatdau"
+            android:layout_width="380dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/custom_edt"
+            android:drawableLeft="@drawable/baseline_calendar_month_24"
+            android:ems="10"
+            android:hint="  Ngày bắt đầu"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.483"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_diadiemday" />
 
         <EditText
             android:id="@+id/edt_monhoc"
@@ -121,92 +96,141 @@
             android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edt_namsinh" />
-
+            app:layout_constraintTop_toBottomOf="@+id/edt_ngaybatdau" />
         <EditText
-            android:id="@+id/edt_nghenghiep"
+            android:id="@+id/edt_giomoibuoi"
             android:layout_width="380dp"
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/custom_edt"
-            android:drawableLeft="@drawable/baseline_backpack_24"
+            android:drawableLeft="@drawable/baseline_punch_clock_24"
             android:drawableRight="@drawable/dropdown1"
             android:ems="10"
-            android:hint="  Nghề nghiệp"
+            android:hint="  Giờ mỗi buổi"
             android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_monhoc" />
 
-        <EditText
-            android:id="@+id/edt_thanhpho"
-            android:layout_width="380dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/custom_edt"
-            android:drawableLeft="@drawable/baseline_location_city_24"
-            android:drawableRight="@drawable/dropdown1"
-            android:ems="10"
-            android:hint="  Thành phố"
-            android:inputType="text"
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_taoyeucautimgiasu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/green"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edt_nghenghiep" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/edt_truongdahoc"
+            android:id="@+id/edt_gioitinhhocvien"
             android:layout_width="380dp"
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/custom_edt"
-            android:drawableLeft="@drawable/baseline_home_work_24"
-            android:ems="10"
+            android:drawableLeft="@drawable/icongender1"
             android:drawableRight="@drawable/dropdown1"
-            android:hint="  Trường đã học"
+            android:ems="10"
+            android:hint="  Giới tính học viên"
             android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edt_thanhpho" />
+            app:layout_constraintTop_toBottomOf="@+id/edt_giomoibuoi" />
+        <TextView
+            android:id="@+id/tv_yeucaugiasu"
+            android:layout_width="380dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:text="Yêu cầu gia sư"
+            android:textColor="#43A047"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_gioitinhhocvien" />
+        <EditText
+            android:id="@+id/edt_hocphi"
+            android:layout_width="380dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/custom_edt"
+            android:drawableLeft="@drawable/baseline_attach_money_24"
+            android:ems="10"
+            android:hint="  Học phí (VND)"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_yeucaugiasu" />
+        <EditText
+            android:id="@+id/edt_sobuoitrongtuan"
+            android:layout_width="380dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/custom_edt"
+            android:drawableLeft="@drawable/baseline_calendar_month_24"
+            android:ems="10"
+            android:hint="  Số buổi trong tuần"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_hocphi" />
+        <EditText
+            android:id="@+id/edt_gioitinh"
+            android:layout_width="380dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:drawableRight="@drawable/dropdown1"
+            android:background="@drawable/custom_edt"
+            android:drawableLeft="@drawable/icongender1"
+            android:ems="10"
+            android:hint="  Giới tính"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_sobuoitrongtuan" />
+        <EditText
+            android:id="@+id/edt_hocphitheo"
+            android:layout_width="380dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:drawableRight="@drawable/dropdown1"
+            android:background="@drawable/custom_edt"
+            android:drawableLeft="@drawable/baseline_punch_clock_24"
+            android:ems="10"
+            android:hint="  Học phí theo"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_gioitinh" />
 
         <EditText
-            android:id="@+id/edt_namtotnghiep"
+            android:id="@+id/edt_motachitiet"
             android:layout_width="380dp"
-            android:layout_height="60dp"
+            android:layout_height="150dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/custom_edt"
-            android:drawableLeft="@drawable/baseline_school_24"
+            android:drawableLeft="@drawable/pencil"
             android:ems="10"
-            android:drawableRight="@drawable/dropdown1"
-            android:hint="  Năm tốt nghiệp"
+            android:hint="  Mô tả chi tiết"
             android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edt_truongdahoc" />
+            app:layout_constraintTop_toBottomOf="@+id/edt_hocphitheo" />
+
         <Button
-            android:id="@+id/btn_dangkylamgiasu_dangkylamgiasu"
+            android:id="@+id/btn_taoyeucau"
             android:layout_width="380dp"
             android:layout_height="70dp"
             android:layout_marginTop="20dp"
             android:backgroundTint="@color/green"
-            android:text="Đăng Ký Làm Gia Sư"
+            android:text="Tạo yêu cầu tìm gia sư"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edt_gioithieubanthan" />
-        <ImageButton
-            android:id="@+id/image_GiaSu"
-            android:layout_width="320dp"
-            android:layout_height="150dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="80dp"
-            android:background="@null"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.507"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar_dangkylamgiasu"
-            app:srcCompat="@drawable/ic_user" />
-
+            app:layout_constraintTop_toBottomOf="@+id/edt_motachitiet" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

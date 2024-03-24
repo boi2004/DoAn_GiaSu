@@ -89,9 +89,9 @@ public class ThongTinCaNhan_Activity extends AppCompatActivity {
         edtSdt.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN || keyCode == KeyEvent.KEYCODE_DEL) {
                     char ch = (char) event.getUnicodeChar();
-                    if (!Character.isDigit(ch)) {
+                    if (keyCode != KeyEvent.KEYCODE_DEL && !Character.isDigit(ch)) {
                         Toast.makeText(ThongTinCaNhan_Activity.this, "Vui lòng chỉ nhập số điện thoại!", Toast.LENGTH_SHORT).show();
                         return true; // tiêu thụ sự kiện
                     }
@@ -99,6 +99,8 @@ public class ThongTinCaNhan_Activity extends AppCompatActivity {
                 return false;
             }
         });
+
+
 
         Change_Image_Profile.setOnClickListener(new View.OnClickListener() {
             @Override

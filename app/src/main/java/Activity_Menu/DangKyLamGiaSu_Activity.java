@@ -1,13 +1,16 @@
 package Activity_Menu;
 
 import android.content.Intent;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
@@ -35,7 +38,7 @@ import com.google.firebase.storage.StorageReference;
 public class DangKyLamGiaSu_Activity extends AppCompatActivity {
     EditText edt_monhoc, edt_nghenghiep, edt_thanhpho, edt_hovaten, edt_diachi, edt_namsinh, edt_email, edt_gioithieubanthan, edt_sodienthoai, edt_truongdahoc, edt_namtotnghiep;
     Button dangkylamgiasu;
-    ImageButton img_giasu;
+    ImageButton image_GiaSu;
     Uri imageUri; // Đường dẫn của ảnh đã chọn
     // private StorageReference storageReference;
     private static final int PICK_IMAGE_REQUEST = 1;
@@ -120,7 +123,7 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
                 luuThongTinGiaSu();         //Hàm kểm tra nếu chưa có thông tin gia sư thì tạo mới,ngược lại có rồi thì cập nhật lại thông tin mà không tạo mới
             }
         });
-        img_giasu.setOnClickListener(new View.OnClickListener() {   //Nút  luu hình ảnh
+        image_GiaSu.setOnClickListener(new View.OnClickListener() {   //Nút  luu hình ảnh
 
             @Override
             public void onClick(View v) {
@@ -136,8 +139,8 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             imageUri = data.getData();
-            // Set ảnh cho ImageButton
-            img_giasu.setImageURI(imageUri);
+            // Set ảnh cho ImageView
+            image_GiaSu.setImageURI(imageUri);
             // Gọi hàm uploadImageToFirebaseStorage(userId) để tải ảnh lên Firebase Storage
             uploadImageToFirebaseStorage(userId);
         }
@@ -722,7 +725,7 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
         edt_truongdahoc = findViewById(R.id.edt_truongdahoc);
         edt_namtotnghiep = findViewById(R.id.edt_namtotnghiep);
         dangkylamgiasu = findViewById(R.id.btn_dangkylamgiasu_dangkylamgiasu);
-       // img_giasu = findViewById(R.id.image_GiaSu);
+        image_GiaSu = findViewById(R.id.image_GiaSu);
     }
 
 }

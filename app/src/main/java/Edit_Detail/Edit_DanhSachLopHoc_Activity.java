@@ -26,7 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class Edit_Activity extends AppCompatActivity {
+public class Edit_DanhSachLopHoc_Activity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private String lopHocId;
     //Hàm lấy id từ firebase mà không phải tạo tránh trường hợp null
@@ -46,7 +46,7 @@ public class Edit_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         //Hàm toolbar
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit);
+        setContentView(R.layout.activity_edit_danhsachlophoc);
         Toolbar toolbar = findViewById(R.id.toolbar_taoyeucautimgiasu);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -137,13 +137,13 @@ public class Edit_Activity extends AppCompatActivity {
                         }
                     } else {
                         // Hiển thị thông báo nếu không tìm thấy dữ liệu
-                        Toast.makeText(Edit_Activity.this, "Không tìm thấy dữ liệu", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Edit_DanhSachLopHoc_Activity.this, "Không tìm thấy dữ liệu", Toast.LENGTH_SHORT).show();
                     }
                 }
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
                     // Xử lý khi truy vấn dữ liệu thất bại
-                    Toast.makeText(Edit_Activity.this, "Lỗi: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Edit_DanhSachLopHoc_Activity.this, "Lỗi: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
     }
@@ -175,11 +175,11 @@ public class Edit_Activity extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         // Cập nhật thành công
-                        Toast.makeText(Edit_Activity.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Edit_DanhSachLopHoc_Activity.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
                         finish();
                     } else {
                         // Cập nhật thất bại
-                        Toast.makeText(Edit_Activity.this, "Cập nhật thất bại", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Edit_DanhSachLopHoc_Activity.this, "Cập nhật thất bại", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

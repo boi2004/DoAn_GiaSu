@@ -19,13 +19,34 @@
         android:theme="@style/Theme.DoAn_GiaSu"
         tools:targetApi="31">
         <activity
+            android:name="Edit_Detail.Edit_Danhsachlopday_Activity"
+            android:exported="false" />
+        <activity
+            android:name="Edit_Detail.Detail_Danhsachlopday_Activity"
+            android:exported="false" />
+        <activity
+            android:name="Edit_Detail.Deteil_Danhsachlopday_Activity"
+            android:exported="false" />
+        <activity
+            android:name="Edit_Detail.Edit_NewClass_Activity"
+            android:exported="false" />
+        <activity
+            android:name="Edit_Detail.Detail_NewClass_Activity"
+            android:exported="false" />
+        <activity
+            android:name="Edit_Detail.Edit_GiaSu_Activity"
+            android:exported="false" />
+        <activity
+            android:name="Edit_Detail.Detail_Giasu_Activity"
+            android:exported="false" />
+        <activity
             android:name=".UpLoadProfilePicActivity"
             android:exported="false" />
         <activity
-            android:name="Edit_Detail.Detail_Activity"
+            android:name="Edit_Detail.Detail_DanhSachLopHoc_Activity"
             android:exported="false" />
         <activity
-            android:name="Edit_Detail.Edit_Activity"
+            android:name="Edit_Detail.Edit_DanhSachLopHoc_Activity"
             android:exported="false" />
         <activity
             android:name="Activity_Menu.TaoYeuCauTimGiaSu_Activity"

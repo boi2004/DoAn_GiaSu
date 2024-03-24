@@ -1,11 +1,5 @@
 package Edit_Detail;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.TextView;
-
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,15 +8,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.doan_giasu.Model.LopHoc;
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import com.example.doan_giasu.R;
 
-public class Detail_Activity extends AppCompatActivity {
+public class Detail_NewClass_Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
+        setContentView(R.layout.activity_detail_new_class);
         Toolbar toolbar = findViewById(R.id.toolbar_dangkylamgiasu1);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
