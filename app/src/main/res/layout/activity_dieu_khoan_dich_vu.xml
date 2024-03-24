@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="Activity_Menu.DieuKhoanDichVuActivity">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,61 +21,152 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Điều 1. Thông tin gia sư\n      Gia sư đồng ý cung cấp đầy đủ thông tin trong hồ sơ gia sư. Chúng tôi cam kết không sử dụng các thông tin cá nhân của gia sư cho bất kỳ mục đích nào khác ngoài việc đáp ứng nhu cầu dạy và học gia sư."
-            android:textSize="16sp"
-            android:textStyle="italic" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Điều 2. Liên hệ nhận lớp\n      Sau khi được Công ty cung cấp thông tin học viên, gia sư chủ động liên hệ hoặc đến nhà học viên (nếu dạy tại nhà) theo thời gian và địa chỉ Công ty cung cấp. Sau khi trao đổi với đại diện học viên xong, Gia sư phải báo lại ngay cho Công ty kết quả đã trao đổi."
-            android:textSize="16sp"
-            android:textStyle="italic" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Điều 3. Môn và buổi dạy\n      Gia sư chỉ được dạy những môn và số buổi mà học viên đã đăng ký với Công ty. Gia sư nhấp nhận dạy thử 2 buổi cho học viên."
-            android:textSize="16sp"
-            android:textStyle="italic" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Điều 1. Thông tin gia sư"
+                android:textSize="16sp"
+                android:textStyle="bold|italic" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Gia sư đồng ý cung cấp đầy đủ thông tin trong hồ sơ gia sư. Chúng tôi cam kết không sử dụng các thông tin cá nhân của gia sư cho bất kỳ mục đích nào khác ngoài việc đáp ứng nhu cầu dạy và học gia sư."
+                android:textSize="16sp"
+                android:textStyle="italic"
+                android:layout_marginTop="2dp"/>
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
         <TextView
-            android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Điều 4. Nghỉ dạy\n      Gia sư không được nghỉ quá ba (3) buổi dạy trong một tháng và phải dạy bù những buổi đã nghỉ.
+            android:hint="Điều 2. Liên hệ nhận lớp"
+            android:textSize="16sp"
+            android:textStyle="bold|italic"
+            android:layout_marginTop="20dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Sau khi được Công ty cung cấp thông tin học viên, gia sư chủ động liên hệ hoặc đến nhà học viên (nếu dạy tại nhà) theo thời gian và địa chỉ Công ty cung cấp. Sau khi trao đổi với đại diện học viên xong, Gia sư phải báo lại ngay cho Công ty kết quả đã trao đổi."
+                android:textSize="16sp"
+                android:layout_marginTop="2dp"
+                android:textStyle="italic" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Điều 3. Môn và buổi dạy"
+            android:textSize="16sp"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold|italic"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Gia sư chỉ được dạy những môn và số buổi mà học viên đã đăng ký với Công ty. Gia sư nhấp nhận dạy thử 2 buổi cho học viên."
+                android:textSize="16sp"
+                android:textStyle="italic"
+                android:layout_marginTop="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Điều 4. Nghỉ dạy"
+            android:textSize="16sp"
+            android:textStyle="bold|italic"
+            android:layout_marginTop="20dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Gia sư không được nghỉ quá ba (3) buổi dạy trong một tháng và phải dạy bù những buổi đã nghỉ.
 Trong thời gian dạy các lớp do Công ty giao, vì lý do nào đó Gia sư không thể tiếp tục dạy (học viên vẫn học bình thường), Gia sư phải thông báo trước mười lăm (15) ngày cho Công ty xắp xếp Gia sư khác dạy. Gia sư không được tự ý giới thiệu một người khác dạy thay thế."
-            android:textSize="16sp"
-            android:textStyle="italic" />
+                android:textSize="16sp"
+                android:textStyle="italic"
+                android:layout_marginTop="20dp"/>
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
         <TextView
-            android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Điều 5. Thỏa thuận trong nhận và dạy\n      Gia sư có nghĩa vụ dạy các môn, kiến thức và số buổi dạy theo thỏa thuận ban đầu giữa các bên Cty, Học viên và gia sư.
+            android:hint="Điều 5. Thỏa thuận trong nhận và dạy"
+            android:textSize="16sp"
+            android:textStyle="bold|italic"
+            android:layout_marginTop="20dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Gia sư có nghĩa vụ dạy các môn, kiến thức và số buổi dạy theo thỏa thuận ban đầu giữa các bên Cty, Học viên và gia sư.
 Gia sư không được thỏa thuận riêng với học viên về tăng hoặc giảm học phí; tăng hoặc giảm buổi học; tăng hoặc giảm môn học; tăng hoặc giảm học viên; làm một hợp đồng hay thỏa thuận dạy kèm khác không thông qua Công ty."
-            android:textSize="16sp"
-            android:textStyle="italic" />
+                android:textSize="16sp"
+                android:textStyle="italic"
+                android:layout_marginTop="20dp"/>
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
         <TextView
-            android:id="@+id/textView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Điều 6. Hành vi và ứng xử\n      Trong thời gian dạy kèm cho học viên, Gia sư không được có tình cảm nam nữ với học viên hoặc các hành vi bất hợp pháp khác. Nếu vi phạm Gia sư hoàn toàn chịu trách nhiệm trước pháp luật."
+            android:hint="Điều 6. Hành vi và ứng xử"
             android:textSize="16sp"
-            android:textStyle="italic" />
+            android:layout_marginTop="20dp"
+            android:textStyle="bold|italic" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Trong thời gian dạy kèm cho học viên, Gia sư không được có tình cảm nam nữ với học viên hoặc các hành vi bất hợp pháp khác. Nếu vi phạm Gia sư hoàn toàn chịu trách nhiệm trước pháp luật."
+                android:textSize="16sp"
+                android:layout_marginTop="20dp"
+                android:textStyle="italic" />
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
         <TextView
-            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Điều 7. Lệ phí và hoàn phí khi nhận lớp\n      A. Đối với hình thức dạy tại nhà và gia sư tự thu học phí\n
+            android:layout_marginTop="20dp"
+            android:hint="Điều 7. Lệ phí và hoàn phí khi nhận lớp"
+            android:textSize="16sp"
+            android:textStyle="bold|italic" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="A. Đối với hình thức dạy tại nhà và gia sư tự thu học phí\n
 
 1. Sau khi nhận thông tin lớp, trao đổi và thống nhất lịch dạy, số buổi dạy/tuần với bên học viên, Gia sư có nghĩa vụ nộp cho Công ty một khoản lệ phí (phí dịch vụ giới thiệu học viên hay còn gọi là phí nhận lớp) và nộp một lần. Mức phí là 30% học phí (tiền lương) của một tháng theo thông tin đăng ký của học viên và đã thống nhất với gia sư.\n
 
@@ -89,27 +179,49 @@ Gia sư không được thỏa thuận riêng với học viên về tăng hoặ
 3. Gia sư sẽ không nhận được hoàn phí nếu gặp trường hợp được nêu ở mục 2 điều 7 mà không thông báo cho Công ty hoặc thông báo sau 30 ngày kể từ ngày nhận lớp (được xem là thông báo trễ).\n
 
  B. Đối với các lớp Công ty trả lương thì gia sư không phải nộp phí."
-            android:textSize="16sp"
-            android:textStyle="italic" />
-
-
+                android:textSize="16sp"
+                android:textStyle="italic" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
         <TextView
-            android:id="@+id/textView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Điều 8. Điều chỉnh và bổ sung\n      Công ty có quyền và điều chỉnh các điều khoản trên mà không cần thông báo với Gia sư. Việc điều chỉnh hoặc bổ sung các điều khoản sẽ được thông báo với các gia sư có liên quan trực tiếp."
+            android:hint="Điều 8. Điều chỉnh và bổ sung"
             android:textSize="16sp"
-            android:textStyle="italic" />
+            android:layout_marginTop="20dp"
+            android:textStyle="bold|italic" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Công ty có quyền và điều chỉnh các điều khoản trên mà không cần thông báo với Gia sư. Việc điều chỉnh hoặc bổ sung các điều khoản sẽ được thông báo với các gia sư có liên quan trực tiếp."
+                android:textSize="16sp"
+                android:layout_marginTop="20dp"
+                android:textStyle="italic" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Điều 9. Vấn đề khác\n      Các vấn đề phát sinh giữa Gia sư và Công ty ngoài các vấn đề đã được nêu trong các điều khoản trên sẽ được giải quyết thông qua thỏa thuận."
+            android:hint="Điều 9. Vấn đề khác"
             android:textSize="16sp"
-            android:textStyle="italic" />
-
-
-
+            android:layout_marginTop="20dp"
+            android:textStyle="bold|italic" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Các vấn đề phát sinh giữa Gia sư và Công ty ngoài các vấn đề đã được nêu trong các điều khoản trên sẽ được giải quyết thông qua thỏa thuận."
+                android:textSize="16sp"
+                android:layout_marginTop="20dp"
+                android:textStyle="italic" />
+        </LinearLayout>
+    </LinearLayout>
     </LinearLayout>
 </ScrollView>

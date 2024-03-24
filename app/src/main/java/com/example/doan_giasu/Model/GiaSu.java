@@ -6,19 +6,19 @@ public class GiaSu {
     private String thanhPho;
     private String hoVaTen;
     private String diaChi;
-    private int namSinh;
+    private String namSinh;
     private String email;
     private String gioiThieuBanThan;
     private String soDienThoai;
     private String truongDaHoc;
-    private int namTotNghiep;
+    private String namTotNghiep;
     private String avatarUrl; // Trường lưu trữ đường dẫn đến ảnh đại diện của gia sư trên Firebase Storage hoặc máy chủ
 
     public GiaSu() {
         // Hàm khởi tạo mặc định, cần thiết cho Firebase
     }
 
-    public GiaSu(String monHoc, String ngheNghiep, String thanhPho, String hoVaTen, String diaChi, int namSinh, String email, String gioiThieuBanThan, String soDienThoai, String truongDaHoc, int namTotNghiep ,String avatarUrl) {
+    public GiaSu(String monHoc, String ngheNghiep, String thanhPho, String hoVaTen, String diaChi, String namSinh, String email, String gioiThieuBanThan, String soDienThoai, String truongDaHoc, String namTotNghiep ,String avatarUrl) {
         this.monHoc = monHoc;
         this.ngheNghiep = ngheNghiep;
         this.thanhPho = thanhPho;
@@ -32,7 +32,7 @@ public class GiaSu {
         this.namTotNghiep = namTotNghiep;
         this.avatarUrl = avatarUrl;
     }
-    public GiaSu(String monHoc, String ngheNghiep, String thanhPho, String hoVaTen, String diaChi, int namSinh, String email, String gioiThieuBanThan, String soDienThoai, String truongDaHoc, int namTotNghiep ) {
+    public GiaSu(String monHoc, String ngheNghiep, String thanhPho, String hoVaTen, String diaChi, String namSinh, String email, String gioiThieuBanThan, String soDienThoai, String truongDaHoc, String namTotNghiep ) {
         this.monHoc = monHoc;
         this.ngheNghiep = ngheNghiep;
         this.thanhPho = thanhPho;
@@ -45,7 +45,7 @@ public class GiaSu {
         this.truongDaHoc = truongDaHoc;
         this.namTotNghiep = namTotNghiep;
     }
-    public GiaSu(String monHoc, String ngheNghiep, String hoVaTen, String diaChi, int namSinh) {
+    public GiaSu(String monHoc, String ngheNghiep, String hoVaTen, String diaChi, String namSinh) {
         this.monHoc = monHoc;
         this.ngheNghiep = ngheNghiep;
         this.hoVaTen = hoVaTen;
@@ -94,11 +94,11 @@ public class GiaSu {
         this.diaChi = diaChi;
     }
 
-    public int getNamSinh() {
+    public String getNamSinh() {
         return namSinh;
     }
 
-    public void setNamSinh(int namSinh) {
+    public void setNamSinh(String namSinh) {
         this.namSinh = namSinh;
     }
 
@@ -134,11 +134,11 @@ public class GiaSu {
         this.truongDaHoc = truongDaHoc;
     }
 
-    public int getNamTotNghiep() {
+    public String getNamTotNghiep() {
         return namTotNghiep;
     }
 
-    public void setNamTotNghiep(int namTotNghiep) {
+    public void setNamTotNghiep(String namTotNghiep) {
         this.namTotNghiep = namTotNghiep;
     }
     // Getter và setter cho trường avatarUrl

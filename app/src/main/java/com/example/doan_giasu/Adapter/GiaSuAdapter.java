@@ -48,10 +48,9 @@ public class GiaSuAdapter extends RecyclerView.Adapter<GiaSuAdapter.viewholder> 
         holder.namsinh.setText(String.valueOf(giaSu.getNamSinh()));
         holder.monhoc.setText(giaSu.getMonHoc());
 
-        // Sử dụng Glide để tải và hiển thị hình ảnh đại diện từ URL
-       Glide.with(holder.itemView.getContext())
+        Glide.with(holder.itemView.getContext())
                 .load(giaSu.getAvatarUrl())
-               .placeholder(R.drawable.img_2) // Hình ảnh mặc định nếu URL không hợp lệ hoặc hình ảnh không thể tải được
+                .placeholder(R.drawable.img_2) // Hình ảnh mặc định nếu URL không hợp lệ hoặc hình ảnh không thể tải được
                 .error(R.drawable.baseline_error_24) // Hình ảnh mặc định nếu có lỗi xảy ra trong quá trình tải hình ảnh
                 .transform(new CenterCrop(), new RoundedCorners(10)) // Hiển thị hình ảnh với góc bo tròn và căn giữa
                 .into(holder.picture);
