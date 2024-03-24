@@ -23,10 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
-import Activity_Menu.Danhsachlophoc_Activity;
-import Activity_Menu.TaoYeuCauTimGiaSu_Activity;
-import Edit_Detail.Detail_Activity;
-import Edit_Detail.Edit_Activity;
+import Edit_Detail.Detail_DanhSachLopHoc_Activity;
+import Edit_Detail.Edit_DanhSachLopHoc_Activity;
 
 public class LophocLopday_Adapter extends RecyclerView.Adapter<LophocLopday_Adapter.ViewHolder> {
     private List<LopHoc> listLopHoc; // Danh sách các lớp học
@@ -94,7 +92,7 @@ public class LophocLopday_Adapter extends RecyclerView.Adapter<LophocLopday_Adap
                         String userId = currentUser.getUid();
 
                         // 3. Tạo Intent và truyền ID của lớp học
-                        Intent intent = new Intent(context, Detail_Activity.class);
+                        Intent intent = new Intent(context, Detail_DanhSachLopHoc_Activity.class);
                         intent.putExtra("LopMoi", lopHocId);
                         intent.putExtra("iduser",userId);
 
@@ -154,7 +152,7 @@ public class LophocLopday_Adapter extends RecyclerView.Adapter<LophocLopday_Adap
                         String userId = currentUser.getUid();
 
                         // 3. Tạo Intent và truyền ID của lớp học
-                        Intent intent = new Intent(context, Edit_Activity.class);
+                        Intent intent = new Intent(context, Edit_DanhSachLopHoc_Activity.class);
                         intent.putExtra("LopMoi", lopHocId);
                         intent.putExtra("userId", userId);
 
