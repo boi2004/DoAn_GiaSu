@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
@@ -35,7 +36,7 @@ import com.google.firebase.storage.StorageReference;
 public class DangKyLamGiaSu_Activity extends AppCompatActivity {
     EditText edt_monhoc, edt_nghenghiep, edt_thanhpho, edt_hovaten, edt_diachi, edt_namsinh, edt_email, edt_gioithieubanthan, edt_sodienthoai, edt_truongdahoc, edt_namtotnghiep;
     Button dangkylamgiasu;
-    ImageButton img_giasu;
+    ImageView img_giasu;
     Uri imageUri; // Đường dẫn của ảnh đã chọn
     // private StorageReference storageReference;
     private static final int PICK_IMAGE_REQUEST = 1;

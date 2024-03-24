@@ -88,7 +88,7 @@ public class LopMoiAdapter extends RecyclerView.Adapter<LopMoiAdapter.viewholder
                         dangKyRef.child(lopHocId).setValue(true);
 
                         // Hiển thị thông báo hoặc thực hiện hành động khác nếu cần
-                        Toast.makeText(context, "Đã đăng ký nhận lớp học", Toast.LENGTH_SHORT).show();
+                           Toast.makeText(context, "Đã đăng ký nhận lớp học", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
