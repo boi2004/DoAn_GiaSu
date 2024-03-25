@@ -1,161 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/main1"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+tools:context="Edit_Detail.Detail_NewClass_Activity">
+
+<androidx.appcompat.widget.Toolbar
+    android:id="@+id/toolbar_dangkylamgiasu11111"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="Edit_Detail.Detail_NewClass_Activity">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_dangkylamgiasu1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/green"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+    android:layout_height="wrap_content"
+    android:background="@color/green"
+    android:minHeight="?attr/actionBarSize"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+<TextView
+    android:id="@+id/txt_tieude1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:text="Cần giáo viên nữ môn Maths tại Quận 11, Hồ Chí Minh"
+    android:textSize="22sp"
+    android:textStyle="bold"
+    android:textColor="#00897B"
+    android:gravity="center" />
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
     <TextView
-        android:id="@+id/txt_tieude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:text="Cần giáo viên nữ môn Maths tại Quận 11, Hồ Chí Minh"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:textColor="#00897B"
-        android:gravity="center" />
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Mã lớp: "
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:padding="10dp" />
-        <TextView
-            android:id="@+id/txt_malop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="21661"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:padding="10dp" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/txt_hoc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="học sinh trường Việt Úc, học hệ cambridge giáo trình bằng tiếng anh, học\nThứ 6: 19h30\nThứ 7: 17h00"
+        android:text="Mã lớp: "
         android:textSize="18sp"
-        android:textStyle="italic"
         android:textColor="@color/black"
         android:padding="10dp" />
-    <LinearLayout
+    <TextView
+        android:id="@+id/txt_malop1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="Học phí: "
-            android:textColor="#00897B"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-        <TextView
-            android:id="@+id/txt_ten_gia_su"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="350,000/Buổi"
-            android:textColor="#00897B"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-    </LinearLayout>
+        android:text="21661"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:padding="10dp" />
+</LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/monhoc"
+<TextView
+    android:id="@+id/txt_hoc1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="học sinh trường Việt Úc, học hệ cambridge giáo trình bằng tiếng anh, học\nThứ 6: 19h30\nThứ 7: 17h00"
+    android:textSize="18sp"
+    android:textStyle="italic"
+    android:textColor="@color/black"
+    android:padding="10dp" />
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            app:srcCompat="@drawable/baseline_library_books_24"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:textSize="18sp"
-            android:text="Môn học:"/>
-        <TextView
-            android:id="@+id/txt_monhoc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:textSize="18sp"
-            android:text="Maths, Toán lớp 11"/>
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/diadiem"
+        android:padding="10dp"
+        android:text="Học phí: "
+        android:textColor="#00897B"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/txt_ten_gia_su1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            app:srcCompat="@drawable/baseline_pin_drop_24"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:textSize="18sp"
-            android:text="Địa điểm:"/>
-        <TextView
-            android:id="@+id/txt_diadiem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:textSize="18sp"
-            android:text="Hồ Chí Minh"/>
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/tuanhoc"
+        android:padding="10dp"
+        android:text="350,000/Buổi"
+        android:textColor="#00897B"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+</LinearLayout>
+
+<LinearLayout
+    android:id="@+id/monhoc"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            app:srcCompat="@drawable/baseline_receipt_long_24"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:textSize="18sp"
-            android:text="Tuần học: "/>
-        <TextView
-            android:id="@+id/txt_tuanhoc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:textSize="18sp"
-            android:text="2 buổi(90 phút/buổi)"/>
-    </LinearLayout>
-    <Button
-        android:id="@+id/btn_nhanlopngay"
-        android:layout_width="360dp"
-        android:layout_height="70dp"
-        android:layout_gravity="center"
-        android:backgroundTint="@color/green"
-        android:textStyle="bold"
-        android:textSize="24sp"
-        android:text="Nhận lớp ngay"/>
+        android:padding="10dp"
+        app:srcCompat="@drawable/baseline_library_books_24"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="18sp"
+        android:text="Môn học:"/>
+    <TextView
+        android:id="@+id/txt_monhoc1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="18sp"
+        android:text="Maths, Toán lớp 11"/>
+</LinearLayout>
+<LinearLayout
+    android:id="@+id/diadiem"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:srcCompat="@drawable/baseline_pin_drop_24"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="18sp"
+        android:text="Địa điểm:"/>
+    <TextView
+        android:id="@+id/txt_diadiem1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="18sp"
+        android:text="Hồ Chí Minh"/>
+</LinearLayout>
+<LinearLayout
+    android:id="@+id/tuanhoc"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:srcCompat="@drawable/baseline_receipt_long_24"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="18sp"
+        android:text="Tuần học: "/>
+    <TextView
+        android:id="@+id/txt_tuanhoc1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="18sp"
+        android:text="2 buổi(90 phút/buổi)"/>
+</LinearLayout>
 
 </LinearLayout>

@@ -24,15 +24,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
 
 import Edit_Detail.Detail_DanhSachLopHoc_Activity;
+import Edit_Detail.Detail_Danhsachlopday_Activity;
 import Edit_Detail.Edit_DanhSachLopHoc_Activity;
 
-public class LophocLopday_Adapter extends RecyclerView.Adapter<LophocLopday_Adapter.ViewHolder> {
+public class Lopday_Adapter extends RecyclerView.Adapter<Lopday_Adapter.ViewHolder> {
     private List<LopHoc> listLopHoc; // Danh sách các lớp học
     private Context context; // Context của ứng dụng
 
 
 
-    public LophocLopday_Adapter(Context context, List<LopHoc> listLopHoc) {
+    public Lopday_Adapter(Context context, List<LopHoc> listLopHoc) {
         this.context = context;
         this.listLopHoc = listLopHoc;
     }
@@ -92,7 +93,7 @@ public class LophocLopday_Adapter extends RecyclerView.Adapter<LophocLopday_Adap
                         String userId = currentUser.getUid();
 
                         // 3. Tạo Intent và truyền ID của lớp học
-                        Intent intent = new Intent(context, Detail_DanhSachLopHoc_Activity.class);
+                        Intent intent = new Intent(context, Detail_Danhsachlopday_Activity.class);
                         intent.putExtra("LopMoi", lopHocId);
                         intent.putExtra("iduser",userId);
 
@@ -113,7 +114,7 @@ public class LophocLopday_Adapter extends RecyclerView.Adapter<LophocLopday_Adap
                         String userId = currentUser.getUid();
 
                         // 3. Tạo DatabaseReference để tham chiếu đến nút Firebase muốn xóa
-                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("LopMoi").child(userId).child(lopHocId);
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Danh sách đăng ký nhận lớp").child(userId).child(lopHocId);
 
                         // Hiển thị hộp thoại xác nhận
                         new AlertDialog.Builder(context)
@@ -143,25 +144,12 @@ public class LophocLopday_Adapter extends RecyclerView.Adapter<LophocLopday_Adap
             btn_Edit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    if (position != RecyclerView.NO_POSITION) {
-                        // 2. Lấy ID của lớp học từ danh sách dựa vào vị trí của item
-                        String lopHocId = listLopHoc.get(position).getID();
-                        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-                        FirebaseUser currentUser = mAuth.getCurrentUser();
-                        String userId = currentUser.getUid();
-
-                        // 3. Tạo Intent và truyền ID của lớp học
-                        Intent intent = new Intent(context, Edit_DanhSachLopHoc_Activity.class);
-                        intent.putExtra("LopMoi", lopHocId);
-                        intent.putExtra("userId", userId);
-
-                        // 4. Khởi chạy Intent để chuyển sang Edit_Activity
-                        context.startActivity(intent);
+                    {
+                        Toast.makeText(context, "Ban không có quyền truy cập", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
-       }
+        }
 
         // Phương thức này gắn dữ liệu từ một đối tượng LopHoc vào ViewHolder
         public void bind(LopHoc lopHoc) {

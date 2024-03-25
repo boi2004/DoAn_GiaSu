@@ -25,9 +25,6 @@
             android:name="Edit_Detail.Detail_Danhsachlopday_Activity"
             android:exported="false" />
         <activity
-            android:name="Edit_Detail.Deteil_Danhsachlopday_Activity"
-            android:exported="false" />
-        <activity
             android:name="Edit_Detail.Edit_NewClass_Activity"
             android:exported="false" />
         <activity
@@ -55,7 +52,7 @@
             android:name=".Dangnhap_Activity"
             android:exported="false" />
         <activity
-            android:name="Activity_Menu.DieuKhoanDichVuActivity"
+            android:name="Activity_Menu.DieuKhoanDichVu_Activity"
             android:exported="false" />
         <activity
             android:name="Activity_Menu.DangKyLamGiaSu_Activity"

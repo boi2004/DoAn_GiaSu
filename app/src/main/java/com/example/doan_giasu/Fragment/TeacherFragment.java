@@ -1,6 +1,5 @@
 package com.example.doan_giasu.Fragment;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,10 +13,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.doan_giasu.Adapter.GiaSuAdapter;
+import com.example.doan_giasu.Adapter.GiaSu_Adapter;
 import com.example.doan_giasu.Model.GiaSu;
 import com.example.doan_giasu.R;
 import com.google.firebase.database.DataSnapshot;
@@ -25,8 +23,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +30,7 @@ import java.util.List;
 public class TeacherFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private GiaSuAdapter giaSuAdapter;
+    private GiaSu_Adapter giaSuAdapter;
     private List<GiaSu> ListGiasu;
 
     @Override
@@ -42,7 +38,7 @@ public class TeacherFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             ListGiasu = new ArrayList<>(); // Khởi tạo danh sách gia sư
-            giaSuAdapter = new GiaSuAdapter(ListGiasu); // Khởi tạo Adapter
+            giaSuAdapter = new GiaSu_Adapter(ListGiasu); // Khởi tạo Adapter
             LayDanhSachGiaSuTuData(); // Lấy dữ liệu từ Firebase
         }
     }
@@ -65,7 +61,7 @@ public class TeacherFragment extends Fragment {
         if (giaSuAdapter == null) {
             // Khởi tạo adapter và lấy dữ liệu từ Firebase
             ListGiasu = new ArrayList<>();
-            giaSuAdapter = new GiaSuAdapter(ListGiasu);
+            giaSuAdapter = new GiaSu_Adapter(ListGiasu);
             LayDanhSachGiaSuTuData();
         } else {
             // Adapter đã được khởi tạo trước đó, không cần làm gì cả
