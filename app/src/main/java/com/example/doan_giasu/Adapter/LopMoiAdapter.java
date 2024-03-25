@@ -29,7 +29,7 @@ import Edit_Detail.Detail_NewClass_Activity;
 
 public class LopMoiAdapter extends RecyclerView.Adapter<LopMoiAdapter.viewholder> {
     private List<LopHoc> listLopHoc;
-    private Context context; // Context của ứng dụng
+    private Context context ; // Context của ứng dụng
 
     public LopMoiAdapter(Context context,List<LopHoc> listLopHoc) {
         this.context = context;
@@ -115,7 +115,7 @@ public class LopMoiAdapter extends RecyclerView.Adapter<LopMoiAdapter.viewholder
                         //Lấy id người dùng
                         FirebaseAuth mAuth = FirebaseAuth.getInstance();
                         FirebaseUser currentUser = mAuth.getCurrentUser();
-                        String userId = currentUser.getUid();
+                        String userId = currentUser.getUid().trim();
 
                         // 3. Tạo Intent và truyền ID của lớp học
                         Intent intent = new Intent(context, Detail_NewClass_Activity.class);

@@ -62,31 +62,31 @@ public class NewclassFragment extends Fragment  {
 
         }
 
-//    private void LayDanhSachLopMoiTuData() {
-//        FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        DatabaseReference databaseReference = database.getReference("LopMoi");
-//        databaseReference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if (snapshot.exists()) {
-//                    ListLopHoc.clear(); // Xóa dữ liệu cũ trước khi cập nhật mới
-//                    for (DataSnapshot dataSnapshot: snapshot.getChildren()){
-//                        LopHoc lopHoc = dataSnapshot.getValue(LopHoc.class);
-//                        Log.d("FirebaseData", "LopMoi: " + lopHoc.toString()); // In ra dữ liệu của mỗi gia sư
-//                        ListLopHoc.add(lopHoc);
-//                    }
-//                    lopMoiAdapter.notifyDataSetChanged(); // Thông báo cho adapter rằng dữ liệu đã thay đổi
-//                } else {
-//                    Log.d("FirebaseData", "No data available");
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                Toast.makeText(getActivity(), "Lỗi khi lấy dữ liệu từ Firebase", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
+    /*private void LayDanhSachLopMoiTuData() {
+       FirebaseDatabase database = FirebaseDatabase.getInstance();
+       DatabaseReference databaseReference = database.getReference("LopMoi");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    ListLopHoc.clear(); // Xóa dữ liệu cũ trước khi cập nhật mới
+                    for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                        LopHoc lopHoc = dataSnapshot.getValue(LopHoc.class);
+                        Log.d("FirebaseData", "LopMoi: " + lopHoc.toString()); // In ra dữ liệu của mỗi gia sư
+                       ListLopHoc.add(lopHoc);
+                    }
+                    lopMoiAdapter.notifyDataSetChanged(); // Thông báo cho adapter rằng dữ liệu đã thay đổi
+                } else {
+                    Log.d("FirebaseData", "No data available");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getActivity(), "Lỗi khi lấy dữ liệu từ Firebase", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }*/
 
     @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,

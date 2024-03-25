@@ -120,12 +120,15 @@
             android:id="@+id/btn_dangynhanlop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/green"
             android:text="Đăng ký nhận lớp" />
 
         <Button
             android:id="@+id/btn_chitiet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/green"
+
             android:text="Chi tiết" />
 
     </LinearLayout>
