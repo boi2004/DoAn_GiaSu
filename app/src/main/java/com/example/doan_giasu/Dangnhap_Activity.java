@@ -27,6 +27,7 @@ public class Dangnhap_Activity extends AppCompatActivity {
     TextView txtQuenmatkhau, txt_Dangky;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +43,7 @@ public class Dangnhap_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 Drawable icERR =getResources().getDrawable(R.drawable.baseline_error_24);
                 icERR.setBounds(0,0,icERR.getIntrinsicWidth(),icERR.getIntrinsicHeight());
+
                 String email = edt_Email_dangnhap.getText().toString().trim();
                 String password = edt_Matkhau.getText().toString().trim();
                 if(email.isEmpty()){        //Xem có bị trống không
@@ -99,6 +101,7 @@ public class Dangnhap_Activity extends AppCompatActivity {
         String password = edt_Matkhau.getText().toString().trim();
         String email = edt_Email_dangnhap.getText().toString().trim();
         FirebaseAuth auth = FirebaseAuth.getInstance();
+
         ProgressDialog progressDialog = new ProgressDialog(Dangnhap_Activity.this);
         progressDialog.setMessage("Đang kiểm tra đăng nhập...");
         progressDialog.show();

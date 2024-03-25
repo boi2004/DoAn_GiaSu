@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -11,86 +12,81 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class Khoiphucmatkhau_Activity extends AppCompatActivity {
     Button btnKhoiphuc;
-    EditText edtSodienthoai, edtMatkhau, edtMatkhaumoi;
+    EditText edt_email_khoiphucmatkhau;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_khoiphucmatkhau);
+
         addControls();
-        addEvents();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Khôi phục mật khẩu");
-    }
 
-    private void addEvents() {
         btnKhoiphuc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Drawable icERR =getResources().getDrawable(R.drawable.baseline_error_24);
-                icERR.setBounds(0,0,icERR.getIntrinsicWidth(),icERR.getIntrinsicHeight());
-                String password = edtMatkhau.getText().toString().trim();
-                String passwordnew = edtMatkhaumoi.getText().toString().trim();
-                String phone = edtSodienthoai.getText().toString().trim();
-                if(phone.isEmpty()){
-                    edtSodienthoai.setCompoundDrawables(null,null,icERR,null);
-                    edtSodienthoai.setError("Vui lòng nhập số điện thoại",icERR);
-                    return;
-                }
-                else if (phone.length() < 9|| !phone.matches("\\d+")) {
-                    edtSodienthoai.setCompoundDrawables(null,null,icERR,null); //Kiểm tra số điện thoại phải hơn 9 số và không có ký tự hay chữ cái
-                    edtSodienthoai.setError("Số điện thoại không hợp lệ", icERR);
-                    return;
-                }
-                if(password.isEmpty()){
-                    edtMatkhau.setCompoundDrawables(null,null,icERR,null);
-                    edtMatkhau.setError("Vui lòng nhập mật khẩu",icERR);
-                    return;
-                }
-                else if (password.length() < 8) {
-                    edtMatkhau.setCompoundDrawables(null, null, icERR, null); //Kiểm tra mâ khẩu ít nhất 8 ký tự
-                    edtMatkhau.setError("Mật khẩu phải có ít nhất 8 ký tự", icERR);
-                    return;
-                } else if (!password.matches(".*[A-Z].*")) {
-                    edtMatkhau.setCompoundDrawables(null, null, icERR, null);
-                    edtMatkhau.setError("Mật khẩu phải chứa ít nhất 1 ký tự viết hoa", icERR);//Mật khẩu phải có ít nhất một ký tự viết hoa
-                    return;
-                }
-                if(passwordnew.isEmpty()){
-                    edtMatkhaumoi.setCompoundDrawables(null,null,icERR,null);
-                    edtMatkhaumoi.setError("Vui lòng nhập lại mật khẩu mới",icERR);
-                    return;
-                }
-                if (!password.equals(passwordnew)) {
-                    edtMatkhaumoi.setCompoundDrawables(null, null, icERR, null);  // Kiểm tra mật khẩu mới có giống mật khẩu cũ không
-                    edtMatkhaumoi.setError("Mật khẩu mới không khớp", icERR);
-                    return;
-                }
-                if(!password.isEmpty() && !passwordnew.isEmpty() && !phone.isEmpty()){
-                    edtMatkhau.setCompoundDrawables(null,null,null,null);
-                    edtMatkhaumoi.setCompoundDrawables(null,null,null,null);
-                    edtSodienthoai.setCompoundDrawables(null,null,null,null);
-                    Intent i = new Intent(Khoiphucmatkhau_Activity.this, Dangnhap_Activity.class);
-                    startActivity(i);
-                    //Return từng cái trên dùng để nếu sai dữ liệu thì nhập lại và không chuyển trang
-                }
+                clickQuenMatKhau();
             }
         });
+
+    }
+
+    private void clickQuenMatKhau() {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+
+        Drawable icERR =getResources().getDrawable(R.drawable.baseline_error_24);
+        icERR.setBounds(0,0,icERR.getIntrinsicWidth(),icERR.getIntrinsicHeight());
+
+        ProgressDialog progressDialog = new ProgressDialog(Khoiphucmatkhau_Activity.this);
+        progressDialog.setMessage("Đang kiểm tra email...");
+        progressDialog.show();
+
+
+        String email = edt_email_khoiphucmatkhau.getText().toString().trim();
+        if(email.isEmpty()){        //Xem có bị trống không
+            edt_email_khoiphucmatkhau.setCompoundDrawables(null,null,icERR,null);
+            edt_email_khoiphucmatkhau.setError("Vui lòng nhập Email",icERR);
+            return;
+        }
+        String emailAddress = email;
+
+
+        auth.sendPasswordResetEmail(emailAddress)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        progressDialog.dismiss();
+                        if (task.isSuccessful()) {
+                            Toast.makeText(Khoiphucmatkhau_Activity.this,"Mật khẩu mới đã được gửi đến email của bạn, vui lòng kiểm tra!",Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(Khoiphucmatkhau_Activity.this,Dangnhap_Activity.class);
+                            startActivity(intent);
+                        }
+                    }
+                });
+
+    }
+
+    private void AddEvent() {
     }
 
     private void addControls() {
-        edtSodienthoai = findViewById(R.id.edt_Sodienthoai_khoiphucmatkhau);
-        edtMatkhau = findViewById(R.id.edt_Matkhaumoi_khoiphucmatkhau);
-        edtMatkhaumoi = findViewById(R.id.edt_Nhaplaimatkhaumoii_khoiphucmatkhau);
+        edt_email_khoiphucmatkhau = findViewById(R.id.edt_email_khoiphucmatkhau);
         btnKhoiphuc = findViewById(R.id.btn_Khoiphucmatkhau_khoiphucmatkhau);
     }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home){

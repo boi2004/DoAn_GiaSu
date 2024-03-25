@@ -115,10 +115,15 @@ public class DangKyLamGiaSu_Activity extends AppCompatActivity {
                         sodienthoai.isEmpty() || truongdahoc.isEmpty() || namtotnghiep.isEmpty()) {
                     Toast.makeText(DangKyLamGiaSu_Activity.this, "Vui lòng nhập đầy đủ thông tin ", Toast.LENGTH_SHORT).show();
                     return;
+                }if(imageUri != null){
+                    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                    FirebaseUser currentUser = mAuth.getCurrentUser();
+                    uploadImageToFirebaseStorage(userId, imageUri);
+                }else {
+                    Toast.makeText(DangKyLamGiaSu_Activity.this,"Vui lòng chọn ảnh đại diện", Toast.LENGTH_SHORT).show();
                 }
-                FirebaseAuth mAuth = FirebaseAuth.getInstance();
-                FirebaseUser currentUser = mAuth.getCurrentUser();
-                uploadImageToFirebaseStorage(userId, imageUri);
+
+
             }
         });
         img_giasu.setOnClickListener(new View.OnClickListener() {   //Nút  luu hình ảnh

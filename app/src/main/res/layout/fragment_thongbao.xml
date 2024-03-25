@@ -12,11 +12,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="70dp"
-        android:layout_marginTop="51dp">
+        android:layout_marginTop="35dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="#00897B"
             android:text="THÔNG TIN CƠ BẢN"/>
     </LinearLayout>
     <LinearLayout
@@ -24,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="110dp"
-        android:layout_marginTop="40dp">
+        android:layout_marginTop="28dp">
         <ImageView
             android:layout_width="200dp"
             android:layout_height="200dp"
@@ -34,7 +36,7 @@
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="28dp"
         android:layout_marginTop="45dp">
         <ImageView
             android:layout_width="30dp"
@@ -43,34 +45,34 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text="Trụ sở chính: HCM, Việt Nam, Trái Đất"/>
+            android:textSize="18sp"
+            android:text=" Trụ sở chính: HCM, Việt Nam, Trái Đất"/>
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="25dp">
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="30dp">
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/logo_huflit"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:text="ĐỒ ÁN GIA SƯ || EDUBOX || SINH VIÊN HUFLIT"/>
+            android:text=" ĐỒ ÁN GIA SƯ || EDUBOX || SINH VIÊN HUFLIT"/>
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="28dp"
         android:layout_marginTop="25dp">
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/panda12"/>
         <TextView
             android:textSize="16sp"
