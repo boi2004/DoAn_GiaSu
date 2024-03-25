@@ -41,7 +41,7 @@ public class TaoYeuCauTimGiaSu_Activity extends AppCompatActivity {
         Toolbar toolbar = findViewById(toolbar_taoyeucautimgiasu);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Đăng ký làm gia sư");
+        getSupportActionBar().setTitle("Tạo yêu cầu làm gia sư");
         int white = getResources().getColor(android.R.color.white);
         toolbar.setTitleTextColor(white);   //Trong đoạn mã trên, toolbar.setTitleTextColor(white) sẽ đặt màu trắng cho tiêu đề của Toolbar.
         Controls();
