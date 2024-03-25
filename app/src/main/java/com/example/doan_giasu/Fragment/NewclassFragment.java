@@ -14,9 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.doan_giasu.Adapter.GiaSuAdapter;
 import com.example.doan_giasu.Adapter.LopMoiAdapter;
-import com.example.doan_giasu.Model.GiaSu;
 import com.example.doan_giasu.Model.LopHoc;
 import com.example.doan_giasu.R;
 import com.google.firebase.database.DataSnapshot;

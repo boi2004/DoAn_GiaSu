@@ -52,7 +52,7 @@
             android:name=".Dangnhap_Activity"
             android:exported="false" />
         <activity
-            android:name="Activity_Menu.DieuKhoanDichVuActivity"
+            android:name="Activity_Menu.DieuKhoanDichVu_Activity"
             android:exported="false" />
         <activity
             android:name="Activity_Menu.DangKyLamGiaSu_Activity"

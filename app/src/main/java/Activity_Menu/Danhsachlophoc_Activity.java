@@ -11,8 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.doan_giasu.Adapter.LopMoiAdapter;
-import com.example.doan_giasu.Adapter.LophocLopday_Adapter;
+import com.example.doan_giasu.Adapter.Lophoc_Adapter;
 import com.example.doan_giasu.Model.LopHoc;
 import com.example.doan_giasu.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,7 +27,7 @@ import java.util.List;
 
 public class Danhsachlophoc_Activity extends AppCompatActivity {
     RecyclerView rcv;
-    private LophocLopday_Adapter lophocLopdayAdapter;
+    private Lophoc_Adapter lophocLopdayAdapter;
     private List<LopHoc> ListLopHoc;
 
     @Override
@@ -53,7 +52,7 @@ public class Danhsachlophoc_Activity extends AppCompatActivity {
 
         // Khởi tạo danh sách lớp học và adapter
         ListLopHoc = new ArrayList<>();
-        lophocLopdayAdapter = new LophocLopday_Adapter(this,ListLopHoc);
+        lophocLopdayAdapter = new Lophoc_Adapter(this,ListLopHoc);
 
         //Lấy id người dùng
         FirebaseAuth mAuth = FirebaseAuth.getInstance();

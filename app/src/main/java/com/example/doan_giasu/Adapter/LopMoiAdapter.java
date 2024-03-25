@@ -81,19 +81,27 @@ public class LopMoiAdapter extends RecyclerView.Adapter<LopMoiAdapter.viewholder
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     if (position != RecyclerView.NO_POSITION) {
-                        // 2. Lấy ID của lớp học từ danh sách dựa vào vị trí của item
-                        String lopHocId = listLopHoc.get(position).getID();
-                        //Lấy id người dùng
+                        // Lấy ID của lớp học từ danh sách dựa vào vị trí của item
+                        //String lopHocId = listLopHoc.get(position).getID();
+
+                        // Lấy đối tượng lớp học từ danh sách
+                        LopHoc lophoc = listLopHoc.get(position);
+
+
+                        // Lấy id người dùng
                         FirebaseAuth mAuth = FirebaseAuth.getInstance();
                         FirebaseUser currentUser = mAuth.getCurrentUser();
                         String userId = currentUser.getUid();
-                        // Thêm một đăng ký mới vào cơ sở dữ liệu Firebase
-                        // Thêm lớp học mới vào danh sách đăng ký nhận lớp của người dùng
+
+
+                        // Thêm lớp học vào danh sách đăng ký nhận lớp của người dùng
                         DatabaseReference dangKyRef = FirebaseDatabase.getInstance().getReference("Danh sách đăng ký nhận lớp").child(userId);
-                        dangKyRef.child(lopHocId).setValue(true);
+                        String lopHocId = dangKyRef.push().getKey(); // Tạo một key mới
+                        dangKyRef.child(lopHocId).setValue(lophoc);
+
 
                         // Hiển thị thông báo hoặc thực hiện hành động khác nếu cần
-                           Toast.makeText(context, "Đã đăng ký nhận lớp học", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Đã đăng ký nhận lớp học", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -102,26 +110,20 @@ public class LopMoiAdapter extends RecyclerView.Adapter<LopMoiAdapter.viewholder
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     if (position != RecyclerView.NO_POSITION) {
-                        LopHoc lopHoc = listLopHoc.get(position);
-                        String lopHocId = lopHoc.getID();
-
+                        // 2. Lấy ID của lớp học từ danh sách dựa vào vị trí của item
+                        String lopHocId = listLopHoc.get(position).getID();
                         //Lấy id người dùng
                         FirebaseAuth mAuth = FirebaseAuth.getInstance();
                         FirebaseUser currentUser = mAuth.getCurrentUser();
-                        if (currentUser != null) {
-                            String userId = currentUser.getUid();
+                        String userId = currentUser.getUid();
 
-                            // Tạo Intent và truyền ID của lớp học và ID của người dùng
-                            Intent intent = new Intent(context, Detail_NewClass_Activity.class);
-                            intent.putExtra("LopMoi", lopHocId);
-                            intent.putExtra("iduser", userId); //Phần này không cần cũng đc
+                        // 3. Tạo Intent và truyền ID của lớp học
+                        Intent intent = new Intent(context, Detail_NewClass_Activity.class);
+                        intent.putExtra("LopMoi", lopHocId);
+                        intent.putExtra("iduser",userId);
 
-                            // Khởi chạy Intent để chuyển sang Detail_NewClass_Activity
-                            context.startActivity(intent);
-                        } else {
-                            // Nếu không có người dùng hiện tại, có thể cần xử lý theo cách thích hợp
-                            Toast.makeText(context, "Không tìm thấy người dùng", Toast.LENGTH_SHORT).show();
-                        }
+                        // 4. Khởi chạy Intent để chuyển sang Edit_Activity
+                        context.startActivity(intent);
                     }
                 }
             });

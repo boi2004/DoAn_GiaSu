@@ -9,7 +9,7 @@ import android.view.MenuItem;
 
 import com.example.doan_giasu.R;
 
-public class DieuKhoanDichVuActivity extends AppCompatActivity {
+public class DieuKhoanDichVu_Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

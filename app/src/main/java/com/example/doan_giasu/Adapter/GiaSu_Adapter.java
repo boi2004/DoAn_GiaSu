@@ -15,19 +15,18 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.doan_giasu.Model.GiaSu;
 import com.example.doan_giasu.R;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class GiaSuAdapter extends RecyclerView.Adapter<GiaSuAdapter.viewholder> {
+public class GiaSu_Adapter extends RecyclerView.Adapter<GiaSu_Adapter.viewholder> {
     ArrayList<GiaSu> items;
     Context context;
     private List<GiaSu> GiaSu1;
 
     //Contructors
-    public GiaSuAdapter(List<GiaSu> giaSu1) {
+    public GiaSu_Adapter(List<GiaSu> giaSu1) {
         this.GiaSu1 = giaSu1;
     }
 

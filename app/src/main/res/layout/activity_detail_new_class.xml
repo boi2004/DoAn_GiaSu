@@ -16,7 +16,7 @@ tools:context="Edit_Detail.Detail_NewClass_Activity">
     android:minHeight="?attr/actionBarSize"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 <TextView
-    android:id="@+id/txt_tieude"
+    android:id="@+id/txt_tieude1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:paddingTop="10dp"
@@ -37,7 +37,7 @@ tools:context="Edit_Detail.Detail_NewClass_Activity">
         android:textColor="@color/black"
         android:padding="10dp" />
     <TextView
-        android:id="@+id/txt_malop"
+        android:id="@+id/txt_malop1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="21661"
@@ -47,7 +47,7 @@ tools:context="Edit_Detail.Detail_NewClass_Activity">
 </LinearLayout>
 
 <TextView
-    android:id="@+id/txt_hoc"
+    android:id="@+id/txt_hoc1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="học sinh trường Việt Úc, học hệ cambridge giáo trình bằng tiếng anh, học\nThứ 6: 19h30\nThứ 7: 17h00"
@@ -68,7 +68,7 @@ tools:context="Edit_Detail.Detail_NewClass_Activity">
         android:textSize="18sp"
         android:textStyle="bold" />
     <TextView
-        android:id="@+id/txt_ten_gia_su"
+        android:id="@+id/txt_ten_gia_su1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
@@ -95,7 +95,7 @@ tools:context="Edit_Detail.Detail_NewClass_Activity">
         android:textSize="18sp"
         android:text="Môn học:"/>
     <TextView
-        android:id="@+id/txt_monhoc"
+        android:id="@+id/txt_monhoc1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
@@ -119,7 +119,7 @@ tools:context="Edit_Detail.Detail_NewClass_Activity">
         android:textSize="18sp"
         android:text="Địa điểm:"/>
     <TextView
-        android:id="@+id/txt_diadiem"
+        android:id="@+id/txt_diadiem1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
@@ -143,7 +143,7 @@ tools:context="Edit_Detail.Detail_NewClass_Activity">
         android:textSize="18sp"
         android:text="Tuần học: "/>
     <TextView
-        android:id="@+id/txt_tuanhoc"
+        android:id="@+id/txt_tuanhoc1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"

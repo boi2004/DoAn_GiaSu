@@ -8,34 +8,27 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
 import com.example.doan_giasu.Dangnhap_Activity;
-import com.example.doan_giasu.Model.LopHoc;
 import com.example.doan_giasu.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.net.URI;
 
 import Activity_Menu.DangKyLamGiaSu_Activity;
 import Activity_Menu.Danhsachlopday_Activity;
 import Activity_Menu.Danhsachlophoc_Activity;
-import Activity_Menu.DieuKhoanDichVuActivity;
+import Activity_Menu.DieuKhoanDichVu_Activity;
 import Activity_Menu.DoiMatKhau_Activity;
 import Activity_Menu.TaoYeuCauTimGiaSu_Activity;
 import Activity_Menu.ThongTinCaNhan_Activity;
@@ -94,7 +87,7 @@ public class SetFragment_Activity extends AppCompatActivity implements Navigatio
             Intent intent = new Intent(this, DoiMatKhau_Activity.class);
             startActivity(intent);
         } else if (id == R.id.nav_dieukhoanvadichvu) {           //Điều khoản dịch vụ
-            Intent intent = new Intent(this, DieuKhoanDichVuActivity.class);
+            Intent intent = new Intent(this, DieuKhoanDichVu_Activity.class);
             startActivity(intent);
         } else if (id == R.id.nav_Taoyeucautimgiasu) {           //Điều khoản dịch vụ
             Intent intent = new Intent(this, TaoYeuCauTimGiaSu_Activity.class);

@@ -27,14 +27,13 @@ public class Detail_NewClass_Activity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private String lopHocId;
     //Hàm lấy id từ firebase mà không phải tạo tránh trường hợp null
-    FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    FirebaseUser currentUser = mAuth.getCurrentUser();
-    String userId = currentUser.getUid();
+    private String userId;
     private void intent(){
         // Nhận ID của lớp học và ID của người dùng từ Intent
         Intent intent = getIntent();
         if (intent != null) {
             lopHocId = intent.getStringExtra("LopMoi");
+            userId = intent.getStringExtra("iduser");
         }
     }
     @Override
@@ -53,9 +52,9 @@ public class Detail_NewClass_Activity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        //databaseReference = FirebaseDatabase.getInstance().getReference("LopMoi");
-        //intent();
-        //loadThongTinLopHoc(userId,lopHocId);
+        databaseReference = FirebaseDatabase.getInstance().getReference("LopMoi");
+        intent();
+        loadThongTinLopHoc(userId,lopHocId);
     }
     //Hàm thoát ra trên toorbal
     public boolean onOptionsItemSelected(@NonNull MenuItem item)
@@ -80,13 +79,13 @@ public class Detail_NewClass_Activity extends AppCompatActivity {
                     String tuanHoc = dataSnapshot.child("soBuoiTrongTuan").getValue(String.class);
 
                     // Ánh xạ các TextView từ layout XML
-                    TextView txtTieuDe = findViewById(R.id.txt_tieude);
-                    TextView txtMaLop = findViewById(R.id.txt_malop);
-                    TextView txtHoc = findViewById(R.id.txt_hoc);
-                    TextView txtTenGiaSu = findViewById(R.id.txt_ten_gia_su);
-                    TextView txtMonHoc = findViewById(R.id.txt_monhoc);
-                    TextView txtDiaDiem = findViewById(R.id.txt_diadiem);
-                    TextView txtTuanHoc = findViewById(R.id.txt_tuanhoc);
+                    TextView txtTieuDe = findViewById(R.id.txt_tieude1);
+                    TextView txtMaLop = findViewById(R.id.txt_malop1);
+                    TextView txtHoc = findViewById(R.id.txt_hoc1);
+                    TextView txtTenGiaSu = findViewById(R.id.txt_ten_gia_su1);
+                    TextView txtMonHoc = findViewById(R.id.txt_monhoc1);
+                    TextView txtDiaDiem = findViewById(R.id.txt_diadiem1);
+                    TextView txtTuanHoc = findViewById(R.id.txt_tuanhoc1);
 
                     // Hiển thị thông tin lên các TextView
                     txtTieuDe.setText(tieuDe);
