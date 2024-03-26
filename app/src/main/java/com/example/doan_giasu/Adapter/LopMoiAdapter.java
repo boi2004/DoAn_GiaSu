@@ -101,7 +101,6 @@ public class LopMoiAdapter extends RecyclerView.Adapter<LopMoiAdapter.viewholder
                         notifyItemRemoved(position);
 
                         // Xóa lớp học từ cơ sở dữ liệu Firebase
-                        DatabaseReference lopHocRef = FirebaseDatabase.getInstance().getReference("LopMoi").child(lopHocId);
                         lopHocRef.removeValue();
 
                         // Xóa lớp học khỏi danh sách hiển thị

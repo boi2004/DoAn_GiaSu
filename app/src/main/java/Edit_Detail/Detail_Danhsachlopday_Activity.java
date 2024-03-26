@@ -81,6 +81,9 @@ public class Detail_Danhsachlopday_Activity extends AppCompatActivity {
                     String monHoc = dataSnapshot.child("monHoc").getValue(String.class);
                     String diaDiem = dataSnapshot.child("diaDiemDay").getValue(String.class);
                     String tuanHoc = dataSnapshot.child("soBuoiTrongTuan").getValue(String.class);
+                    String sdt =dataSnapshot.child("gioiTinhHocVien").getValue(String.class);
+                    String email = dataSnapshot.child("email").getValue(String.class);
+                    String gioitinh = dataSnapshot.child("gioiTinh").getValue(String.class);
 
                     // Ánh xạ các TextView từ layout XML
                     TextView txtTieuDe = findViewById(R.id.txt_title_detail_danhsachlopday);
@@ -90,6 +93,9 @@ public class Detail_Danhsachlopday_Activity extends AppCompatActivity {
                     TextView txtMonHoc = findViewById(R.id.txt_mon_detail_danhsachlopday);
                     TextView txtDiaDiem = findViewById(R.id.txt_diadiem_detail_danhsachlopday);
                     TextView txtTuanHoc = findViewById(R.id.txt_tuanhoc_detail_danhsachlopday);
+                    TextView txtsdt = findViewById(R.id.txt_sodienthoai_detail_danhsachlopday);
+                    TextView txtemail = findViewById(R.id.txt_gmail_detail_danhsachlopday);
+                    TextView txtgioitinh = findViewById(R.id.txt_gioitinh_detail_danhsachlopday);
 
                     // Hiển thị thông tin lên các TextView
                     txtTieuDe.setText(tieuDe);
@@ -99,6 +105,9 @@ public class Detail_Danhsachlopday_Activity extends AppCompatActivity {
                     txtMonHoc.setText(monHoc);
                     txtDiaDiem.setText(diaDiem);
                     txtTuanHoc.setText(tuanHoc);
+                    txtsdt.setText(sdt);
+                    txtemail.setText(email);
+                    txtgioitinh.setText(gioitinh);
                 } else {
                     Toast.makeText(Detail_Danhsachlopday_Activity.this, "Không tìm thấy dữ liệu", Toast.LENGTH_SHORT).show();
                 }

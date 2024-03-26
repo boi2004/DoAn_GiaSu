@@ -62,7 +62,7 @@ public class Lopday_Adapter extends RecyclerView.Adapter<Lopday_Adapter.ViewHold
 
     // Lớp ViewHolder đại diện cho mỗi item trong RecyclerView
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView Title_item, MaLop_item, Time_item, Monhoc_item, Tien_item;
+        TextView Title_item, MaLop_item, Time_item, Monhoc_item, Tien_item ;
         Button btn_Xoa,btn_Edit,btn_Detail;
 
         // Constructor của ViewHolder, ánh xạ các thành phần UI từ layout XML
