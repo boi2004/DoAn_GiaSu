@@ -365,16 +365,16 @@ public class TaoYeuCauTimGiaSu_Activity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case menuthang:
-                        edt_gioitinhhocvien.setText("Tháng");
+                        edt_hocphitheo.setText("Tháng");
                         break;
                     case menubuoi:
-                        edt_gioitinhhocvien.setText("Buổi");
+                        edt_hocphitheo.setText("Buổi");
                         break;
                     case menutuan:
-                        edt_gioitinhhocvien.setText("Tuần");
+                        edt_hocphitheo.setText("Tuần");
                         break;
                     case menugio:
-                        edt_gioitinhhocvien.setText("Giờ");
+                        edt_hocphitheo.setText("Giờ");
                         break;
                 }
                 return false;
@@ -392,13 +392,13 @@ public class TaoYeuCauTimGiaSu_Activity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case menunamnu:
-                        edt_gioitinhhocvien.setText("Nam/Nữ");
+                        edt_gioitinh.setText("Nam/nữ");
                         break;
                     case menunam:
-                        edt_gioitinhhocvien.setText("Nam");
+                        edt_gioitinh.setText("Nam");
                         break;
                     case menunu:
-                        edt_gioitinhhocvien.setText("Nữ");
+                        edt_gioitinh.setText("nữ");
                         break;
                 }
                 return false;
