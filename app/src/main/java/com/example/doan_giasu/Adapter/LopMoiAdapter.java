@@ -1,7 +1,6 @@
 package com.example.doan_giasu.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,13 +18,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
-
-import Edit_Detail.Detail_DanhSachLopHoc_Activity;
-import Edit_Detail.Detail_NewClass_Activity;
 
 public class LopMoiAdapter extends RecyclerView.Adapter<LopMoiAdapter.viewholder> {
     private List<LopHoc> listLopHoc;
@@ -66,7 +61,7 @@ public class LopMoiAdapter extends RecyclerView.Adapter<LopMoiAdapter.viewholder
     public class viewholder extends RecyclerView.ViewHolder{
         //ánh xạ id trong layout lop moi
         TextView Title_item, MaLop_item, Time_item, Monhoc_item, Tien_item;
-        Button btn_dangkynhanlop,btn_chitiet;
+        Button btn_dangkynhanlop;
         public viewholder(@NonNull View itemView) {
             super(itemView);
             Title_item = itemView.findViewById(R.id.Title_item);
@@ -74,8 +69,7 @@ public class LopMoiAdapter extends RecyclerView.Adapter<LopMoiAdapter.viewholder
             Time_item = itemView.findViewById(R.id.Time_item);
             Monhoc_item = itemView.findViewById(R.id.Monhoc_item);
             Tien_item = itemView.findViewById(R.id.Tien_item);
-            btn_dangkynhanlop=itemView.findViewById(R.id.btn_dangynhanlop);
-            btn_chitiet=itemView.findViewById(R.id.btn_chitiet);
+            btn_dangkynhanlop = itemView.findViewById(R.id.btn_dangynhanlop);
             btn_dangkynhanlop.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -99,35 +93,11 @@ public class LopMoiAdapter extends RecyclerView.Adapter<LopMoiAdapter.viewholder
                         String lopHocId = dangKyRef.push().getKey(); // Tạo một key mới
                         dangKyRef.child(lopHocId).setValue(lophoc);
 
+                        Toast.makeText(itemView.getContext(), "Đăng ký thành công", Toast.LENGTH_SHORT).show();
 
-                        // Hiển thị thông báo hoặc thực hiện hành động khác nếu cần
-                        Toast.makeText(context, "Đã đăng ký nhận lớp học", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-            btn_chitiet.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    if (position != RecyclerView.NO_POSITION) {
-                        // 2. Lấy ID của lớp học từ danh sách dựa vào vị trí của item
-                        String lopHocId = listLopHoc.get(position).getID();
-                        //Lấy id người dùng
-                        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-                        FirebaseUser currentUser = mAuth.getCurrentUser();
-                        String userId = currentUser.getUid().trim();
-
-                        // 3. Tạo Intent và truyền ID của lớp học
-                        Intent intent = new Intent(context, Detail_NewClass_Activity.class);
-                        intent.putExtra("LopMoi", lopHocId);
-                        intent.putExtra("iduser",userId);
-
-                        // 4. Khởi chạy Intent để chuyển sang Edit_Activity
-                        context.startActivity(intent);
                     }
                 }
             });
         }
     }
-
 }
