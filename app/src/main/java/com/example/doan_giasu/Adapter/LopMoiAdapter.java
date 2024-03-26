@@ -93,6 +93,14 @@ public class LopMoiAdapter extends RecyclerView.Adapter<LopMoiAdapter.viewholder
                         String lopHocId = dangKyRef.push().getKey(); // Tạo một key mới
                         dangKyRef.child(lopHocId).setValue(lophoc);
 
+                        // Xóa lớp học từ cơ sở dữ liệu Firebase
+                        DatabaseReference lopHocRef = FirebaseDatabase.getInstance().getReference("LopMoi").child(lopHocId);
+                        lopHocRef.removeValue();
+
+                        // Xóa lớp học khỏi danh sách hiển thị
+                        listLopHoc.remove(position);
+                        notifyItemRemoved(position);
+
                         Toast.makeText(itemView.getContext(), "Đăng ký thành công", Toast.LENGTH_SHORT).show();
 
                     }
