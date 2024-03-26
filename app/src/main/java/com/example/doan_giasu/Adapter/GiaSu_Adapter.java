@@ -46,6 +46,7 @@ public class GiaSu_Adapter extends RecyclerView.Adapter<GiaSu_Adapter.viewholder
         holder.nghenghiep.setText(giaSu.getNgheNghiep());
         holder.namsinh.setText(String.valueOf(giaSu.getNamSinh()));
         holder.monhoc.setText(giaSu.getMonHoc());
+        holder.sodienthoai.setText(giaSu.getSoDienThoai());
 
         Glide.with(holder.itemView.getContext())
                 .load(giaSu.getAvatarUrl())
@@ -62,7 +63,7 @@ public class GiaSu_Adapter extends RecyclerView.Adapter<GiaSu_Adapter.viewholder
     }
 
     public class viewholder extends RecyclerView.ViewHolder {
-        TextView Name, vitri, nghenghiep, namsinh, monhoc;
+        TextView Name, vitri, nghenghiep, namsinh, monhoc, sodienthoai;
         ImageView picture;
 
         public viewholder(@NonNull View itemView) {
@@ -74,6 +75,7 @@ public class GiaSu_Adapter extends RecyclerView.Adapter<GiaSu_Adapter.viewholder
             nghenghiep = itemView.findViewById(R.id.Nghenghiep_giasu_item);
             namsinh = itemView.findViewById(R.id.Namsinh_giasu_item);
             monhoc = itemView.findViewById(R.id.Monday_giaovien_item);
+            sodienthoai = itemView.findViewById(R.id.Sdt_giasu_item);
         }
     }
 }

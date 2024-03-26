@@ -106,12 +106,6 @@ public class TaoYeuCauTimGiaSu_Activity extends AppCompatActivity {
                 ShowMenugiomoibuoi();
             }
         });
-        edt_gioitinhhocvien.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ShowMenugioitinhhocvien();
-            }
-        });
         edt_gioitinh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -407,28 +401,6 @@ public class TaoYeuCauTimGiaSu_Activity extends AppCompatActivity {
         popupMenu.show();
 
 
-    }
-    private void ShowMenugioitinhhocvien() {
-        PopupMenu popupMenu = new PopupMenu(this, edt_gioitinhhocvien);
-        popupMenu.getMenuInflater().inflate(R.menu.menu_pupop_gioitinh, popupMenu.getMenu());
-        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
-                    case menunamnu:
-                        edt_gioitinhhocvien.setText("Nam/nữ");
-                        break;
-                    case menunam:
-                        edt_gioitinhhocvien.setText("Nam");
-                        break;
-                    case menunu:
-                        edt_gioitinhhocvien.setText("nữ");
-                        break;
-                }
-                return false;
-            }
-        });
-        popupMenu.show();
     }
 
     //Hàm ánh xạ
