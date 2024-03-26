@@ -392,13 +392,13 @@ public class TaoYeuCauTimGiaSu_Activity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case menunamnu:
-                        edt_gioitinhhocvien.setText("Nam/nữ");
+                        edt_gioitinhhocvien.setText("Nam/Nữ");
                         break;
                     case menunam:
                         edt_gioitinhhocvien.setText("Nam");
                         break;
                     case menunu:
-                        edt_gioitinhhocvien.setText("nữ");
+                        edt_gioitinhhocvien.setText("Nữ");
                         break;
                 }
                 return false;
