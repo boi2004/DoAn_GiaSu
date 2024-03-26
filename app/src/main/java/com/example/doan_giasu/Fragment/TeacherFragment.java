@@ -54,8 +54,6 @@ public class TeacherFragment extends Fragment {
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
-        recyclerView.setLayoutManager(gridLayoutManager);
 
         // Kiểm tra xem adapter đã được khởi tạo trước đó hay chưa
         if (giaSuAdapter == null) {

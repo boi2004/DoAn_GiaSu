@@ -4,12 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="80dp"
+    android:layout_marginBottom="100dp"
     tools:context=".Fragment.TeacherFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_GiaoVien"
-        android:layout_width="408dp"
-        android:layout_height="735dp"
-        android:layout_marginBottom="100dp" />
-
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>
